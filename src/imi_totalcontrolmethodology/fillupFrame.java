@@ -764,6 +764,8 @@ public class fillupFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        fillupFrame2nd frame2 = new fillupFrame2nd();
+        frame2.setVisible(true   );
         dispose();
         } else {
     // no option
