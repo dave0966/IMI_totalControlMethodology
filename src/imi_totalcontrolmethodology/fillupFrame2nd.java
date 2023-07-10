@@ -4,6 +4,8 @@
  */
 package imi_totalcontrolmethodology;
 
+import java.awt.Color;
+
 /**
  *
  * @author USer1
@@ -15,6 +17,7 @@ public class fillupFrame2nd extends javax.swing.JFrame {
      */
     public fillupFrame2nd() {
         initComponents();
+        this.getContentPane().setBackground(Color.white);
     }
 
     /**
