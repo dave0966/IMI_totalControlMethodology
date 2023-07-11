@@ -5,6 +5,8 @@
 package imi_totalcontrolmethodology;
 
 import java.awt.Color;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,6 +20,9 @@ public class STLA_SASY3_fillupFrame2nd_1 extends javax.swing.JFrame {
     public STLA_SASY3_fillupFrame2nd_1() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
+        this.setTitle("VALEO STLA SASY");
+        Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+        this.setIconImage(icon);
     }
 
     /**
@@ -507,6 +512,7 @@ public class STLA_SASY3_fillupFrame2nd_1 extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     STLA_SASY3_fillupFrame_1 sasy3 = new STLA_SASY3_fillupFrame_1();
     sasy3.setVisible(true);
+    dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
