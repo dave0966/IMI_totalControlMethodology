@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author USer1
  */
-public class fillupFrame extends javax.swing.JFrame {
+public class FS_fillupFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form fillupFrame
      */
-    public fillupFrame() {
+    public FS_fillupFrame() {
         initComponents();
         this.setTitle("Valeo STLA AVIEW");
         this.getContentPane().setBackground(Color.white);
@@ -765,7 +765,7 @@ public class fillupFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-        fillupFrame2nd frame2 = new fillupFrame2nd();
+        FS_fillupFrame2nd frame2 = new FS_fillupFrame2nd();
         frame2.setVisible(true   );
         dispose();
         } else {
@@ -790,21 +790,23 @@ public class fillupFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FS_fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FS_fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FS_fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FS_fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new fillupFrame().setVisible(true);
+                new FS_fillupFrame().setVisible(true);
             }
         });
     }

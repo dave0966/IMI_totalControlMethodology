@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author USer1
  */
-public class IKS_fillupFrame_1 extends javax.swing.JFrame {
+public class FS_IKS_fillupFrame_1 extends javax.swing.JFrame {
 
     /**
      * Creates new form fillupFrame
      */
-    public IKS_fillupFrame_1() {
+    public FS_IKS_fillupFrame_1() {
         initComponents();
         this.setTitle("Valeo IKS AVIEW");
         this.getContentPane().setBackground(Color.white);
@@ -765,7 +765,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-        IKS_fillupFrame2nd_1 frame2 = new IKS_fillupFrame2nd_1();
+        FS_IKS_fillupFrame2nd_1 frame2 = new FS_IKS_fillupFrame2nd_1();
         frame2.setVisible(true   );
         dispose();
         } else {
@@ -790,14 +790,30 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FS_IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FS_IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FS_IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FS_IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -818,7 +834,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IKS_fillupFrame_1().setVisible(true);
+                new FS_IKS_fillupFrame_1().setVisible(true);
             }
         });
     }
