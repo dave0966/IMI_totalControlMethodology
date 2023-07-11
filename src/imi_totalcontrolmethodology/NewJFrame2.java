@@ -5,6 +5,8 @@
 package imi_totalcontrolmethodology;
 
 import java.awt.Color;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,6 +20,8 @@ public class NewJFrame2 extends javax.swing.JFrame {
     public NewJFrame2() {
         initComponents();
         this.setTitle("SELECT PRODUCT TYPE");
+        Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+        this.setIconImage(icon);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.white);
         
