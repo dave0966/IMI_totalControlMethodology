@@ -20,7 +20,7 @@ public class fillupFrame extends javax.swing.JFrame {
      */
     public fillupFrame() {
         initComponents();
-        this.setTitle("Valeo STLA");
+        this.setTitle("Valeo STLA AVIEW");
         this.getContentPane().setBackground(Color.white);
         Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
         this.setIconImage(icon);

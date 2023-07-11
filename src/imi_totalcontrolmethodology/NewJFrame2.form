@@ -102,7 +102,7 @@
           <StringArray count="3">
             <StringItem index="0" value="Valeo IKS"/>
             <StringItem index="1" value="Valeo STLA AVIEW"/>
-            <StringItem index="2" value="Valeo STLA SASSY"/>
+            <StringItem index="2" value="Valeo STLA SASY3"/>
           </StringArray>
         </Property>
       </Properties>
@@ -137,6 +137,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Continue"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>

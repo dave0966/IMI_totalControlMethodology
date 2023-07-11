@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package imi_totalcontrolmethodology;
+package folder.loadFileFillUp;
 
+import imi_totalcontrolmethodology.*;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -13,14 +14,14 @@ import javax.swing.JOptionPane;
  *
  * @author USer1
  */
-public class IKS_fillupFrame_1 extends javax.swing.JFrame {
+public class fillupFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form fillupFrame
      */
-    public IKS_fillupFrame_1() {
+    public fillupFrame() {
         initComponents();
-        this.setTitle("Valeo IKS AVIEW");
+        this.setTitle("Valeo STLA AVIEW");
         this.getContentPane().setBackground(Color.white);
         Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
         this.setIconImage(icon);
@@ -278,12 +279,12 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jTextField28.setRequestFocusEnabled(false);
 
         jTextField29.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField29.setText("3.5 Seconds");
+        jTextField29.setText("6 Seconds");
         jTextField29.setFocusable(false);
         jTextField29.setRequestFocusEnabled(false);
 
         jTextField30.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField30.setText("Settings: 3 second UV");
+        jTextField30.setText("Settings: 6 second UV");
         jTextField30.setFocusable(false);
         jTextField30.setRequestFocusEnabled(false);
 
@@ -303,7 +304,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jTextField33.setRequestFocusEnabled(false);
 
         jTextField34.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField34.setText("Center > 61         Corner > 45");
+        jTextField34.setText("Center > 35         Corner > 22");
         jTextField34.setFocusable(false);
         jTextField34.setRequestFocusEnabled(false);
         jTextField34.addActionListener(new java.awt.event.ActionListener() {
@@ -313,7 +314,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         });
 
         jTextField35.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField35.setText("60 +/-2");
+        jTextField35.setText("30 +/-1");
         jTextField35.setFocusable(false);
         jTextField35.setRequestFocusEnabled(false);
 
@@ -764,7 +765,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-        IKS_fillupFrame2nd_1 frame2 = new IKS_fillupFrame2nd_1();
+        fillupFrame2nd frame2 = new fillupFrame2nd();
         frame2.setVisible(true   );
         dispose();
         } else {
@@ -789,27 +790,21 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IKS_fillupFrame_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(fillupFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IKS_fillupFrame_1().setVisible(true);
+                new fillupFrame().setVisible(true);
             }
         });
     }

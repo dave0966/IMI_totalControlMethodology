@@ -51,7 +51,7 @@ public class NewJFrame2 extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valeo IKS", "Valeo STLA AVIEW", "Valeo STLA SASSY" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valeo IKS", "Valeo STLA AVIEW", "Valeo STLA SASY3" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -68,6 +68,11 @@ public class NewJFrame2 extends javax.swing.JFrame {
         jLabel4.setText("SHIFT");
 
         jButton1.setText("Continue");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +150,7 @@ public class NewJFrame2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -161,6 +166,22 @@ public class NewJFrame2 extends javax.swing.JFrame {
         if(jComboBox2.getSelectedIndex() == 0)
             jComboBox2.setEditable(true);
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    if (jComboBox1.getSelectedItem()=="Valeo IKS"){
+        IKS_fillupFrame_1 IKSF= new IKS_fillupFrame_1();
+        IKSF.setVisible(true); 
+    }
+    if (jComboBox1.getSelectedItem()=="Valeo STLA AVIEW"){
+        fillupFrame fillup= new fillupFrame();
+        fillup.setVisible(true); 
+    }
+    if (jComboBox1.getSelectedItem()=="Valeo STLA SASY3"){
+       STLA_SASY3_fillupFrame_1 SASY3= new STLA_SASY3_fillupFrame_1();
+       SASY3.setVisible(true); 
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
