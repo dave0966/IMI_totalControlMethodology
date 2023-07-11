@@ -5,6 +5,8 @@
 package imi_totalcontrolmethodology;
 
 import java.awt.Color;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,6 +20,9 @@ public class IKS_fillupFrame2nd_1 extends javax.swing.JFrame {
     public IKS_fillupFrame2nd_1() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
+        this.setTitle("VALEO IKS AVIEW");
+        Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+        this.setIconImage(icon);
     }
 
     /**

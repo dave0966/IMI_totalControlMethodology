@@ -51,7 +51,7 @@ public class NewJFrame2 extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valeo IKS", "Valeo STLA AVIEW", "Valeo STLA SASY3" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valeo IKS", "Valeo STLA AVIEW", "Valeo STLA SASY" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -179,7 +179,7 @@ public class NewJFrame2 extends javax.swing.JFrame {
         fillup.setVisible(true);
         dispose();
     }
-    if (jComboBox1.getSelectedItem()=="Valeo STLA SASY3"){
+    if (jComboBox1.getSelectedItem()=="Valeo STLA SASY"){
        STLA_SASY3_fillupFrame_1 SASY3= new STLA_SASY3_fillupFrame_1();
        SASY3.setVisible(true); 
        dispose();
