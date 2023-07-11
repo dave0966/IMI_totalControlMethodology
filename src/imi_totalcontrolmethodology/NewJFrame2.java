@@ -172,15 +172,19 @@ public class NewJFrame2 extends javax.swing.JFrame {
     if (jComboBox1.getSelectedItem()=="Valeo IKS"){
         IKS_fillupFrame_1 IKSF= new IKS_fillupFrame_1();
         IKSF.setVisible(true); 
+        dispose();
     }
     if (jComboBox1.getSelectedItem()=="Valeo STLA AVIEW"){
         fillupFrame fillup= new fillupFrame();
-        fillup.setVisible(true); 
+        fillup.setVisible(true);
+        dispose();
     }
     if (jComboBox1.getSelectedItem()=="Valeo STLA SASY3"){
        STLA_SASY3_fillupFrame_1 SASY3= new STLA_SASY3_fillupFrame_1();
        SASY3.setVisible(true); 
+       dispose();
     }
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
