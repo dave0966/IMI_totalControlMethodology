@@ -1,25 +1,22 @@
 package imi_totalcontrolmethodology;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
+import java.util.*;
 import javax.swing.JOptionPane;
 
 
 public class dataManager {
 	final String excel_dir = "";
 	private File f_dir, f_enfl, f_logRepo, f_output;
-	String test = "1";
+
 	dataManager(){
 		createDir_LogRepo();
 		createTxt_EmployeeNumberLog();
+		createDir_Output();
 	}
 	
 	dataManager(String dir){
 		f_dir = new File(dir);
-		
 	}
 		
 	private void createDir_LogRepo() {
@@ -50,44 +47,37 @@ public class dataManager {
 			f_output.mkdirs();
 			System.out.println("Successfully Created Directory!");
 		}else 
-			System.out.println("Folder Directory for Employee Log Already Exist!");
+			System.out.println("Output Folder Directory are Already Exist!");
 	}
 	
 	//Add a method in which prevent redundant data
 	void addEmployeeNum(String str) {
 		try 
 		{
-			if(!compareTxt()) {
-				JOptionPane.showMessageDialog(null, "please insert emplyee number!", "File Creation Alert Warning", JOptionPane.WARNING_MESSAGE);
-			}
-			else {
-				FileWriter fw = new FileWriter(f_enfl, true);
-				fw.write("\n"+str);
-				fw.close();
-			}
+			FileWriter fw = new FileWriter(f_enfl, true);
+			fw.write("\n"+str);
+			fw.close();
 		}
 		
 		catch(IOException e) { e.printStackTrace(); }
 	}
-	boolean compareTxt() {
-		for(String str1: getListOfEmployeeNum()) {
-			if (str1 == test) {
-				return true;
+	
+	boolean isNumeric(String str) {
+		for(char chr: str.toCharArray())
+			if(!Character.isDigit(chr)) {
+				System.out.println(str + "is not Numeric" );
+				return false;
 			}
-		}
-		return false;
+		return true;
 	}
 	
 	List<String> getListOfEmployeeNum() {
 		List<String> temp = new ArrayList<String>();
-		
 		try 
 		{
 			Scanner reader = new Scanner(f_enfl);
-			while (reader.hasNextLine()) {
-				String temp_str = reader.nextLine();
-				temp.add(temp_str);
-			}
+			while (reader.hasNextLine()) 
+				temp.add(reader.nextLine());
 			reader.close();
 		} 
 		

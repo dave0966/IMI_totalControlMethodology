@@ -18,11 +18,14 @@ public class fillupFrame2nd extends javax.swing.JFrame {
      * Creates new form fillupFrame2nd
      */
     public fillupFrame2nd(int state) {
+    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+    	
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setTitle("VALEO STLA AVIEW");
-        Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+        this.setLocationRelativeTo(null);
         this.setIconImage(icon);
+        this.setResizable(false);
         jButton2.setVisible((state == 0) ? true: false);
     }
 
