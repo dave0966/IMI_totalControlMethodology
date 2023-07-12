@@ -5,15 +5,9 @@
 package imi_totalcontrolmethodology;
 
 
-import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.Toolkit;
 import javax.swing.ImageIcon;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
  *
@@ -46,7 +40,6 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
         textField3 = new java.awt.TextField();
         textField5 = new java.awt.TextField();
         jButton1 = new javax.swing.JButton();
@@ -202,7 +195,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private java.awt.TextField textField3;
     private java.awt.TextField textField5;
     // End of variables declaration//GEN-END:variables

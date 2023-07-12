@@ -22,6 +22,7 @@ public class mainFrame extends javax.swing.JFrame {
         Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
         this.setIconImage(icon);
         this.setResizable(false);
+        this.setVisible(true);
         this.pack();
         this.setLocationRelativeTo(null);
     }
@@ -78,14 +79,11 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         NewJFrame2 frame2 = new NewJFrame2();
-        frame2.setVisible(true);
-        
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         fileSelector frame3 = new fileSelector();
-        frame3.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -13,8 +13,6 @@ package imi_totalcontrolmethodology;
 public class mainClass {
      public static void main(String[] args) {
         mainFrame mainF = new mainFrame();
-        mainF.setVisible(true);
-        
     }
     
 }

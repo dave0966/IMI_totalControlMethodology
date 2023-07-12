@@ -18,12 +18,14 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
     /**
      * Creates new form fillupFrame
      */
-    public IKS_fillupFrame_1() {
+    public IKS_fillupFrame_1(int state ) {
         initComponents();
         this.setTitle("Valeo IKS AVIEW");
         this.getContentPane().setBackground(Color.white);
         Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+        this.setVisible(true);
         this.setIconImage(icon);
+        jButton2.setVisible((state == 0) ? true: false);
     }
 
     /**
@@ -672,7 +674,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IKS_fillupFrame_1().setVisible(true);
+                new IKS_fillupFrame_1(0).setVisible(true);
             }
         });
     }

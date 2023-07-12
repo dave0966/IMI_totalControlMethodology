@@ -17,12 +17,13 @@ public class fillupFrame2nd extends javax.swing.JFrame {
     /**
      * Creates new form fillupFrame2nd
      */
-    public fillupFrame2nd() {
+    public fillupFrame2nd(int state) {
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setTitle("VALEO STLA AVIEW");
         Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
         this.setIconImage(icon);
+        jButton2.setVisible((state == 0) ? true: false);
     }
 
     /**
@@ -510,7 +511,7 @@ public class fillupFrame2nd extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    fillupFrame FF = new fillupFrame();
+    fillupFrame FF = new fillupFrame(0);
     FF.setVisible(true);
     dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -545,7 +546,7 @@ public class fillupFrame2nd extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new fillupFrame2nd().setVisible(true);
+                new fillupFrame2nd(0).setVisible(true);
             }
         });
     }

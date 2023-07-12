@@ -5,15 +5,9 @@
 package imi_totalcontrolmethodology;
 
 
-import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.Toolkit;
 import javax.swing.ImageIcon;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
  *

@@ -510,7 +510,7 @@ public class IKS_fillupFrame2nd_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     IKS_fillupFrame_1 IKSFF = new IKS_fillupFrame_1();
+     IKS_fillupFrame_1 IKSFF = new IKS_fillupFrame_1(0);
      IKSFF.setVisible(true);
      dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

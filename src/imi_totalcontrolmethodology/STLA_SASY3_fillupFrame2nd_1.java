@@ -510,7 +510,7 @@ public class STLA_SASY3_fillupFrame2nd_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    STLA_SASY3_fillupFrame_1 sasy3 = new STLA_SASY3_fillupFrame_1();
+    STLA_SASY3_fillupFrame_1 sasy3 = new STLA_SASY3_fillupFrame_1(0);
     sasy3.setVisible(true);
     dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

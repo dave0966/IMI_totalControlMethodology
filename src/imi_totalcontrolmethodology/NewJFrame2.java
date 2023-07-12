@@ -7,13 +7,15 @@ package imi_totalcontrolmethodology;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author USer1
  */
 public class NewJFrame2 extends javax.swing.JFrame {
-
+	private dataManager d = new dataManager();
+	
     /**
      * Creates new form NewJFrame2
      */
@@ -24,8 +26,7 @@ public class NewJFrame2 extends javax.swing.JFrame {
         this.setIconImage(icon);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.white);
-        
-        
+        this.setVisible(true);    
     }
 
     /**
@@ -39,14 +40,18 @@ public class NewJFrame2 extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-
+        
+        for(String str: d.getListOfEmployeeNum()) {
+        	jComboBox2.addItem(str);
+        	System.out.println("Go");
+        }
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
@@ -82,8 +87,12 @@ public class NewJFrame2 extends javax.swing.JFrame {
         });
 
         jComboBox2.setEditable(true);
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--  Select Employee Number  --", "Example1", "Example2" }));
-        jComboBox2.setToolTipText("");
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--  Select Employee Number  --"}));
+        
+        for(String str: d.getListOfEmployeeNum()) {
+        	jComboBox2.addItem(str);
+        	System.out.println(str);
+        }
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -117,9 +126,9 @@ public class NewJFrame2 extends javax.swing.JFrame {
                 .addGap(284, 284, 284))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(132, 132, 132)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137))
         );
         layout.setVerticalGroup(
@@ -130,15 +139,15 @@ public class NewJFrame2 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE) //javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,9 +163,12 @@ public class NewJFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    mainFrame mf = new mainFrame();
-    mf.setVisible(true);
-    dispose();
+    	int condition = JOptionPane.showConfirmDialog(null, "The prompted input will not be save. Are you sure?", "Confirm Dialog", JOptionPane.YES_NO_OPTION);
+	    if(condition == 0) {
+	    	mainFrame mf = new mainFrame();
+		    dispose();
+	    }
+	    	
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -168,22 +180,22 @@ public class NewJFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    if (jComboBox1.getSelectedItem()=="Valeo IKS"){
-        IKS_fillupFrame_1 IKSF= new IKS_fillupFrame_1();
-        IKSF.setVisible(true); 
-        dispose();
-    }
-    if (jComboBox1.getSelectedItem()=="Valeo STLA AVIEW"){
-        fillupFrame fillup= new fillupFrame();
-        fillup.setVisible(true);
-        dispose();
-    }
-    if (jComboBox1.getSelectedItem()=="Valeo STLA SASY"){
-       STLA_SASY3_fillupFrame_1 SASY3= new STLA_SASY3_fillupFrame_1();
-       SASY3.setVisible(true); 
-       dispose();
-    }
+    	if(jComboBox1.getSelectedIndex() == 0) {
+    		d.addEmployeeNum(jComboBox2.getSelectedItem().toString());
+    		System.out.println("Inserted new Employee Number: " + jComboBox2.getSelectedItem().toString());
+    	}
+    	if(d.compareTxt()) {
+		    if (jComboBox1.getSelectedItem()=="Valeo IKS"){
+		        IKS_fillupFrame_1 IKSF= new IKS_fillupFrame_1(0);
+		    }
+		    if (jComboBox1.getSelectedItem()=="Valeo STLA AVIEW"){
+		        fillupFrame fillup= new fillupFrame(0);
+		    }
+		    if (jComboBox1.getSelectedItem()=="Valeo STLA SASY"){
+		       STLA_SASY3_fillupFrame_1 SASY3= new STLA_SASY3_fillupFrame_1(0);
+		    }
+		    dispose();
+	    }
     
     }//GEN-LAST:event_jButton1ActionPerformed
 

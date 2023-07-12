@@ -18,12 +18,17 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
     /**
      * Creates new form fillupFrame
      */
-    public STLA_SASY3_fillupFrame_1() {
+	
+	// state = 0 -> create new
+	// state = 1 -> existing 
+    public STLA_SASY3_fillupFrame_1(int state) {
         initComponents();
         this.setTitle("Valeo STLA SASY");
         this.getContentPane().setBackground(Color.white);
         Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
         this.setIconImage(icon);
+        this.setVisible(true);
+        jButton2.setVisible((state == 0) ? true: false);
     }
 
     /**
@@ -950,7 +955,7 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
     if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
         STLA_SASY3_fillupFrame2nd_1 frame2 = new STLA_SASY3_fillupFrame2nd_1();
-        frame2.setVisible(true   );
+        frame2.setVisible(true);
         dispose();
         } else {
     // no option
@@ -1104,7 +1109,7 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new STLA_SASY3_fillupFrame_1().setVisible(true);
+                new STLA_SASY3_fillupFrame_1(0).setVisible(true);
             }
         });
     }
