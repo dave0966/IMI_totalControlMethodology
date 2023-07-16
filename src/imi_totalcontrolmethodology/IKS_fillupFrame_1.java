@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package imi_totalcontrolmethodology;
 
 import java.awt.Color;
@@ -310,7 +306,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+//                jButton2ActionPerformed(evt);
             }
         });
 
@@ -557,32 +553,13 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
-        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-        IKS_fillupFrame2nd_1 frame2 = new IKS_fillupFrame2nd_1();
-        frame2.setVisible(true);
-        dispose();
-        } else {
-    // no option
-        }
+	    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
+		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+		        IKS_fillupFrame2nd_1 frame2 = new IKS_fillupFrame2nd_1();
+		        frame2.setVisible(true);
+		        dispose();
+	    }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    NewJFrame2 JF2 =new NewJFrame2();
-    JF2.setVisible(true);
-    dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IKS_fillupFrame_1(0).setVisible(true);
-            }
-        });
-    }
 
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -644,5 +621,4 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    // End of variables declaration//GEN-END:variables
 }

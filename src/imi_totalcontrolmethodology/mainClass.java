@@ -1,24 +1,27 @@
 package imi_totalcontrolmethodology;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USer1
  */
-public class mainClass {
+public class mainClass extends fileManager{
      public static void main(String[] args) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            new mainFrame();
+        } 
+        
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) 
+        {
+        	JOptionPane.showMessageDialog(null, "Rendering Error! Restart the Software.", "", JOptionPane.WARNING_MESSAGE, null);
+        	System.err.print("Rendering Error! Restart the Software");
         }
         
-        mainFrame mainF = new mainFrame();
     }
 }

@@ -1,15 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package imi_totalcontrolmethodology;
 
 import static java.awt.Color.WHITE;
 import java.awt.Image;
 import java.io.File;
+
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -19,39 +20,46 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class fileSelector extends javax.swing.JFrame {
 
-    /**
-     * Creates new form fileSelector
-     */
+	private fileManager fm = new fileManager();
+	private JButton jButton1;
+	private JButton jButton2;
+	private JButton jButton3;
+	private JLabel jLabel1;
+	private JTextField jTextField1;
+
     public fileSelector() {
     	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
     	
         initComponents();
         this.getContentPane().setBackground(WHITE);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setIconImage(icon);
-        this.setLocationRelativeTo(null);
-        this.pack();
         this.setResizable(false);
         this.setVisible(true);
+        this.pack();
+        this.setLocationRelativeTo(null);
     }
 
     private void initComponents() {
-
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
+    	jTextField1 = new JTextField();
+    	
+        jLabel1 = new JLabel();
+        jLabel1.setIcon(new ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
 
+        jButton1 = new JButton();
         jButton1.setText("...");
         jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+            	JFileChooser chooser = new JFileChooser();
+                chooser.setFileFilter(new FileNameExtensionFilter("Excel file", "xls", "xlsx"));
+                
+                if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                	File f = chooser.getSelectedFile();
+                	jTextField1.setText(f.getAbsolutePath());
+                	jButton2.setEnabled(true);
+                }
             }
         });
 
@@ -60,22 +68,31 @@ public class fileSelector extends javax.swing.JFrame {
         jTextField1.setFocusable(false);
         jTextField1.setRequestFocusEnabled(false);
 
+        jButton2 = new JButton();
         jButton2.setText("Continue");
         jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+               	String dir = jTextField1.getText();
+            	if(new File(dir).exists() && fm.isFileCredentialValid(dir)) {
+            		new promptFrame();
+            		dispose();
+            	}
+//            	else
+//            		JOptionPane.showMessageDialog(null, "The file does not exist. Please check the selected file directory .", "File Selection Error", JOptionPane.WARNING_MESSAGE);
             }
         });
-
+        
+        jButton3 = new JButton();
         jButton3.setText("Previous");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+            	dispose();
+                new mainFrame();
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,52 +131,4 @@ public class fileSelector extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    	JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(new FileNameExtensionFilter("Excel file", "xls", "xlsx"));
-        
-        if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-        	File f = chooser.getSelectedFile();
-        	jTextField1.setText(f.getAbsolutePath());
-        	jButton2.setEnabled(true);
-        }
-    
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       	String dir = jTextField1.getText();
-    	if(new File(dir).exists()) {
-    		new NewJFrame2();
-    		dispose();
-    	}
-    	else
-    		JOptionPane.showMessageDialog(null, "The file does not exist. Please check the selected file directory .", "File Selection Error", JOptionPane.WARNING_MESSAGE);
-    
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-	    mainFrame MF = new mainFrame();
-	    MF.setVisible(true);
-	    dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new fileSelector().setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
-    // End of variables declaration//GEN-END:variables
 }
