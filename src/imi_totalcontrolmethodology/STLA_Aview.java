@@ -9,16 +9,16 @@ import javax.swing.JOptionPane;
  *
  * @author USer1
  */
-public class fillupFrame extends javax.swing.JFrame {
+public class STLA_Aview_form extends javax.swing.JFrame {
 
     /**
-     * Creates new form fillupFrame
+     * Creates new form STLA_Aview_form
      */
-    public fillupFrame(int state) {
+    public STLA_Aview_form(int state) {
     	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
     	
         initComponents();
-        this.setTitle("Valeo IKS Aview Focus Active Alignment");
+        this.setTitle("Valeo STLA Aview Focus Active Alignment");
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setIconImage(icon);
@@ -539,7 +539,7 @@ public class fillupFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 	    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) 
 	    {
-	        fillupFrame2nd frame2 = new fillupFrame2nd(0);
+	        STLA_Aview_form2nd frame2 = new STLA_Aview_form2nd(0);
 	        frame2.setVisible(true);
 	        dispose();
 	    } 
@@ -554,7 +554,7 @@ public class fillupFrame extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new fillupFrame(0).setVisible(true);
+                new STLA_Aview_form(0).setVisible(true);
             }
         });
     }

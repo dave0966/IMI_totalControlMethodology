@@ -12,17 +12,17 @@ import javax.swing.ImageIcon;
  *
  * @author USer1
  */
-public class fillupFrame2nd extends javax.swing.JFrame {
+public class STLA_Aview_form_2nd extends javax.swing.JFrame {
 
     /**
-     * Creates new form fillupFrame2nd
+     * Creates new form STLA_Aview_form_2nd
      */
-    public fillupFrame2nd(int state) {
+    public STLA_Aview_form_2nd(int state) {
     	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
     	
         initComponents();
         this.getContentPane().setBackground(Color.white);
-        this.setTitle("VALEO STLA AVIEW");
+        this.setTitle("VALEO STLA Aview Focus Active Alignment");
         this.setLocationRelativeTo(null);
         this.setIconImage(icon);
         this.setResizable(false);
@@ -514,7 +514,7 @@ public class fillupFrame2nd extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    fillupFrame FF = new fillupFrame(0);
+    STLA_Aview_form_ FF = new STLA_Aview_form_(0);
     FF.setVisible(true);
     dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -536,20 +536,20 @@ public class fillupFrame2nd extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(fillupFrame2nd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(STLA_Aview_form_2nd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(fillupFrame2nd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(STLA_Aview_form_2nd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(fillupFrame2nd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(STLA_Aview_form_2nd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(fillupFrame2nd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(STLA_Aview_form_2nd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new fillupFrame2nd(0).setVisible(true);
+                new STLA_Aview_form_2nd(0).setVisible(true);
             }
         });
     }

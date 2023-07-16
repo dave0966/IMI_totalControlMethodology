@@ -147,7 +147,7 @@ public class fileManager {
 		return true;
 	}
 	
-	String getTemplateType(String dir) {
+	int getTemplateType(String dir) {
 		try
 		{
 			InputStream fcv_inp = new FileInputStream(dir);
@@ -160,24 +160,20 @@ public class fileManager {
 			
 			switch(0) {
 				case 0:
-					chr2 = "  Valeo STLA    Aview Focus and active alignment  ".toCharArray();
+					chr2 = "  Valeo IKS    Aview Focus and active alignment  ".toCharArray();
 					for(int x = 0;x < chr1.length;x++)
 						if(!(chr1[x] == chr2[x]))
-							return false;
+							return 0;
 				case 1:
-					chr2 = "  Valeo STLA    Aview Focus and active alignment  ".toCharArray();
+					chr2 = "      Valeo STLA               SASY3 EOL (Focus Verification)   ".toCharArray();
 					for(int x = 0;x < chr1.length;x++)
 						if(!(chr1[x] == chr2[x]))
-							return false;
+							return 1;
 				case 2:
 					chr2 = "  Valeo STLA    Aview Focus and active alignment  ".toCharArray();
 					for(int x = 0;x < chr1.length;x++)
 						if(!(chr1[x] == chr2[x]))
-							return false;
-					break;
-				default:
-					result true;
-			
+							return 2;
 			}
 		}
 		catch(IOException  e)
@@ -185,7 +181,7 @@ public class fileManager {
 			JOptionPane.showMessageDialog(null, "File is not compatible with the software. Try another file.", "Invalid File", JOptionPane.WARNING_MESSAGE, null);
 			e.printStackTrace();
 		}
-		
+		return 0;
 	}
 	
 }
