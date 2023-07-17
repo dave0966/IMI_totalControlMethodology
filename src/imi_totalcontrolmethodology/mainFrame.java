@@ -3,6 +3,8 @@ package imi_totalcontrolmethodology;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
 import javax.swing.*;
 
 /**
@@ -19,6 +21,8 @@ public class mainFrame extends JFrame  {
      * Creates new form NewJFrame1
      */
     public mainFrame() {
+    	System.out.println(this.getClass().getSimpleName());
+    	System.out.println(new File("..\\$Resource").getAbsolutePath());
         initComponents();
         this.setTitle("START");
         this.setIconImage(icon);
