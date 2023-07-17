@@ -165,8 +165,8 @@ public class promptFrame extends JFrame {
     private void bt_continueActionPerformed(ActionEvent evt) {
     	String selectedItem = cb_employeeNum.getSelectedItem().toString();
     	
-    	if(!(selectedItem.length() > 7) )
-    		JOptionPane.showMessageDialog(null, "Check prompted Employee Number!", "Invalid Employee Number", JOptionPane.WARNING_MESSAGE);
+    	if(!(selectedItem.length() > 7 && selectedItem.length() < 10) )
+    		JOptionPane.showMessageDialog(null, "Check prompted Employee Number! \nThe Employee Number must be at least 8-9 characters.", "Invalid Employee Number", JOptionPane.WARNING_MESSAGE);
     	
     	else if(!fm.isNumeric(selectedItem)) 
     			JOptionPane.showMessageDialog(null, "Prompt Employee Number \""+selectedItem+"\" couldn't recognized!", "Invalid Employee Number", JOptionPane.WARNING_MESSAGE);
@@ -185,7 +185,7 @@ public class promptFrame extends JFrame {
 		    			break;
 		    		case 1:
 //		    			System.out.println("Opening Valeo STLA Aview - Total Methodology Template");
-		    			fillupFrame fillup= new fillupFrame(0);
+		    			STLA_Aview_form fillup= new STLA_Aview_form(0);
 		    			break;
 		    		case 2:
 //		    			System.out.println("Opening Valeo STLA SASY - Total Methodology Template");

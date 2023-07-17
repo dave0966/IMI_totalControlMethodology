@@ -1,16 +1,24 @@
 package imi_totalcontrolmethodology;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import javax.swing.JOptionPane;
-import org.apache.poi.ss.usermodel.Cell;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class fileManager {
 	
@@ -19,10 +27,11 @@ public class fileManager {
 	private Workbook wb = new SXSSFWorkbook();
 	
 	fileManager(){
-		System.out.println("File Manager Loading...");
+//		System.out.println("File Manager Loading...");
 		createDir_LogRepo();
 		createTxt_EmployeeNumberLog();
 		createDir_Output();
+		createDir_Resource();
 	}
 	
 	private void createDir_LogRepo() {
@@ -56,6 +65,23 @@ public class fileManager {
 			System.out.println("Output Folder Directory are Already Exist!");
 	}
 	
+	private void checkResource() {
+		if(!(new File("LOGO.jpg").exists()))
+			JOptionPane.showMessageDialog(null, "LOGO.jpg could not be find or search!", "Missing File", JOptionPane.ERROR_MESSAGE, null);
+		else if(!(new File("image-300x150.jpg").exists()))
+			JOptionPane.showMessageDialog(null, "image-300x150.jpg could not be find or search!", "Missing File", JOptionPane.ERROR_MESSAGE, null);
+	}
+	
+	private void createDir_Resource() {
+		new File("$Resource");
+		if(!f_output.exists()) {
+			f_output.mkdirs();
+			System.out.println("Successfully Created Directory!");
+		}else 
+			System.out.println("Resource Folder Directory are Already Exist!");
+	}
+	
+	
 	//Add a method in which prevent redundant data
 	void addEmployeeNum(String str) {
 		try 
@@ -81,11 +107,10 @@ public class fileManager {
 		return true;
 	}
 	
-	//dummy method
-	void createWorkBook() {
+	void createCSV() {
 		try {
 			new File("..\\Workbook_test").mkdirs();
-			OutputStream fos = new FileOutputStream("..\\Workbook_test\\1.xlsx");
+			OutputStream fos = new FileOutputStream("..\\Workbook_test\\1.csv");
 			System.out.println(new File("..\\Workbook_test\\1.xlsx").exists());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -93,14 +118,11 @@ public class fileManager {
 		
 	}
 	
-	void insertPrompt() {
-		InputStream inp;
-		try 
-		{
-			Workbook www = WorkbookFactory.create(new File("..\\Workbook_test\\1.xlsx"));
-		}
+	void ToExcel(){
 		
-		catch (IOException e) { e.printStackTrace(); }
+	}
+	
+	void ToCSV(){
 		
 	}
 	
@@ -181,7 +203,7 @@ public class fileManager {
 			JOptionPane.showMessageDialog(null, "File is not compatible with the software. Try another file.", "Invalid File", JOptionPane.WARNING_MESSAGE, null);
 			e.printStackTrace();
 		}
-		return 0;
+		return -1;
 	}
 	
 }

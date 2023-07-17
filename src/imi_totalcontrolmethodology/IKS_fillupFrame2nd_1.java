@@ -12,12 +12,12 @@ import javax.swing.ImageIcon;
  *
  * @author USer1
  */
-public class IKS_fillupFrame2nd_1 extends javax.swing.JFrame {
+public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
 
     /**
      * Creates new form fillupFrame2nd
      */
-    public IKS_fillupFrame2nd_1() {
+    public IKS_fillupFrame_2nd() {
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setTitle("VALEO IKS AVIEW");
