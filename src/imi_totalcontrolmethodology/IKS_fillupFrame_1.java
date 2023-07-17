@@ -555,7 +555,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 	    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
 		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-		        IKS_fillupFrame2nd_1 frame2 = new IKS_fillupFrame2nd_1();
+		        IKS_fillupFrame_2nd frame2 = new IKS_fillupFrame_2nd();
 		        frame2.setVisible(true);
 		        dispose();
 	    }
