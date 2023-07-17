@@ -8,12 +8,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -96,13 +97,15 @@ public class fileManager {
 	}
 	
 	private void createOutput_subFolder() {
-		String temp = java.time.LocalDate.now().toString();
-		File subfolder = new File(temp);
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 11);
+		
+		File subfolder = new File("D:\\Coding\\git\\OJT\\IMI_\\IMI_totalControlMethodology\\$Output\\" + java.time.LocalDate.now().toString() + new SimpleDateFormat("_MM-dd").format(cal.getTime()));
 		if(!subfolder.exists()) {
 			subfolder.mkdirs();
 			System.out.println("Successfully Created Directory!");
 		}else 
-			System.out.println(temp+" was already exist!");
+			System.out.println(java.time.LocalDate.now().toString() + " folder already exist!");
 		
 	}
 	
@@ -122,65 +125,44 @@ public class fileManager {
 			System.out.println("Resource Folder Directory are Already Exist!");
 	}
 	
-	private void init_CellMap(boolean templateType) {
+	void init_CellMap(boolean templateType) {
 		//The value templateType indicates the way initializing the arrCellMap HashMap
 		
-		if(templateType)
-			for(int column = 0; column < 20; column++)
+		for(int column = 0; column < 20; column++)
+		{
+			int col_cond1 = 14+column;
+			int col_cond2 = (templateType && (column % 2 != 0)) ? 0 : col_cond1;
+			for(int row = 0; row < 11; row++)
 			{
-				int fnl_col = 14+column;
-				for(int row = 0; row < 11; row++)
-				{
-					HashMap<Integer, Integer> temp = new HashMap<Integer, Integer>();
-					temp.put(3, fnl_col);
-					temp.put(4, fnl_col);
-					temp.put(5, fnl_col);
-					temp.put(7, fnl_col);
-					temp.put(8, fnl_col);
-					temp.put(9, fnl_col);
-					temp.put(10, fnl_col);
-					temp.put(11, fnl_col);
-					temp.put(12, fnl_col);
-					temp.put(13, fnl_col);
-					temp.put(14, fnl_col);
-					temp.put(15, fnl_col);
-					temp.put(16, fnl_col);
-					temp.put(17, fnl_col);
-					temp.put(18, fnl_col);
-					temp.put(19, fnl_col);
-					temp.put(20, fnl_col);
-					temp.put(21, fnl_col);
-					temp.put(22, fnl_col);
-					temp.put(23, fnl_col);
-					arrCellMap.add(temp);
-				}
+//				System.out.println("CellMap:" + col_cond2);
+				HashMap<Integer, Integer> temp = new HashMap<Integer, Integer>();
+				temp.put(3, col_cond1);
+				temp.put(4, col_cond1);
+				temp.put(5, col_cond1);
+				
+				temp.put(7, col_cond1);
+				temp.put(8, col_cond1);
+				temp.put(9, col_cond1);
+				temp.put(10, col_cond1);
+				temp.put(11, col_cond1);
+				temp.put(12, col_cond1);
+				temp.put(13, col_cond1);
+				temp.put(14, col_cond1);
+				temp.put(15, col_cond1);
+				temp.put(16, col_cond1);
+				
+				temp.put(17, col_cond1);
+				temp.put(18, col_cond1);
+				temp.put(19, col_cond1);
+				
+				temp.put(20, col_cond1);
+				temp.put(21, col_cond1);
+				temp.put(22, col_cond1);
+				temp.put(23, col_cond1);
+				
+				arrCellMap.add(temp);
 			}
-		
-		else
-			for(int column = 0; column < 20; column++)
-			{
-				int fnl_col = 14+column;
-				for(int row = 0; row < 11; row++)
-				{
-					HashMap<Integer, Integer> temp = new HashMap<Integer, Integer>();
-					temp.put(3, fnl_col);
-					temp.put(4, fnl_col);
-					temp.put(5, fnl_col);
-					temp.put(7, fnl_col);
-					temp.put(8, fnl_col);
-					temp.put(9, fnl_col);
-					temp.put(10, fnl_col);
-					temp.put(11, fnl_col);
-					temp.put(12, fnl_col);
-					temp.put(13, fnl_col);
-					temp.put(14, fnl_col);
-					temp.put(15, fnl_col);
-					temp.put(16, fnl_col);
-					temp.put(18, fnl_col);
-					temp.put(19, fnl_col);
-					arrCellMap.add(temp);
-				}
-			}
+		}
 	}
 	
 	

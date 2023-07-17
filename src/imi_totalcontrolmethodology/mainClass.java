@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
  *
  * @author USer1
  */
-public class mainClass extends fileManager{
+public class mainClass{
      public static void main(String[] args) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
@@ -14,7 +14,7 @@ public class mainClass extends fileManager{
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
-            new mainFrame();
+//            new mainFrame();
         } 
         
         catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) 
@@ -23,5 +23,6 @@ public class mainClass extends fileManager{
         	System.err.print("Rendering Error! Restart the Software");
         }
         
+        new fileManager().init_CellMap(false);
     }
 }
