@@ -9,7 +9,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -22,8 +25,34 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 public class fileManager {
 	
-	private final String excel_dir = "";
+	/*IKS and STLA - Aview					STLA - SASSY3
+	 *Column    14   ... 25					 14   15   ... 25
+	 *Row 	->	(3), ... (3)				 (3), (3), ...
+	 * 		->	(4), ... (4)				 (4), (4), ...	 	
+	 * 		->	(5), ... (5)				 (5), (5), ...
+	 * 	
+	 *		->	(7), ... (7) 				 (7),  (NONE), ...
+	 *	 	->	(8), ... (8)				 (8),  (NONE), ...
+	 *	 	->	(9), ... (9)				 (9),  (NONE), ...
+	 * 		->	(10), ... (10)				 (10), (NONE), ...
+	 * 		->	(11), ...(11) 				 (11), (NONE), ...
+	 * 		->	(12), ...(12)				 (12), (NONE), ...
+	 * 		->	(13), ...(13)				 (13), (NONE), ...
+	 *		->	(14), ...(14)				 (14), (NONE), ...
+	 *		->	(15), ...(15)				 (15), (NONE), ...
+	 *	 	->	(16), ...(16)				 (16), (NONE), ...
+	 *	 	->	(17), ...(17)				 (17), (16),   ...
+	 *		->	(18), ...(18)  				 ...,  ...,    ...
+	 *		-> 	(19), ...(19) 
+	 * 		->	(20), ...(20)
+	 * 		->	(21), ...(21)
+	 *		->	(22), ...(22) 
+	 *		->	(23), ...(23) 
+	 */
+	
+	private final String excel_dir = "$Output";
 	private File f_dir, f_enfl, f_logRepo, f_output;
+	private List<HashMap<Integer, Integer>> arrCellMap;
 	private Workbook wb = new SXSSFWorkbook();
 	
 	fileManager(){
@@ -32,6 +61,7 @@ public class fileManager {
 		createTxt_EmployeeNumberLog();
 		createDir_Output();
 		createDir_Resource();
+		createOutput_subFolder();
 	}
 	
 	private void createDir_LogRepo() {
@@ -65,6 +95,17 @@ public class fileManager {
 			System.out.println("Output Folder Directory are Already Exist!");
 	}
 	
+	private void createOutput_subFolder() {
+		String temp = java.time.LocalDate.now().toString();
+		File subfolder = new File(temp);
+		if(!subfolder.exists()) {
+			subfolder.mkdirs();
+			System.out.println("Successfully Created Directory!");
+		}else 
+			System.out.println(temp+" was already exist!");
+		
+	}
+	
 	private void checkResource() {
 		if(!(new File("LOGO.jpg").exists()))
 			JOptionPane.showMessageDialog(null, "LOGO.jpg could not be find or search!", "Missing File", JOptionPane.ERROR_MESSAGE, null);
@@ -79,6 +120,67 @@ public class fileManager {
 			System.out.println("Successfully Created Directory!");
 		}else 
 			System.out.println("Resource Folder Directory are Already Exist!");
+	}
+	
+	private void init_CellMap(boolean templateType) {
+		//The value templateType indicates the way initializing the arrCellMap HashMap
+		
+		if(templateType)
+			for(int column = 0; column < 20; column++)
+			{
+				int fnl_col = 14+column;
+				for(int row = 0; row < 11; row++)
+				{
+					HashMap<Integer, Integer> temp = new HashMap<Integer, Integer>();
+					temp.put(3, fnl_col);
+					temp.put(4, fnl_col);
+					temp.put(5, fnl_col);
+					temp.put(7, fnl_col);
+					temp.put(8, fnl_col);
+					temp.put(9, fnl_col);
+					temp.put(10, fnl_col);
+					temp.put(11, fnl_col);
+					temp.put(12, fnl_col);
+					temp.put(13, fnl_col);
+					temp.put(14, fnl_col);
+					temp.put(15, fnl_col);
+					temp.put(16, fnl_col);
+					temp.put(17, fnl_col);
+					temp.put(18, fnl_col);
+					temp.put(19, fnl_col);
+					temp.put(20, fnl_col);
+					temp.put(21, fnl_col);
+					temp.put(22, fnl_col);
+					temp.put(23, fnl_col);
+					arrCellMap.add(temp);
+				}
+			}
+		
+		else
+			for(int column = 0; column < 20; column++)
+			{
+				int fnl_col = 14+column;
+				for(int row = 0; row < 11; row++)
+				{
+					HashMap<Integer, Integer> temp = new HashMap<Integer, Integer>();
+					temp.put(3, fnl_col);
+					temp.put(4, fnl_col);
+					temp.put(5, fnl_col);
+					temp.put(7, fnl_col);
+					temp.put(8, fnl_col);
+					temp.put(9, fnl_col);
+					temp.put(10, fnl_col);
+					temp.put(11, fnl_col);
+					temp.put(12, fnl_col);
+					temp.put(13, fnl_col);
+					temp.put(14, fnl_col);
+					temp.put(15, fnl_col);
+					temp.put(16, fnl_col);
+					temp.put(18, fnl_col);
+					temp.put(19, fnl_col);
+					arrCellMap.add(temp);
+				}
+			}
 	}
 	
 	
