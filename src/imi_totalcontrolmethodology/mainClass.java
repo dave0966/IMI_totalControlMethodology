@@ -7,6 +7,12 @@ import javax.swing.JOptionPane;
  * @author USer1
  */
 public class mainClass{
+	static DataToSheetManager dtsm = new DataToSheetManager();
+	static LogFolderManager lfm = new LogFolderManager();
+	static OutputFolderManager ofm = new OutputFolderManager();
+	static ResourceFolderManager rfm = new ResourceFolderManager();
+	static fileManager fm = new fileManager();
+	
      public static void main(String[] args) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
@@ -14,8 +20,8 @@ public class mainClass{
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
-//            new mainFrame();
-            new fileManager().createCSV("Swap");
+            new mainFrame();
+            fm.createCSV("Workbook_test.xslx");
         } 
         
         catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) 
@@ -24,7 +30,7 @@ public class mainClass{
         	System.err.print("Rendering Error! Restart the Software");
         }
         
-        new fileManager().isFileCredentialValid("C:\\Users\\Leak_Tester\\Downloads\\IMI_totalControlMethodology\\$Resource\\Valeo_STLA _SASSY3_EOL.xlsx");
+//        System.out.println("mainClass: " + new fileManager().isFileCredentialValid("$Resource\\LOGO.jpg"));
     }
 }
 	

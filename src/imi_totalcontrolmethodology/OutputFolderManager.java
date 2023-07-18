@@ -5,11 +5,21 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class OutputFolderManager {
-	File f_output;
+	private File f_output;
+	private String currOutputFolder = "";
 	
+
 	OutputFolderManager(){
 		createDir_Output();
+		setDefaultCurrOutputDir();
+		createOutput_subFolder();
 	}
+	
+	/*
+	 * 	
+	 * 		Create MethodsS
+	 * 
+	 */
 	
 	private void createDir_Output() {
 		f_output = new File("$Output");
@@ -23,15 +33,38 @@ public class OutputFolderManager {
 	}
 	
 	private void createOutput_subFolder() {
-		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, 11);
-		File subfolder = new File("D:\\Coding\\git\\OJT\\IMI_\\IMI_totalControlMethodology\\$Output\\" + java.time.LocalDate.now().toString() + new SimpleDateFormat("_MM-dd").format(cal.getTime()));
-
+		File subfolder = new File(getCurrOutputFolder());
 		if(!subfolder.exists()) 
-//		{
 			subfolder.mkdirs();
+//		{
 //			System.out.println("Successfully Created Directory!");
 //		}else 
 //			System.out.println(java.time.LocalDate.now().toString() + " folder already exist!");
+	}
+
+	/*
+	 * 
+	 * 		Setter Method
+	 * 
+	 */
+	
+	 void setCurrOutputFolder(String dir) {
+		 this.currOutputFolder = dir;
+	}
+	
+	void setDefaultCurrOutputDir() {
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 11);
+		this.currOutputFolder = "$Output\\" + java.time.LocalDate.now().toString() + new SimpleDateFormat("_MM-dd").format(cal.getTime());
+	}
+	
+	/*
+	 * 
+	 * 		Getter Method
+	 * 
+	 */
+	
+	String getCurrOutputFolder() {
+		return this.currOutputFolder;
 	}
 }

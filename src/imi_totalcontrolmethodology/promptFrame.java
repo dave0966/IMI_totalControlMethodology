@@ -15,7 +15,6 @@ import javax.swing.*;
  * @author USer1
  */
 public class promptFrame extends JFrame {
-	private fileManager fm = new fileManager();
 	private JButton bt_continue, bt_return;
 	private JComboBox<String> cb_productType, cb_employeeNum;
 	private JLabel IMI_logo, lb_selectProduct, lb_employeeNum ,lb_shift;
@@ -45,7 +44,7 @@ public class promptFrame extends JFrame {
         bt_return = new JButton();
 
         cb_productType = new JComboBox<>();
-        cb_productType.setModel(new DefaultComboBoxModel<>(new String[] { "Valeo IKS", "Valeo STLA AVIEW", "Valeo STLA SASY" }));
+        cb_productType.setModel(new DefaultComboBoxModel<>(new String[] { "Valeo IKS AVIEW", "Valeo STLA AVIEW", "Valeo STLA SASY" }));
 
         
         lb_selectProduct = new JLabel();
@@ -78,8 +77,7 @@ public class promptFrame extends JFrame {
         cb_employeeNum.setEditable(true);
         cb_employeeNum.setModel(new DefaultComboBoxModel<>(new String[] { "--  Select Employee Number  --"}));
         
-        for(String str: new fileManager()
-        			.getListOfEmployeeNum()) {
+        for(String str: mainClass.fm.getEmployeeNumList()) {
         	cb_employeeNum.addItem(str);
         	System.out.println(str);
         }
@@ -165,18 +163,18 @@ public class promptFrame extends JFrame {
     private void bt_continueActionPerformed(ActionEvent evt) {
     	String selectedItem = cb_employeeNum.getSelectedItem().toString();
     	
-    	if(!(selectedItem.length() > 7 && selectedItem.length() < 10) )
-    		JOptionPane.showMessageDialog(null, "Check prompted Employee Number! \nThe Employee Number must be at least 8-9 characters.", "Invalid Employee Number", JOptionPane.WARNING_MESSAGE);
+    	if(!(selectedItem.length() == 8))
+    		JOptionPane.showMessageDialog(null, "Check prompted Employee Number! \nThe Employee Number must be 8 characters.", "Invalid Employee Number", JOptionPane.WARNING_MESSAGE);
     	
-    	else if(!fm.isNumeric(selectedItem)) 
+    	else if(!mainClass.fm.isNumeric(selectedItem)) 
     			JOptionPane.showMessageDialog(null, "Prompt Employee Number \""+selectedItem+"\" couldn't recognized!", "Invalid Employee Number", JOptionPane.WARNING_MESSAGE);
 	    	
     	else if(tf_shift.getText().isEmpty())
-    				JOptionPane.showMessageDialog(null, "Check prompted Shift. \""+tf_shift.getText()+"\" is invalid", "Invalid Shift", JOptionPane.WARNING_MESSAGE);
+    			JOptionPane.showMessageDialog(null, "Check prompted Shift. \""+tf_shift.getText()+"\" is invalid", "Invalid Shift", JOptionPane.WARNING_MESSAGE);
 		
     	else 
     	{
-    		fm.addEmployeeNum(selectedItem);
+    		mainClass.fm.addEmployeeNum(selectedItem);
 			System.out.println("Inserted new Employee Number: " + selectedItem);
 		    	switch(cb_productType.getSelectedIndex()) {
 		    		case 0:

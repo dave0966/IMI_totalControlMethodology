@@ -7,6 +7,10 @@ import javax.swing.JOptionPane;
 public class ResourceFolderManager {
 	private File f_resource;
 	
+	public ResourceFolderManager() {
+		createDir_Resource();
+	}
+	
 	private void createDir_Resource() {
 		f_resource = new File("$Resource");
 		if(!f_resource.exists()) {

@@ -11,7 +11,7 @@ import javax.swing.*;
  *
  * @author USer1
  */
-public class mainFrame extends JFrame  {
+public class mainFrame extends JFrame{
 
     private JButton bt_createNewFile;
     private JButton bt_existingFile;
@@ -21,8 +21,6 @@ public class mainFrame extends JFrame  {
      * Creates new form NewJFrame1
      */
     public mainFrame() {
-    	System.out.println(this.getClass().getSimpleName());
-    	System.out.println(new File("..\\$Resource").getAbsolutePath());
         initComponents();
         this.setTitle("START");
         this.setIconImage(icon);

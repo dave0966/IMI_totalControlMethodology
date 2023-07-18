@@ -13,6 +13,11 @@ import javax.swing.JOptionPane;
 public class LogFolderManager {
 	private File f_logRepo, f_enfl;
 	
+	LogFolderManager(){
+		createDir_LogRepo();
+		createTxt_EmployeeNumberLog();
+	}
+	
 	private void createDir_LogRepo() {
 		f_logRepo = new File("$Log");
 		if(!f_logRepo.exists()) {
@@ -55,8 +60,11 @@ public class LogFolderManager {
 		try 
 		{
 			Scanner reader = new Scanner(f_enfl);
-			while (reader.hasNextLine()) 
-				temp.add(reader.nextLine());
+			while (reader.hasNextLine()) {
+				String temp_str = reader.nextLine();
+				if(temp_str.length() == 8)
+					temp.add(temp_str);
+			}
 			reader.close();
 		} 
 		
