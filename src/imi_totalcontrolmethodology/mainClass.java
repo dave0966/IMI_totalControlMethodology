@@ -15,6 +15,7 @@ public class mainClass{
                     break;
                 }
 //            new mainFrame();
+            new fileManager().createCSV("Swap");
         } 
         
         catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) 
@@ -23,6 +24,7 @@ public class mainClass{
         	System.err.print("Rendering Error! Restart the Software");
         }
         
-        new fileManager().init_CellMap(false);
+        new fileManager().isFileCredentialValid("C:\\Users\\Leak_Tester\\Downloads\\IMI_totalControlMethodology\\$Resource\\Valeo_STLA _SASSY3_EOL.xlsx");
     }
 }
+	
