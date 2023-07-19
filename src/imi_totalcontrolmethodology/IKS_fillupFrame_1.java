@@ -1,50 +1,38 @@
 package imi_totalcontrolmethodology;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollBar;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
  * @author USer1
  */
 public class IKS_fillupFrame_1 extends javax.swing.JFrame {
-
-    /**
-     * Creates new form fillupFrame
-     */
+	
     public IKS_fillupFrame_1(int state ) {
-    	Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.png")).getImage();
         
     	initComponents();
-        this.setTitle("Valeo IKS AVIEW");
+        this.setTitle("Valeo IKS AVIEW Focus Active Alignment");
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
         this.setIconImage(icon);
         this.setFocusable(false);
+        this.setLocationRelativeTo(null);
         this.setResizable(false);
-        
-        
-        JScrollBar s = new JScrollBar();
-        this.add(s);
-//        System.out.println(this.getContentPane().getSize());
-//        this.setSize((int)dim.getWidth(), (int)dim.getHeight());
         this.setVisible(true);
+        
         jButton2.setVisible((state == 0) ? true: false);
-    }
+    }	
 
     private void initComponents() {
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -102,12 +90,6 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jComboBox17 = new javax.swing.JComboBox<>();
         jComboBox18 = new javax.swing.JComboBox<>();
         jComboBox19 = new javax.swing.JComboBox<>();
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("Ground strap");
@@ -329,8 +311,9 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jComboBox18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
         jComboBox19.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        JPanel panel = new JPanel();
+        GroupLayout layout = new GroupLayout(panel);
+
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -529,14 +512,48 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
+        
+        panel.setLayout(layout);
+        this.add(new JScrollPane(panel));
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void jButton1ActionPerformed(ActionEvent evt) {
 	    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
 		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-	    	mainClass.dtsm.insertToCell(ALLBITS, ABORT, getName());
+	    		mainClass.dtsm.insertToCell(3, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(4, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(5, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(7, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(8, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(9, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(10, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(11, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(12, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(13, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(14, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(15, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(16, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(17, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(18, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(19, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(20, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(21, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(22, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(23, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(24, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(26, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(27, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(28, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(29, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(30, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(31, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(32, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(34, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(35, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(36, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(38, 14, jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToCell(32, 14, jComboBox3.getSelectedItem().toString());
 	    		dispose();
 		        new IKS_fillupFrame_2nd();
 	    }
@@ -571,9 +588,6 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;

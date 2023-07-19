@@ -7,6 +7,9 @@ package imi_totalcontrolmethodology;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.GroupLayout;
 
 /**
  *
@@ -18,11 +21,14 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
      * Creates new form fillupFrame2nd
      */
     public IKS_fillupFrame_2nd() {
+    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.png")).getImage();
+    	
         initComponents();
         this.getContentPane().setBackground(Color.white);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setTitle("VALEO IKS AVIEW");
-        Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
         this.setIconImage(icon);
+        this.setVisible(true);
     }
 
     private void initComponents() {
@@ -61,7 +67,6 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -273,8 +278,9 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        JPanel panel = new JPanel();
+        GroupLayout layout = new GroupLayout(panel);
+
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -415,6 +421,8 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
+        panel.setLayout(layout);
+        this.add(new JScrollPane(panel));
         pack();
     }// </editor-fold>//GEN-END:initComponents
 

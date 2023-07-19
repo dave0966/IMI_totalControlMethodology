@@ -49,13 +49,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 
 public class DataToSheetManager {
-	private String workingFileDir = "";
 	private Workbook wb;
 	private FileInputStream fis;
 	private FileOutputStream fos;
 	private Sheet sheet;
 	private Row row;
 	private Cell cell;
+	
+	private String workingFileDir = "";
+	private String[] buffer = new String[20];
 	
 	void setWorkingFileDir(String str) {
 //		System.out.println("(DataToSheetManager) workingFileDir changes value!");
@@ -95,6 +97,7 @@ public class DataToSheetManager {
 		
 		return cell.toString();
 	}
+	
 	
 	
 	

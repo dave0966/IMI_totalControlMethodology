@@ -11,10 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class STLA_Aview_form extends javax.swing.JFrame {
 
-    /**
-     * Creates new form STLA_Aview_form
-     */
-    public STLA_Aview_form(int state) {
+	public STLA_Aview_form(int state) {
     	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
     	
         initComponents();
