@@ -1,11 +1,13 @@
 package imi_totalcontrolmethodology;
 
 import javax.swing.JOptionPane;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
  * @author USer1
  */
+
 public class mainClass{
 	static DataToSheetManager dtsm = new DataToSheetManager();
 	static LogFolderManager lfm = new LogFolderManager();
@@ -21,16 +23,14 @@ public class mainClass{
                     break;
                 }
             new mainFrame();
-//            fm.createCSV("Workbook_test.xslx");
         } 
         
-        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) 
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) 
         {
-        	JOptionPane.showMessageDialog(null, "Rendering Error! Restart the Software.", "", JOptionPane.WARNING_MESSAGE, null);
+        	JOptionPane.showMessageDialog(null, "Rendering Error! Restart the I.M.E.S. - Total Control Methodology", "", JOptionPane.WARNING_MESSAGE, null);
         	System.err.print("Rendering Error! Restart the Software");
         }
         
-//        System.out.println("mainClass: " + new fileManager().isFileCredentialValid("$Resource\\LOGO.jpg"));
     }
 }
 	

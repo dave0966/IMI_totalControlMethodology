@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package imi_totalcontrolmethodology;
 
 import java.awt.Color;
@@ -22,7 +18,28 @@ public class promptFrame extends JFrame {
     /**
      * Creates new form promptFrame
      */
-    public promptFrame() {
+	
+	//Constructor for New Instance
+    promptFrame() {
+    	initFrame();
+    }
+    
+    //Constructor for Existing File
+    promptFrame(int productType) {
+    	if(!(productType == -1)) {
+	    	initFrame();
+	    	System.out.println("Product Type: " + productType);
+	    	cb_productType.setSelectedIndex(productType);
+	    	cb_productType.setEnabled(false);
+    	}
+    	else
+    	{
+    		JOptionPane.showMessageDialog(null, "Unknown Product Type. Wait for updated software version.", "Unknown Product Error", JOptionPane.WARNING_MESSAGE);
+    		new fileSelector();
+    	}
+    }
+    
+    private void initFrame() {
     	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
     	initComponents();
         this.setTitle("SELECT PRODUCT TYPE");
@@ -45,7 +62,6 @@ public class promptFrame extends JFrame {
 
         cb_productType = new JComboBox<>();
         cb_productType.setModel(new DefaultComboBoxModel<>(new String[] { "Valeo IKS AVIEW", "Valeo STLA AVIEW", "Valeo STLA SASY" }));
-
         
         lb_selectProduct = new JLabel();
         lb_selectProduct.setHorizontalAlignment(SwingConstants.CENTER);
@@ -77,10 +93,12 @@ public class promptFrame extends JFrame {
         cb_employeeNum.setEditable(true);
         cb_employeeNum.setModel(new DefaultComboBoxModel<>(new String[] { "--  Select Employee Number  --"}));
         
-        for(String str: mainClass.fm.getEmployeeNumList()) {
+        for(String str: mainClass.fm.getEmployeeNumList()) 
+//        {
         	cb_employeeNum.addItem(str);
-        	System.out.println(str);
-        }
+//        	System.out.println(str);
+//        }
+        
         cb_employeeNum.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 cb_employeeNumActionPerformed(evt);

@@ -75,7 +75,8 @@ public class fileSelector extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                	String dir = jTextField1.getText();
             	if(new File(dir).exists() && fm.isFileCredentialValid(dir)) {
-            		new promptFrame();
+            		System.out.println(mainClass.fm.getTemplateType(dir));
+            		new promptFrame(mainClass.fm.getTemplateType(dir));
             		dispose();
             	}
 //            	else

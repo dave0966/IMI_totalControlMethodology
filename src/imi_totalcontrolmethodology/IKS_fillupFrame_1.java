@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 
 /**
  *
@@ -29,6 +31,10 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         this.setIconImage(icon);
         this.setFocusable(false);
         this.setResizable(false);
+        
+        
+        JScrollBar s = new JScrollBar();
+        this.add(s);
 //        System.out.println(this.getContentPane().getSize());
 //        this.setSize((int)dim.getWidth(), (int)dim.getHeight());
         this.setVisible(true);
@@ -290,11 +296,6 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
 
         jButton1.setText("Commit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -306,42 +307,26 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                jButton2ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-
         jComboBox19.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -548,18 +533,22 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(ActionEvent evt) {
 	    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
 		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-		        IKS_fillupFrame_2nd frame2 = new IKS_fillupFrame_2nd();
-		        frame2.setVisible(true);
-		        dispose();
+	    	mainClass.dtsm.insertToCell(ALLBITS, ABORT, getName());
+	    		dispose();
+		        new IKS_fillupFrame_2nd();
 	    }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
+    
+    private void jButton2ActionPerformed(ActionEvent evt) {
+    	if (JOptionPane.showConfirmDialog(null, "The prompt input will not be save. Proceed?", "WARNING",
+		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+    			dispose();
+		        new promptFrame();
+	    }
+    }
 
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

@@ -12,7 +12,6 @@ import javax.swing.*;
  * @author USer1
  */
 public class mainFrame extends JFrame{
-
     private JButton bt_createNewFile;
     private JButton bt_existingFile;
 	private Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
@@ -21,6 +20,7 @@ public class mainFrame extends JFrame{
      * Creates new form NewJFrame1
      */
     public mainFrame() {
+    	System.out.println("mainFrame invoked!");
         initComponents();
         this.setTitle("START");
         this.setIconImage(icon);
@@ -37,8 +37,9 @@ public class mainFrame extends JFrame{
         bt_createNewFile.setFocusable(false);
         bt_createNewFile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-            	mainClass.dtsm.setWorkingFileDir("C:\\Users\\USer1\\Desktop\\IMI_TCM\\IMI_totalControlMethodology1\\IMI_totalControlMethodology\\$Output\\2023-07-19_07-30\\Valeo_IKS_Aview_Focus_Active_Alignment_Test.xlsx");
-            	System.out.println(mainClass.dtsm.getCellValue(4, 14));
+//            	mainClass.dtsm.setWorkingFileDir("$Output\\2023-07-19_07-30\\Valeo_IKS_Aview_Focus_Active_Alignment_Test.xlsx");
+//            	mainClass.dtsm.insertToCell(3, 14, getName());
+//            	System.out.println(mainClass.dtsm.getCellValue(4, 14));
             	dispose();
             	promptFrame frame2 = new promptFrame();
             }
