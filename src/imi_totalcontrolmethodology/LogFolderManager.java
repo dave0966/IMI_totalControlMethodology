@@ -43,13 +43,17 @@ public class LogFolderManager {
 	void addEmployeeNum(String str) {
 		try 
 		{
-			FileWriter fw = new FileWriter(f_enfl, true);
-			if(f_enfl.length() != 0)
-				fw.write("\n"+str);
-			else
-				fw.write(str);
-			
-			fw.close();
+			if(!isEmployeeNumExist(str)) 
+			{
+				System.out.println("(LogFileManager) Inserted new Employee Number: " + str);
+				FileWriter fw = new FileWriter(f_enfl, true);
+				if(f_enfl.length() != 0)
+					fw.write("\n"+str);
+				else
+					fw.write(str);
+				
+				fw.close();
+			}
 		}
 		
 		catch(IOException e) { e.printStackTrace(); }
@@ -73,6 +77,18 @@ public class LogFolderManager {
 //		for(String str: temp)
 //			System.out.println("From dataManager:"+str);
 //		System.out.println("Employee Status: " + !temp.isEmpty());
+		System.out.println("getListOfEmployeeNum invoked! ("+temp.size()+")");
 		return temp;
+	}
+	
+	boolean isEmployeeNumExist(String str) {
+		System.out.println("isEmployeeNumExist invoked!");
+		
+		for(String get : getListOfEmployeeNum())
+			if(get.equalsIgnoreCase(str))
+				return true;
+
+		return false;
+		
 	}
 }

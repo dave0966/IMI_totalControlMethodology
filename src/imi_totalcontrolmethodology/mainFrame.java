@@ -37,6 +37,8 @@ public class mainFrame extends JFrame{
         bt_createNewFile.setFocusable(false);
         bt_createNewFile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+            	mainClass.dtsm.setWorkingFileDir("C:\\Users\\USer1\\Desktop\\IMI_TCM\\IMI_totalControlMethodology1\\IMI_totalControlMethodology\\$Output\\2023-07-19_07-30\\Valeo_IKS_Aview_Focus_Active_Alignment_Test.xlsx");
+            	System.out.println(mainClass.dtsm.getCellValue(4, 14));
             	dispose();
             	promptFrame frame2 = new promptFrame();
             }

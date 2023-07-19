@@ -1,8 +1,25 @@
 package imi_totalcontrolmethodology;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /*
  * 
@@ -32,52 +49,52 @@ import java.util.List;
  */
 
 public class DataToSheetManager {
-	private List<HashMap<Integer, Integer>> arrCellMap = new ArrayList<HashMap<Integer,Integer>>();
+	private String workingFileDir = "";
+	private Workbook wb;
+	private FileInputStream fis;
+	private FileOutputStream fos;
+	private Sheet sheet;
+	private Row row;
+	private Cell cell;
 	
-	void init_CellMap(boolean templateType) {
-		//The value templateType indicates the way initializing the arrCellMap HashMap
-		
-		for(int column = 0; column < 20; column++)
-		{
-			int col = (templateType && (column % 2 != 0)) ? -1 : (14+column);
-			if(col == 16 && !templateType)
-				continue;
-//				System.out.println("CellMap:" + col);
-			HashMap<Integer, Integer> temp = new HashMap<Integer, Integer>();
-			temp.put(3, 14+column);
-			temp.put(4, 14+column);
-			temp.put(5, 14+column);
-			
-			temp.put(7, col);
-			temp.put(8, col);
-			temp.put(9, col);
-			temp.put(10, col);
-			temp.put(11, col);
-			temp.put(12, col);
-			temp.put(13, col);
-			temp.put(14, col);
-			temp.put(15, col);
-			temp.put(16, col);
-			temp.put(17, col);
-
-			temp.put(18, 14+column);
-			temp.put(19, 14+column);
-			
-			temp.put(20, col);
-			temp.put(21, col);
-			temp.put(22, col);
-			temp.put(23, col);
-			
-			arrCellMap.add(temp);
-		}
-		
-		/*
-			System.out.println(arrCellMap.size());
-			for(HashMap<Integer, Integer> h: arrCellMap) {
-				for(Integer in: h.keySet())
-					System.out.print(in.intValue()+" ");
-				System.out.println();
-			}
-		 */
+	void setWorkingFileDir(String str) {
+//		System.out.println("(DataToSheetManager) workingFileDir changes value!");
+		this.workingFileDir = str;
 	}
+	
+	String getWorkingFileDir() {
+		return this.workingFileDir;
+	}
+	
+	void insertToCell(int input_row, int input_column, String input_data) {
+		try {
+			fis = new FileInputStream(new File(getWorkingFileDir()));
+			wb = WorkbookFactory.create(fis);
+			sheet =  wb.getSheetAt(0);
+			row = sheet.getRow(input_row);
+			cell = row.getCell(input_column);
+			cell.setCellValue(input_data);
+			
+			OutputStream fileOut = new FileOutputStream(getWorkingFileDir());
+			wb.write(fileOut);
+		} catch (IOException | EncryptedDocumentException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	String getCellValue(int input_row, int input_column) {
+		try {
+			fis = new FileInputStream(new File(getWorkingFileDir()));
+			wb = WorkbookFactory.create(fis);
+		} catch (IOException | EncryptedDocumentException e) {
+			e.printStackTrace();
+		}
+		sheet =  wb.getSheetAt(0);
+		row = sheet.getRow(input_row);
+		cell = row.getCell(input_column);
+		
+		return cell.toString();
+	}
+	
+	
 }

@@ -175,7 +175,7 @@ public class promptFrame extends JFrame {
     	else 
     	{
     		mainClass.fm.addEmployeeNum(selectedItem);
-			System.out.println("Inserted new Employee Number: " + selectedItem);
+
 		    	switch(cb_productType.getSelectedIndex()) {
 		    		case 0:
 //		    			System.out.println("Opening Valeo IKS - Total Methodology Template");
