@@ -109,9 +109,10 @@ public class DataToSheetManager {
 	void commit(int fileType) {
 		mainClass.fm.createCopyXLSX(fileType);
 		Set<Integer> key = buffer.keySet();
-		for(Integer k : key) 
+		for(Integer k : key) {
 			System.out.println(k + " " + getSelectedColumn_Actual() + " " + buffer.get(k));
-//			insertToCell(k, getSelectedColumn_Actual(), buffer.get(k));
+			insertToCell(k, getSelectedColumn_Actual(), buffer.get(k));
+		}
 		flash();
 	}
 	

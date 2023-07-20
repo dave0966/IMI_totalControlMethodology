@@ -5,9 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 
-import javax.swing.JOptionPane;
 
 public class OutputFolderManager {
 	private File f_output;
@@ -58,7 +56,7 @@ public class OutputFolderManager {
 		 this.currOutputFolder = dir;
 	}
 	
-	void setDefaultCurrOutputDir() {
+	private void setDefaultCurrOutputDir() {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, 11);
 		setCurrOutputSubFolder("$Output\\" + java.time.LocalDate.now().toString() + new SimpleDateFormat("_MM-dd").format(cal.getTime()));
@@ -71,7 +69,7 @@ public class OutputFolderManager {
 	 */
 	
 	String getCurrOutputFolder() {
-		return this.currOutputFolder;
+		return this.currOutputFolder +"\\"; 
 	}
 	
 	/*

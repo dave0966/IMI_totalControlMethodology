@@ -29,6 +29,8 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.sun.tools.javac.Main;
+
 public class fileManager{
 	/*
 	 * 
@@ -39,24 +41,27 @@ public class fileManager{
 	void createCopyXLSX(int filetype) {
 		try 
 		{
-			switch(filetype) {//Tignan kung may existing. If so append nlng
-				case 0:
-					Files.copy(new File("$Resource\\Valeo_IKS_Aview_Focus_Active_Alignment_Template.xlsx").toPath(), 
-							new File(mainClass.ofm.getCurrOutputFolder()+"\\Valeo_IKS_AFAA_" + java.time.LocalDate.now().toString() + ".xlsx").toPath());
-					break;
-				case 1:
-					Files.copy(new File("$Resource\\Valeo_STLA _SASSY3_EOL_Template.xlsx").toPath(), 
-							new File(mainClass.ofm.getCurrOutputFolder()).toPath());
-					break;
-				case 2:
-					Files.copy(new File("$Resource\\Valeo_STLA_Aview_Focus_Active_Alignment_Template.xlsx").toPath(), 
-							new File(mainClass.ofm.getCurrOutputFolder()).toPath());
-					break;
+			if(!isFileExist()) {
+				switch(filetype) {
+					case 0:
+						Files.copy(new File("$Resource\\Valeo_IKS_Aview_Focus_Active_Alignment_Template.xlsx").toPath(), 
+								new File(getCopiedFileName()).toPath());
+						break;
+					case 1:
+						Files.copy(new File("$Resource\\Valeo_STLA _SASSY3_EOL_Template.xlsx").toPath(), 
+								new File(mainClass.ofm.getCurrOutputFolder()).toPath());
+						break;
+					case 2:
+						Files.copy(new File("$Resource\\Valeo_STLA_Aview_Focus_Active_Alignment_Template.xlsx").toPath(), 
+								new File(mainClass.ofm.getCurrOutputFolder()).toPath());
+						break;
+				}
+				mainClass.dtsm.setWorkingFileDir(getCopiedFileName());
 			}
 		} 
 		catch (IOException e) { e.printStackTrace(); }
 	}
-
+	
 	/*
 	 * 
 	 * IS's Methods
@@ -97,6 +102,21 @@ public class fileManager{
 		return true;
 	}
 
+	boolean isFileExist() {
+		File f = new File(mainClass.ofm.getCurrOutputFolder());
+		mainClass.dtsm.setWorkingFileDir(getCopiedFileName());
+//		System.out.println("(isFileExist - Output Folder) " + mainClass.ofm.getCurrOutputFolder());
+//		System.out.println("(isFileExist - WorkingFileDir) " + mainClass.dtsm.getWorkingFileDir());
+		for(String f_str: f.list()) {
+//			System.out.println(mainClass.dtsm.getWorkingFileDir() + " " + f_str);
+			String temp = mainClass.dtsm.getWorkingFileDir();
+//			System.out.println("(isFileExist()): " + f_str.equalsIgnoreCase(temp.substring(temp.lastIndexOf('\\')+1)));
+			if(f_str.equalsIgnoreCase(temp.substring(temp.lastIndexOf('\\')+1)))
+				return true;
+		}
+		return false;
+	}
+	
 	/*
 	 * 
 	 * GET's Methods
@@ -107,26 +127,27 @@ public class fileManager{
 	int getTemplateType(String dir) {
 		mainClass.dtsm.setWorkingFileDir(dir);
 		String str1 = mainClass.dtsm.getCellValue(1, 5) + mainClass.dtsm.getCellValue(1, 10);
-		String str2;
-		System.out.println(str1);
+//		System.out.println(str1);
 		
-		str2 = "  Valeo IKS  Aview Focus and active alignment  ";
-		if(str2.equals(str1))
+		if("  Valeo IKS  Aview Focus and active alignment  ".equals(str1))
 			return 0;
 		
-		str2 = "      Valeo STLA               SASY3 EOL (Focus Verification)   ";
-		if(str2.equals(str1))
+		if("  Valeo STLA    Aview Focus and active alignment  ".equals(str1))
 			return 1;
 		
-		str2 = "  Valeo STLA    Aview Focus and active alignment  ";
-		if(str2.equals(str1))
+		if("      Valeo STLA               SASY3 EOL (Focus Verification)   ".equals(str1))
 			return 2;
+		
 		
 		return -1;
 	}
 
 	List<String> getEmployeeNumList() {
 		return mainClass.lfm.getListOfEmployeeNum();
+	}
+	
+	private String getCopiedFileName() {
+		return mainClass.ofm.getCurrOutputFolder()+"Valeo_IKS_AFAA_" + java.time.LocalDate.now().toString() + ".xlsx";
 	}
 
 	/*

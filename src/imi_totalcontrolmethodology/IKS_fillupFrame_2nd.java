@@ -152,7 +152,6 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	mainClass.dtsm.setWorkingFileDir(" ");
             	mainClass.fm.createCopyXLSX(0);
             	mainClass.dtsm.commit(0);
             	System.out.println("(IKS_2) Copy and Save File");
