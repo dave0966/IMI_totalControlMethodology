@@ -64,7 +64,7 @@ public class DataToSheetManager {
 	
 	
 	void setWorkingFileDir(String str) {
-//		System.out.println("(DataToSheetManager) workingFileDir changes value!");
+		System.out.println("(DataToSheetManager) workingFileDir changes value!");
 		this.workingFileDir = str;
 	}
 	
@@ -106,8 +106,8 @@ public class DataToSheetManager {
 		buffer.put(i, s);
 	}
 	
-	void commit() {
-		mainClass.fm.createCopyXLSX();
+	void commit(int fileType) {
+		mainClass.fm.createCopyXLSX(fileType);
 		Set<Integer> key = buffer.keySet();
 		for(Integer k : key) 
 			System.out.println(k + " " + getSelectedColumn_Actual() + " " + buffer.get(k));

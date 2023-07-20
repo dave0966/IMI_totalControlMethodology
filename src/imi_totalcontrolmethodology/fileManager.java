@@ -36,11 +36,23 @@ public class fileManager{
 	 * 
 	 */
 
-	void createCopyXLSX() {
+	void createCopyXLSX(int filetype) {
 		try 
 		{
-			Files.copy(new File(mainClass.dtsm.getWorkingFileDir()).toPath(), 
-					new File(mainClass.ofm.getCurrOutputFolder()).toPath());
+			switch(filetype) {//Tignan kung may existing. If so append nlng
+				case 0:
+					Files.copy(new File("$Resource\\Valeo_IKS_Aview_Focus_Active_Alignment_Template.xlsx").toPath(), 
+							new File(mainClass.ofm.getCurrOutputFolder()+"\\Valeo_IKS_AFAA_" + java.time.LocalDate.now().toString() + ".xlsx").toPath());
+					break;
+				case 1:
+					Files.copy(new File("$Resource\\Valeo_STLA _SASSY3_EOL_Template.xlsx").toPath(), 
+							new File(mainClass.ofm.getCurrOutputFolder()).toPath());
+					break;
+				case 2:
+					Files.copy(new File("$Resource\\Valeo_STLA_Aview_Focus_Active_Alignment_Template.xlsx").toPath(), 
+							new File(mainClass.ofm.getCurrOutputFolder()).toPath());
+					break;
+			}
 		} 
 		catch (IOException e) { e.printStackTrace(); }
 	}
