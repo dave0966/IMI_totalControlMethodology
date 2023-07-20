@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 public class OutputFolderManager {
 	private File f_output;
 	private String currOutputFolder = "";
-	
 
 	OutputFolderManager(){
 //		System.out.println("OutputFolderManager invoked!");

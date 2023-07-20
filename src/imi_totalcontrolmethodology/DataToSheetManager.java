@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -57,7 +58,10 @@ public class DataToSheetManager {
 	private Cell cell;
 	
 	private String workingFileDir = "";
-	private String[] buffer = new String[20];
+	private int[] arrColumn = {14,15,17,18,19,20,21,22,23,24,25};		// Arrays of integers that represents the column O to Z in excel
+	private int selectedColumn = 14;									// By default, 14th Column (or Column O) was set.
+	private HashMap<Integer, String> buffer = new HashMap<Integer, String>();
+	
 	
 	void setWorkingFileDir(String str) {
 //		System.out.println("(DataToSheetManager) workingFileDir changes value!");
@@ -98,8 +102,39 @@ public class DataToSheetManager {
 		return cell.toString();
 	}
 	
+	void insertToBuffer(Integer i, String s) {
+		buffer.put(i, s);
+	}
 	
+	void commit() {
+		mainClass.fm.createCopyXLSX();
+		Set<Integer> key = buffer.keySet();
+		for(Integer k : key) 
+			System.out.println(k + " " + getSelectedColumn_Actual() + " " + buffer.get(k));
+//			insertToCell(k, getSelectedColumn_Actual(), buffer.get(k));
+		flash();
+	}
 	
+	void flash() {
+		buffer.clear();
+	}
+	
+	void setSelectedColumn_Actual(int i) {
+		System.out.println("Selected Column/Actual: " + arrColumn[i]);
+		this.selectedColumn = arrColumn[i];
+	}
+	
+	int getSelectedColumn_Actual() {
+		return this.selectedColumn;
+	}
+	
+	int selectedColumnToIndex() {
+		for(int index = 0; index < arrColumn.length; index++)
+			if(arrColumn[index] == getSelectedColumn_Actual())
+				return index;
+		
+		return -1;
+	}
 	
 	
 }

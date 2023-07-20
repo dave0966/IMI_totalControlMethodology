@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,29 +30,19 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class fileManager{
-	private Workbook wb = new SXSSFWorkbook();
-	private String workingDir = "";
-
-	
 	/*
 	 * 
 	 * Create Methods
 	 * 
 	 */
-	
-	void createXLSX() {
-		
-		
-	}
 
-	/*
-	 * 
-	 * TO's Methods
-	 * 
-	 */
-
-	void ToExcel() {
-
+	void createCopyXLSX() {
+		try 
+		{
+			Files.copy(new File(mainClass.dtsm.getWorkingFileDir()).toPath(), 
+					new File(mainClass.ofm.getCurrOutputFolder()).toPath());
+		} 
+		catch (IOException e) { e.printStackTrace(); }
 	}
 
 	/*
@@ -99,7 +90,8 @@ public class fileManager{
 	 * GET's Methods
 	 * 
 	 */
-
+	
+	//Method for Existing Templates
 	int getTemplateType(String dir) {
 		mainClass.dtsm.setWorkingFileDir(dir);
 		String str1 = mainClass.dtsm.getCellValue(1, 5) + mainClass.dtsm.getCellValue(1, 10);

@@ -20,10 +20,15 @@ public class ResourceFolderManager {
 			System.out.println("Resource Folder Directory are Already Exist!");
 	}
 	
-	private void checkResource() {
-		if(!(new File("LOGO.jpg").exists()))
-			JOptionPane.showMessageDialog(null, "LOGO.jpg could not be find or search!", "Missing File", JOptionPane.ERROR_MESSAGE, null);
-		else if(!(new File("image-300x150.jpg").exists()))
+	boolean checkResource() {
+		System.out.println(new File("").getAbsolutePath());
+		if(!(new File("src\\imi_totalcontrolmethodology\\LOGO.jpg").exists()))
+			JOptionPane.showMessageDialog(null, "LOGO.jpg could not be found or search!", "Missing File", JOptionPane.ERROR_MESSAGE, null);
+		else if(!(new File("src\\imi_totalcontrolmethodology\\image-300x150.jpg").exists()))
 			JOptionPane.showMessageDialog(null, "image-300x150.jpg could not be find or search!", "Missing File", JOptionPane.ERROR_MESSAGE, null);
+		else
+			return false;
+		
+		return true;
 	}
 }

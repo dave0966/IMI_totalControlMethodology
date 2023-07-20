@@ -3,6 +3,9 @@ package imi_totalcontrolmethodology;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -16,11 +19,12 @@ import javax.swing.JScrollPane;
  */
 public class IKS_fillupFrame_1 extends javax.swing.JFrame {
 	
+	int mode = 0;
     public IKS_fillupFrame_1(int state ) {
-    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.png")).getImage();
+    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
         
     	initComponents();
-        this.setTitle("Valeo IKS AVIEW Focus Active Alignment");
+        this.setTitle("I.M.E.S. - Valeo IKS AVIEW Focus Active Alignment");
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setIconImage(icon);
@@ -28,8 +32,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
-        
-        jButton2.setVisible((state == 0) ? true: false);
+        mode = state;
     }	
 
     private void initComponents() {
@@ -278,18 +281,50 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
-
-        jButton1.setText("Commit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jComboBox1.setSelectedIndex(mainClass.dtsm.selectedColumnToIndex());
+        jComboBox1.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				mainClass.dtsm.setSelectedColumn_Actual(jComboBox1.getSelectedIndex());
+			}
+        });
+        
+        jButton1.setText("Proceed");
+        jButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
+        		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        	    		mainClass.dtsm.insertToBuffer(3, jComboBox3.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(4, jComboBox4.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(5, jComboBox5.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(7, jComboBox6.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(8, jComboBox7.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(9, jComboBox8.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(10, jComboBox9.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(11, jComboBox10.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(12, jComboBox11.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(13, jComboBox12.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(14, jComboBox13.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(15, jComboBox14.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(16, jComboBox15.getSelectedItem().toString());
+        	    		dispose();
+        		        new IKS_fillupFrame_2nd();
+        	    }
             }
         });
 
         jButton2.setText("Previous");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        jButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	if (JOptionPane.showConfirmDialog(null, "The prompt input will not be save. Proceed?", "WARNING",
+        		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            			mainClass.dtsm.flash();
+            			dispose();
+            			
+            			if(mode == 0)
+            				new promptFrame();
+            			else
+            				new fileSelector();
+        	    }
             }
         });
 
@@ -517,56 +552,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         this.add(new JScrollPane(panel));
         pack();
     }
-
-    private void jButton1ActionPerformed(ActionEvent evt) {
-	    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
-		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-	    		mainClass.dtsm.insertToCell(3, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(4, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(5, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(7, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(8, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(9, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(10, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(11, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(12, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(13, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(14, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(15, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(16, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(17, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(18, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(19, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(20, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(21, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(22, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(23, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(24, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(26, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(27, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(28, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(29, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(30, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(31, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(32, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(34, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(35, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(36, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(38, 14, jComboBox3.getSelectedItem().toString());
-	    		mainClass.dtsm.insertToCell(32, 14, jComboBox3.getSelectedItem().toString());
-	    		dispose();
-		        new IKS_fillupFrame_2nd();
-	    }
-    }
     
-    private void jButton2ActionPerformed(ActionEvent evt) {
-    	if (JOptionPane.showConfirmDialog(null, "The prompt input will not be save. Proceed?", "WARNING",
-		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-    			dispose();
-		        new promptFrame();
-	    }
-    }
-
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;

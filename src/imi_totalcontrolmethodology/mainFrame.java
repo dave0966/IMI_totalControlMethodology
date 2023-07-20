@@ -20,7 +20,7 @@ public class mainFrame extends JFrame{
      * Creates new form NewJFrame1
      */
     public mainFrame() {
-    	System.out.println("mainFrame invoked!");
+//    	System.out.println("mainFrame invoked!");
         initComponents();
         this.setTitle("START");
         this.setIconImage(icon);

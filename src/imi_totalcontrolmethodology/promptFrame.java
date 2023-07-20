@@ -91,7 +91,7 @@ public class promptFrame extends JFrame {
 
         cb_employeeNum = new JComboBox<>();
         cb_employeeNum.setEditable(true);
-        cb_employeeNum.setModel(new DefaultComboBoxModel<>(new String[] { "--  Select Employee Number  --"}));
+        cb_employeeNum.setModel(new DefaultComboBoxModel<>(new String[] { "  - -  Select Employee Number or Insert here - -"}));
         
         for(String str: mainClass.fm.getEmployeeNumList()) 
 //        {
