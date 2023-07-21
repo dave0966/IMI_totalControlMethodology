@@ -73,9 +73,9 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jTextField35 = new javax.swing.JTextField();
         jTextField36 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
         jComboBox4 = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
@@ -293,19 +293,24 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent evt) {
             	if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
         		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-        	    		mainClass.dtsm.insertToBuffer(3, jComboBox3.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(4, jComboBox4.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(5, jComboBox5.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(7, jComboBox6.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(8, jComboBox7.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(9, jComboBox8.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(10, jComboBox9.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(11, jComboBox10.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(12, jComboBox11.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(13, jComboBox12.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(14, jComboBox13.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(15, jComboBox14.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(16, jComboBox15.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(7, jComboBox3.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(8, jComboBox4.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(9, jComboBox5.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(10, jComboBox6.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(11, jComboBox7.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(12, jComboBox8.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(13, jComboBox9.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(14, jComboBox10.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(15, jComboBox11.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(16, jComboBox12.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(17, jComboBox13.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(18, jComboBox14.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(19, jComboBox15.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(20, jComboBox16.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(21, jComboBox17.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(22, jComboBox18.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(23, jComboBox19.getSelectedItem().toString());
+//        	    		mainClass.dtsm.insertToBuffer(24, jComboBox20.getSelectedItem().toString());
         	    		dispose();
         		        new IKS_fillupFrame_2nd();
         	    }

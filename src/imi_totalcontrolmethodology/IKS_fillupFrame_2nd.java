@@ -6,7 +6,10 @@ package imi_totalcontrolmethodology;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.io.FileNotFoundException;
+
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
@@ -152,11 +155,37 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	mainClass.fm.createCopyXLSX(0);
-            	mainClass.dtsm.commit(0);
-            	System.out.println("(IKS_2) Copy and Save File");
-            	dispose();
-            	new promptFrame();
+            	if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
+        		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        	    		mainClass.dtsm.insertToBuffer(26, jTextField54.getText());
+        	    		mainClass.dtsm.insertToBuffer(27, jTextField55.getText());
+        	    		mainClass.dtsm.insertToBuffer(28, jTextField56.getText());
+        	    		mainClass.dtsm.insertToBuffer(29, jTextField57.getText());
+        	    		mainClass.dtsm.insertToBuffer(30, jTextField58.getText());
+        	    		mainClass.dtsm.insertToBuffer(31, jTextField59.getText());
+        	    		mainClass.dtsm.insertToBuffer(32, jTextField60.getText());
+        	    		mainClass.dtsm.insertToBuffer(33, jTextField61.getText());
+        	    		mainClass.dtsm.insertToBuffer(34, jTextField62.getText());
+        	    		mainClass.dtsm.insertToBuffer(35, jTextField63.getText());
+        	    		mainClass.dtsm.insertToBuffer(36, jTextField64.getText());
+        	    		
+        	    		mainClass.dtsm.insertToBuffer(38, jTextField65.getText());
+        	    		mainClass.dtsm.insertToBuffer(39, jTextField66.getText());
+        	    		mainClass.dtsm.insertToBuffer(40, jTextField67.getText());
+        	    		mainClass.dtsm.insertToBuffer(41, jTextField68.getText());
+        	    		mainClass.dtsm.insertToBuffer(42, jTextField69.getText());
+        	    		mainClass.dtsm.insertToBuffer(43, jTextField70.getText());
+        	    		mainClass.dtsm.insertToBuffer(44, jTextField71.getText());
+        	    		
+		            	mainClass.fm.createCopyXLSX(0);
+		        		mainClass.dtsm.commit(0);
+		        		if(mainClass.dtsm.isErrorFree()) {
+		        			mainClass.dtsm.flash();
+			            	System.out.println("(IKS_2) Copy and Save File");
+			            	dispose();
+			            	new promptFrame();
+		        		}
+            	}
             }
         });
 

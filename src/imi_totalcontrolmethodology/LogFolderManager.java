@@ -89,6 +89,5 @@ public class LogFolderManager {
 				return true;
 
 		return false;
-		
 	}
 }

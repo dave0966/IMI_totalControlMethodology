@@ -49,11 +49,11 @@ public class fileManager{
 						break;
 					case 1:
 						Files.copy(new File("$Resource\\Valeo_STLA _SASSY3_EOL_Template.xlsx").toPath(), 
-								new File(mainClass.ofm.getCurrOutputFolder()).toPath());
+								new File(getCopiedFileName()).toPath());
 						break;
 					case 2:
 						Files.copy(new File("$Resource\\Valeo_STLA_Aview_Focus_Active_Alignment_Template.xlsx").toPath(), 
-								new File(mainClass.ofm.getCurrOutputFolder()).toPath());
+								new File(getCopiedFileName()).toPath());
 						break;
 				}
 				mainClass.dtsm.setWorkingFileDir(getCopiedFileName());

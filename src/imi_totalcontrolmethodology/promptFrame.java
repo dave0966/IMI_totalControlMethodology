@@ -193,7 +193,10 @@ public class promptFrame extends JFrame {
     	else 
     	{
     		mainClass.fm.addEmployeeNum(selectedItem);
-
+    		mainClass.dtsm.insertToBuffer(3, java.time.LocalDate.now().toString());
+    		mainClass.dtsm.insertToBuffer(4, cb_employeeNum.getSelectedItem().toString());
+    		mainClass.dtsm.insertToBuffer(5, tf_shift.getText());
+    		
 		    	switch(cb_productType.getSelectedIndex()) {
 		    		case 0:
 //		    			System.out.println("Opening Valeo IKS - Total Methodology Template");

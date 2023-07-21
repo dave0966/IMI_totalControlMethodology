@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CreationHelper;
@@ -58,6 +60,7 @@ public class DataToSheetManager {
 	private Cell cell;
 	
 	private String workingFileDir = "";
+	private boolean isErrorFree = true;
 	private int[] arrColumn = {14,15,17,18,19,20,21,22,23,24,25};		// Arrays of integers that represents the column O to Z in excel
 	private int selectedColumn = 14;									// By default, 14th Column (or Column O) was set.
 	private HashMap<Integer, String> buffer = new HashMap<Integer, String>();
@@ -72,18 +75,21 @@ public class DataToSheetManager {
 		return this.workingFileDir;
 	}
 	
-	void insertToCell(int input_row, int input_column, String input_data) {
+	void insertToCell(int input_row, int input_column, String input_data){
 		try {
 			fis = new FileInputStream(new File(getWorkingFileDir()));
 			wb = WorkbookFactory.create(fis);
 			sheet =  wb.getSheetAt(0);
 			row = sheet.getRow(input_row);
 			cell = row.getCell(input_column);
-			cell.setCellValue(input_data);
+			cell.setCellValue(
+								(input_data.length() == 0 || input_data.equalsIgnoreCase("N/A")) ? "-" : input_data 
+							 );
 			
 			OutputStream fileOut = new FileOutputStream(getWorkingFileDir());
 			wb.write(fileOut);
 		} catch (IOException | EncryptedDocumentException e) {
+			setErrorFree(false);
 			e.printStackTrace();
 		}
 	}
@@ -106,17 +112,17 @@ public class DataToSheetManager {
 		buffer.put(i, s);
 	}
 	
-	void commit(int fileType) {
+	void commit(int fileType){
 		mainClass.fm.createCopyXLSX(fileType);
 		Set<Integer> key = buffer.keySet();
 		for(Integer k : key) {
-			System.out.println(k + " " + getSelectedColumn_Actual() + " " + buffer.get(k));
+//			System.out.println(k + " " + getSelectedColumn_Actual() + " " + buffer.get(k));
 			insertToCell(k, getSelectedColumn_Actual(), buffer.get(k));
 		}
-		flash();
 	}
 	
 	void flash() {
+		System.out.println("Flashed!");
 		buffer.clear();
 	}
 	
@@ -135,6 +141,21 @@ public class DataToSheetManager {
 				return index;
 		
 		return -1;
+	}
+	
+	boolean isErrorFree() {
+		if(!this.isErrorFree) {
+			JOptionPane.showMessageDialog(null, "The File is not existing or being used by another process (or application). "
+					  + "\nTry close or terminate the application.");
+			setErrorFree(true);
+			return false;
+		}
+		
+		return true;
+	}
+	
+	void setErrorFree(boolean bool) {
+		this.isErrorFree = bool;
 	}
 	
 	
