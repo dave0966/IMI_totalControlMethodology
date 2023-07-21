@@ -1,7 +1,7 @@
 package imi_totalcontrolmethodology;
 
 import java.io.FileNotFoundException;
-
+import javax.swing.*;
 import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -27,9 +27,8 @@ public class mainClass{
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
-            mainClass.fm.isFileExist();
+//            mainClass.fm.isFileExist();
             new mainFrame();
-//            System.out.println("(mainClass - WFD)" + mainClass.dtsm.getWorkingFileDir());
         } 
         
         catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException | FileNotFoundException ex) 

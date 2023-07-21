@@ -2,8 +2,13 @@ package imi_totalcontrolmethodology;
 
 import java.awt.Color;
 import java.awt.Image;
+
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -11,11 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class STLA_Aview_form extends javax.swing.JFrame {
 
+	private int mode = 0;
+
 	public STLA_Aview_form(int state) {
     	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
     	
         initComponents();
-        this.setTitle("Valeo STLA Aview Focus Active Alignment");
+        this.setTitle("I.M.E.S. - Valeo STLA Aview Focus Active Alignment");
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setIconImage(icon);
@@ -24,14 +31,11 @@ public class STLA_Aview_form extends javax.swing.JFrame {
         this.setResizable(false);
         this.setVisible(true);
         
-        jButton2.setVisible((state == 0) ? true: false);
+        mode = state;
     }
 
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -89,12 +93,6 @@ public class STLA_Aview_form extends javax.swing.JFrame {
         jComboBox16 = new javax.swing.JComboBox<>();
         jComboBox17 = new javax.swing.JComboBox<>();
         jComboBox18 = new javax.swing.JComboBox<>();
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("Ground strap");
@@ -282,24 +280,68 @@ public class STLA_Aview_form extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
 
+//        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { 
+//        		"Actual 1 - (" + mainClass.dtsm.getCellValue(3, 14) + ")", 
+//        		"Actual 2 - (" + mainClass.dtsm.getCellValue(3, 15) + ")", 
+//        		"Actual 3 - (" + mainClass.dtsm.getCellValue(3, 17) + ")", 
+//        		"Actual 4 - (" + mainClass.dtsm.getCellValue(3, 18) + ")", 
+//        		"Actual 5 - (" + mainClass.dtsm.getCellValue(3, 19) + ")", 
+//        		"Actual 6 - (" + mainClass.dtsm.getCellValue(3, 20) + ")", 
+//        		"Actual 7 - (" + mainClass.dtsm.getCellValue(3, 21) + ")", 
+//        		"Actual 8 - (" + mainClass.dtsm.getCellValue(3, 22) + ")", 
+//        		"Actual 9 - (" + mainClass.dtsm.getCellValue(3, 23) + ")", 
+//        		"Actual 10 - (" + mainClass.dtsm.getCellValue(3, 24) + ")", 
+//        		"Actual 11 - (" + mainClass.dtsm.getCellValue(3, 25)  + ")"
+//    		}));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+	    jComboBox1.setSelectedIndex(mainClass.dtsm.selectedColumnToIndex());
+	    jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+            	mainClass.dtsm.setSelectedColumn_Actual(jComboBox1.getSelectedIndex());
             }
         });
 
-        jButton1.setText("Commit");
+        jButton1.setText("Proceed");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+            	if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
+        		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						mainClass.dtsm.insertToBuffer(11, jComboBox2.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(7, jComboBox3.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(9, jComboBox5.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(8, jComboBox4.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(12, jComboBox8.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(16, jComboBox7.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(14, jComboBox9.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(10, jComboBox6.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(15, jComboBox11.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(22, jComboBox13.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(21, jComboBox14.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(23, jComboBox12.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(13, jComboBox10.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(20, jComboBox15.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(19, jComboBox16.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(18, jComboBox17.getSelectedItem().toString());
+						mainClass.dtsm.insertToBuffer(17, jComboBox18.getSelectedItem().toString());
+        	    		dispose();
+        		        new STLA_Aview_form_2nd(mode);
+        	    }
             }
         });
 
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+            	if (JOptionPane.showConfirmDialog(null, "The prompt input will not be save. Proceed?", "WARNING",
+        		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            			mainClass.dtsm.flash();
+            			dispose();
+            			
+            			if(mode == 0)
+            				new promptFrame();
+            			else
+            				new fileSelector();
+        	    }
             }
         });
 
@@ -321,8 +363,9 @@ public class STLA_Aview_form extends javax.swing.JFrame {
         jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
         jComboBox18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        JPanel panel = new JPanel();
+        GroupLayout layout = new GroupLayout(panel);
+
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -526,11 +569,9 @@ public class STLA_Aview_form extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        panel.setLayout(layout);
+        this.add(new JScrollPane(panel));
         pack();
-    }
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
-    
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -548,15 +589,6 @@ public class STLA_Aview_form extends javax.swing.JFrame {
     }
 
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new STLA_Aview_form(0).setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -578,10 +610,7 @@ public class STLA_Aview_form extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField jTextField1;
+	private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -617,5 +646,4 @@ public class STLA_Aview_form extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    // End of variables declaration//GEN-END:variables
 }

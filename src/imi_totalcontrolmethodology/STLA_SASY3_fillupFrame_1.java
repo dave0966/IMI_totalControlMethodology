@@ -2,8 +2,12 @@ package imi_totalcontrolmethodology;
 
 import java.awt.Color;
 import java.awt.Image;
+
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -11,27 +15,24 @@ import javax.swing.JOptionPane;
  */
 public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
 
-	private static final long serialVersionUID = 1L;
-	/**
-     * Creates new form fillupFrame
-     */
-	
+	int mode = 0;
 	// state = 0 -> create new
 	// state = 1 -> existing 
     public STLA_SASY3_fillupFrame_1(int state) {
+    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
         initComponents();
         this.setTitle("Valeo STLA SASY");
         this.getContentPane().setBackground(Color.white);
-        Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
         this.setIconImage(icon);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        this.setFocusable(false);
         this.setVisible(true);
-        jButton2.setVisible((state == 0) ? true: false);
+        this.setLocationRelativeTo(null);
+        
+        mode = state;
     }
 
     private void initComponents() {
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -116,15 +117,6 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         jComboBox10 = new javax.swing.JComboBox<>();
         jComboBox11 = new javax.swing.JComboBox<>();
         jComboBox7 = new javax.swing.JComboBox<>();
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setFocusable(false);
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("Ground strap");
@@ -257,11 +249,6 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
 
         jTextField69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField69.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -284,7 +271,7 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
 
         jTextField38.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField38.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField38.setText("V-GAP");
+        jTextField38.setText("Y-GAP");
         jTextField38.setFocusable(false);
         jTextField38.setRequestFocusEnabled(false);
 
@@ -345,42 +332,19 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         });
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
-            }
-        });
-
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
-            }
-        });
-
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox5ActionPerformed(evt);
-            }
-        });
-
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-
         jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-
         jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-
         jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        JPanel panel = new JPanel();
+        GroupLayout layout = new GroupLayout(panel);
+        
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -717,52 +681,25 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-
+        
+        panel.setLayout(layout);
+        this.add(new JScrollPane(panel));
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
-        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-        STLA_SASY3_fillupFrame2nd_1 frame2 = new STLA_SASY3_fillupFrame2nd_1();
-        frame2.setVisible(true);
-        dispose();
-        } else {
-    // no option
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     promptFrame JF2 = new promptFrame();
-     dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
-
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
-
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
-
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new STLA_SASY3_fillupFrame_1(0).setVisible(true);
-            }
-        });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+	    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
+	        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+		        STLA_SASY3_fillupFrame2nd frame2 = new STLA_SASY3_fillupFrame2nd();
+		        dispose();
+        } 
+    }
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    	promptFrame JF2 = new promptFrame();
+    	dispose();
+    }
+
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -850,5 +787,4 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField90;
     private javax.swing.JTextField jTextField91;
     private javax.swing.JTextField jTextField92;
-    // End of variables declaration//GEN-END:variables
 }

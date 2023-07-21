@@ -30,8 +30,9 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        this.setTitle("VALEO IKS AVIEW");
+        this.setTitle("I.M.E.S. - VALEO IKS AVIEW");
         this.setIconImage(icon);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.mode = state;
     }
@@ -152,8 +153,8 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
         jComboBox1.setSelectedIndex(mainClass.dtsm.selectedColumnToIndex());
-        if(mode == 1)
-        	refreshComboBox();
+//        if(mode == 1)
+//        	refreshComboBox();
         jComboBox1.setEnabled(false);
 
         jButton1.setText("Save");
@@ -173,13 +174,13 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         	    		mainClass.dtsm.insertToBuffer(35, jTextField63.getText());
         	    		mainClass.dtsm.insertToBuffer(36, jTextField64.getText());
         	    		
-        	    		mainClass.dtsm.insertToBuffer(38, jTextField65.getText());
-        	    		mainClass.dtsm.insertToBuffer(39, jTextField66.getText());
-        	    		mainClass.dtsm.insertToBuffer(40, jTextField67.getText());
-        	    		mainClass.dtsm.insertToBuffer(41, jTextField68.getText());
-        	    		mainClass.dtsm.insertToBuffer(42, jTextField69.getText());
-        	    		mainClass.dtsm.insertToBuffer(43, jTextField70.getText());
-        	    		mainClass.dtsm.insertToBuffer(44, jTextField71.getText());
+        	    		mainClass.dtsm.insertToBuffer(38, jTextField67.getText());
+        	    		mainClass.dtsm.insertToBuffer(39, jTextField68.getText());
+        	    		mainClass.dtsm.insertToBuffer(40, jTextField69.getText());
+        	    		mainClass.dtsm.insertToBuffer(41, jTextField70.getText());
+        	    		mainClass.dtsm.insertToBuffer(42, jTextField71.getText());
+        	    		mainClass.dtsm.insertToBuffer(43, jTextField65.getText());
+        	    		mainClass.dtsm.insertToBuffer(44, jTextField66.getText());
         	    		
 		            	mainClass.fm.createCopyXLSX(0);
 		        		mainClass.dtsm.commit(0);
@@ -196,9 +197,8 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	dispose();
             	IKS_fillupFrame_1 IKSFF = new IKS_fillupFrame_1(0);
-                IKSFF.setVisible(true);
-                dispose();
             }
         });
 
@@ -350,27 +350,27 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         pack();
     }
     
-    private void refreshComboBox() {
-    	jTextField54.setText(getTextTF(26));
-    	jTextField54.setText(getTextTF(27));
-    	jTextField54.setText(getTextTF(28));
-    	jTextField54.setText(getTextTF(29));
-    	jTextField54.setText(getTextTF(30));
-    	jTextField54.setText(getTextTF(31));
-    	jTextField54.setText(getTextTF(32));
-    	jTextField54.setText(getTextTF(33));
-    	jTextField54.setText(getTextTF(34));
-    	jTextField54.setText(getTextTF(35));
-    	jTextField54.setText(getTextTF(36));
-    	
-    	jTextField54.setText(getTextTF(38));
-    	jTextField54.setText(getTextTF(39));
-    	jTextField54.setText(getTextTF(40));
-    	jTextField54.setText(getTextTF(41));
-    	jTextField54.setText(getTextTF(42));
-    	jTextField54.setText(getTextTF(43));
-    	jTextField54.setText(getTextTF(44));
-    }
+//    private void refreshComboBox() {
+//    	jTextField54.setText(getTextTF(26));
+//    	jTextField54.setText(getTextTF(27));
+//    	jTextField54.setText(getTextTF(28));
+//    	jTextField54.setText(getTextTF(29));
+//    	jTextField54.setText(getTextTF(30));
+//    	jTextField54.setText(getTextTF(31));
+//    	jTextField54.setText(getTextTF(32));
+//    	jTextField54.setText(getTextTF(33));
+//    	jTextField54.setText(getTextTF(34));
+//    	jTextField54.setText(getTextTF(35));
+//    	jTextField54.setText(getTextTF(36));
+//    	
+//    	jTextField54.setText(getTextTF(38));
+//    	jTextField54.setText(getTextTF(39));
+//    	jTextField54.setText(getTextTF(40));
+//    	jTextField54.setText(getTextTF(41));
+//    	jTextField54.setText(getTextTF(42));
+//    	jTextField54.setText(getTextTF(43));
+//    	jTextField54.setText(getTextTF(44));
+//    }
     
     private String getTextTF(int row_index) {
     	return mainClass.dtsm.getCellValue(row_index, mainClass.dtsm.getSelectedColumn_Actual());

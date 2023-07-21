@@ -60,6 +60,7 @@ public class DataToSheetManager {
 	private Cell cell;
 	
 	private String workingFileDir = "";
+	private Set<Integer> key;
 	private boolean isErrorFree = true;
 	private int[] arrColumn = {14,15,17,18,19,20,21,22,23,24,25};		// Arrays of integers that represents the column O to Z in excel
 	private int selectedColumn = 14;									// By default, 14th Column (or Column O) was set.
@@ -82,6 +83,7 @@ public class DataToSheetManager {
 			sheet =  wb.getSheetAt(0);
 			row = sheet.getRow(input_row);
 			cell = row.getCell(input_column);
+//			System.out.println("FillUpForm: " + isFillUpForm1);
 			cell.setCellValue(
 								(input_data.length() == 0 || input_data.equalsIgnoreCase("N/A")) ? 
 									"-" 
@@ -89,8 +91,8 @@ public class DataToSheetManager {
 											(input_data.equalsIgnoreCase("PASS")) ? "✓":"☓"
 											:input_data
 							 );
-			
 			OutputStream fileOut = new FileOutputStream(getWorkingFileDir());
+			sheet.autoSizeColumn(getSelectedColumn_Actual());
 			wb.write(fileOut);
 		} catch (IOException | EncryptedDocumentException e) {
 			setErrorFree(false);
@@ -100,6 +102,7 @@ public class DataToSheetManager {
 	
 	String getCellValue(int input_row, int input_column) {
 		try {
+			System.out.println(getWorkingFileDir());
 			fis = new FileInputStream(new File(getWorkingFileDir()));
 			wb = WorkbookFactory.create(fis);
 		} catch (IOException | EncryptedDocumentException e) {
@@ -116,13 +119,18 @@ public class DataToSheetManager {
 		buffer.put(i, s);
 	}
 	
+	String getFromBuffer(Integer i) {
+		return buffer.get(i);
+	}
+	
 	void commit(int fileType){
 		mainClass.fm.createCopyXLSX(fileType);
-		Set<Integer> key = buffer.keySet();
-		boolean typeFillUpForm = (key.iterator().next() < 26) ? true: false;
+		key = buffer.keySet();
+		
 		for(Integer k : key) {
+				System.out.println("commit: "+ buffer.get(k));
+				insertToCell(k, getSelectedColumn_Actual(), buffer.get(k), ((k < 26 && k > 6) ? true: false));
 //			System.out.println(k + " " + getSelectedColumn_Actual() + " " + buffer.get(k));
-			insertToCell(k, getSelectedColumn_Actual(), buffer.get(k), typeFillUpForm);
 		}
 	}
 	

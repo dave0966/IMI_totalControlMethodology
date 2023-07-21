@@ -6,20 +6,27 @@ package imi_totalcontrolmethodology;
 
 import java.awt.Color;
 import java.awt.Image;
+
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
  * @author USer1
  */
-public class STLA_SASY3_fillupFrame2nd_1 extends javax.swing.JFrame {
+public class STLA_SASY3_fillupFrame2nd extends javax.swing.JFrame {
 
-	public STLA_SASY3_fillupFrame2nd_1() {
+	public STLA_SASY3_fillupFrame2nd() {
+		Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setTitle("VALEO STLA SASY");
-        Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setIconImage(icon);
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     private void initComponents() {
@@ -58,8 +65,6 @@ public class STLA_SASY3_fillupFrame2nd_1 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
 
@@ -67,11 +72,6 @@ public class STLA_SASY3_fillupFrame2nd_1 extends javax.swing.JFrame {
         jTextField1.setText("Model No.");
         jTextField1.setFocusable(false);
         jTextField1.setRequestFocusEnabled(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField4.setText("Sub-lot No.");
@@ -124,142 +124,33 @@ public class STLA_SASY3_fillupFrame2nd_1 extends javax.swing.JFrame {
         jTextField10.setRequestFocusEnabled(false);
 
         jTextField54.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField54.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField54ActionPerformed(evt);
-            }
-        });
-
         jTextField55.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField55.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField55ActionPerformed(evt);
-            }
-        });
-
         jTextField56.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField56.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField56ActionPerformed(evt);
-            }
-        });
-
         jTextField57.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField57.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField57ActionPerformed(evt);
-            }
-        });
-
         jTextField58.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField58.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField58ActionPerformed(evt);
-            }
-        });
-
         jTextField59.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField59.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField59ActionPerformed(evt);
-            }
-        });
-
         jTextField60.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField60.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField60ActionPerformed(evt);
-            }
-        });
-
         jTextField61.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField61.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField61ActionPerformed(evt);
-            }
-        });
-
         jTextField62.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField62.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField62ActionPerformed(evt);
-            }
-        });
-
         jTextField63.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField63.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField63ActionPerformed(evt);
-            }
-        });
-
         jTextField64.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField64.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField64ActionPerformed(evt);
-            }
-        });
-
         jTextField65.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField65.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField65ActionPerformed(evt);
-            }
-        });
-
         jTextField66.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField66.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField66ActionPerformed(evt);
-            }
-        });
-
         jTextField67.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField67.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField67ActionPerformed(evt);
-            }
-        });
-
         jTextField68.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField68.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField68ActionPerformed(evt);
-            }
-        });
-
         jTextField69.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField69.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField69ActionPerformed(evt);
-            }
-        });
-
         jTextField70.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField70.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField70ActionPerformed(evt);
-            }
-        });
-
         jTextField71.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField71.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField71ActionPerformed(evt);
-            }
-        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
             }
         });
 
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -270,7 +161,9 @@ public class STLA_SASY3_fillupFrame2nd_1 extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        JPanel panel = new JPanel();
+        GroupLayout layout = new GroupLayout(panel);
+        
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,138 +305,18 @@ public class STLA_SASY3_fillupFrame2nd_1 extends javax.swing.JFrame {
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
+        panel.setLayout(layout);
+        this.add(new JScrollPane(panel));
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField54ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField54ActionPerformed
-
-    private void jTextField55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField55ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField55ActionPerformed
-
-    private void jTextField56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField56ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField56ActionPerformed
-
-    private void jTextField57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField57ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField57ActionPerformed
-
-    private void jTextField58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField58ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField58ActionPerformed
-
-    private void jTextField59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField59ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField59ActionPerformed
-
-    private void jTextField60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField60ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField60ActionPerformed
-
-    private void jTextField61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField61ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField61ActionPerformed
-
-    private void jTextField62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField62ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField62ActionPerformed
-
-    private void jTextField63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField63ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField63ActionPerformed
-
-    private void jTextField64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField64ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField64ActionPerformed
-
-    private void jTextField65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField65ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField65ActionPerformed
-
-    private void jTextField66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField66ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField66ActionPerformed
-
-    private void jTextField67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField67ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField67ActionPerformed
-
-    private void jTextField68ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField68ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField68ActionPerformed
-
-    private void jTextField69ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField69ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField69ActionPerformed
-
-    private void jTextField70ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField70ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField70ActionPerformed
-
-    private void jTextField71ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField71ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField71ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    STLA_SASY3_fillupFrame_1 sasy3 = new STLA_SASY3_fillupFrame_1(0);
-    sasy3.setVisible(true);
-    dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(STLA_SASY3_fillupFrame2nd_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(STLA_SASY3_fillupFrame2nd_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(STLA_SASY3_fillupFrame2nd_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(STLA_SASY3_fillupFrame2nd_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new STLA_SASY3_fillupFrame2nd_1().setVisible(true);
-            }
-        });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+	    STLA_SASY3_fillupFrame_1 sasy3 = new STLA_SASY3_fillupFrame_1(0);
+	    sasy3.setVisible(true);
+	    dispose();
+    }
+
+
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -577,5 +350,4 @@ public class STLA_SASY3_fillupFrame2nd_1 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField70;
     private javax.swing.JTextField jTextField71;
     private javax.swing.JTextField jTextField8;
-    // End of variables declaration//GEN-END:variables
 }

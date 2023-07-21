@@ -39,24 +39,24 @@ public class fileManager{
 	 */
 
 	void createCopyXLSX(int filetype) {
+		System.out.println("(createCopyXLSX): " + filetype);
 		try 
 		{
-			if(!isFileExist()) {
+			if(!isFileExist(filetype)) {
+				String temp = "";
 				switch(filetype) {
 					case 0:
-						Files.copy(new File("$Resource\\Valeo_IKS_Aview_Focus_Active_Alignment_Template.xlsx").toPath(), 
-								new File(getCopiedFileName()).toPath());
+						temp = "$Resource\\Valeo_IKS_Aview_Focus_Active_Alignment_Template.xlsx";
 						break;
 					case 1:
-						Files.copy(new File("$Resource\\Valeo_STLA _SASSY3_EOL_Template.xlsx").toPath(), 
-								new File(getCopiedFileName()).toPath());
+						temp = "$Resource\\Valeo_STLA_Aview_Focus_Active_Alignment_Template.xlsx";
 						break;
 					case 2:
-						Files.copy(new File("$Resource\\Valeo_STLA_Aview_Focus_Active_Alignment_Template.xlsx").toPath(), 
-								new File(getCopiedFileName()).toPath());
+						temp = "$Resource\\Valeo_STLA _SASSY3_EOL_Template.xlsx";
 						break;
 				}
-				mainClass.dtsm.setWorkingFileDir(getCopiedFileName());
+				Files.copy(new File(temp).toPath(), new File(getCopiedFileName(filetype)).toPath());
+				mainClass.dtsm.setWorkingFileDir(getCopiedFileName(filetype));
 			}
 		} 
 		catch (IOException e) { e.printStackTrace(); }
@@ -102,9 +102,9 @@ public class fileManager{
 		return true;
 	}
 
-	boolean isFileExist() {
+	boolean isFileExist(int i) {
 		File f = new File(mainClass.ofm.getCurrOutputFolder());
-		mainClass.dtsm.setWorkingFileDir(getCopiedFileName());
+		mainClass.dtsm.setWorkingFileDir(getCopiedFileName(i));
 //		System.out.println("(isFileExist - Output Folder) " + mainClass.ofm.getCurrOutputFolder());
 //		System.out.println("(isFileExist - WorkingFileDir) " + mainClass.dtsm.getWorkingFileDir());
 		for(String f_str: f.list()) {
@@ -126,6 +126,7 @@ public class fileManager{
 	//Method for Existing Templates
 	int getTemplateType(String dir) {
 		mainClass.dtsm.setWorkingFileDir(dir);
+		System.out.println("(getTemplateType): " + mainClass.dtsm.getWorkingFileDir());
 		String str1 = mainClass.dtsm.getCellValue(1, 5) + mainClass.dtsm.getCellValue(1, 10);
 //		System.out.println(str1);
 		
@@ -146,8 +147,23 @@ public class fileManager{
 		return mainClass.lfm.getListOfEmployeeNum();
 	}
 	
-	private String getCopiedFileName() {
-		return mainClass.ofm.getCurrOutputFolder()+"Valeo_IKS_AFAA_" + java.time.LocalDate.now().toString() + ".xlsx";
+	private String getCopiedFileName(int i) {
+		String temp = "";
+		
+		switch(i) {
+			case 0:
+				temp =  mainClass.ofm.getCurrOutputFolder()+"Valeo_IKS_AFAA_";
+				break;
+			case 1:
+				temp =  mainClass.ofm.getCurrOutputFolder()+"Valeo_STLA_SASY_";
+				break;
+			case 2:
+				temp =  mainClass.ofm.getCurrOutputFolder()+"Valeo_STLA_AFAA_";
+				break;
+		
+		}
+		
+		return temp + java.time.LocalDate.now().toString() + ".xlsx";
 	}
 
 	/*

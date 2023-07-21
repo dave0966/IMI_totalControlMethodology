@@ -15,6 +15,7 @@ public class promptFrame extends JFrame {
 	private JComboBox<String> cb_productType, cb_employeeNum;
 	private JLabel IMI_logo, lb_selectProduct, lb_employeeNum ,lb_shift;
 	private JTextField tf_shift;
+	private int mode = 0;
     /**
      * Creates new form promptFrame
      */
@@ -31,6 +32,7 @@ public class promptFrame extends JFrame {
 	    	System.out.println("Product Type: " + productType);
 	    	cb_productType.setSelectedIndex(productType);
 	    	cb_productType.setEnabled(false);
+	    	mode = 1;
     	}
     	else
     	{
@@ -85,7 +87,11 @@ public class promptFrame extends JFrame {
         bt_return.setText("Previous");
         bt_return.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                bt_returnActionPerformed(evt);
+            	int condition = JOptionPane.showConfirmDialog(null, "The prompted input will not be save. Are you sure?", "Confirm Dialog", JOptionPane.YES_NO_OPTION);
+        	    if(condition == 0) {
+        	    	new mainFrame();
+        		    dispose();
+        	    }
             }
         });
 
@@ -162,14 +168,6 @@ public class promptFrame extends JFrame {
         );
     }
 
-    private void bt_returnActionPerformed(ActionEvent evt) {
-    	int condition = JOptionPane.showConfirmDialog(null, "The prompted input will not be save. Are you sure?", "Confirm Dialog", JOptionPane.YES_NO_OPTION);
-	    if(condition == 0) {
-	    	mainFrame mf = new mainFrame();
-		    dispose();
-	    }
-    }
-
     private void cb_employeeNumActionPerformed(ActionEvent evt) {
         if(cb_employeeNum.getSelectedIndex() > 0)
             cb_employeeNum.setEditable(false);
@@ -200,15 +198,16 @@ public class promptFrame extends JFrame {
 		    	switch(cb_productType.getSelectedIndex()) {
 		    		case 0:
 //		    			System.out.println("Opening Valeo IKS - Total Methodology Template");
-		    			IKS_fillupFrame_1 IKSF= new IKS_fillupFrame_1(0);
+		    			
+		    			IKS_fillupFrame_1 IKSF= new IKS_fillupFrame_1(mode);
 		    			break;
 		    		case 1:
 //		    			System.out.println("Opening Valeo STLA Aview - Total Methodology Template");
-		    			STLA_Aview_form fillup= new STLA_Aview_form(0);
+		    			STLA_Aview_form fillup= new STLA_Aview_form(mode);
 		    			break;
 		    		case 2:
 //		    			System.out.println("Opening Valeo STLA SASY - Total Methodology Template");
-		    			STLA_SASY3_fillupFrame_1 SASY3= new STLA_SASY3_fillupFrame_1(0);
+		    			STLA_SASY3_fillupFrame_1 SASY3= new STLA_SASY3_fillupFrame_1(mode);
 		    			break;
 		    	}
 		    dispose();
