@@ -23,7 +23,8 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
     /**
      * Creates new form fillupFrame2nd
      */
-    public IKS_fillupFrame_2nd() {
+	int mode = 0;
+    public IKS_fillupFrame_2nd(int state) {
     	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
     	
         initComponents();
@@ -32,6 +33,7 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         this.setTitle("VALEO IKS AVIEW");
         this.setIconImage(icon);
         this.setVisible(true);
+        this.mode = state;
     }
 
     private void initComponents() {
@@ -150,6 +152,8 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
         jComboBox1.setSelectedIndex(mainClass.dtsm.selectedColumnToIndex());
+        if(mode == 1)
+        	refreshComboBox();
         jComboBox1.setEnabled(false);
 
         jButton1.setText("Save");
@@ -346,9 +350,30 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         pack();
     }
     
-    boolean hasAllTextFieldFilled() {
+    private void refreshComboBox() {
+    	jTextField54.setText(getTextTF(26));
+    	jTextField54.setText(getTextTF(27));
+    	jTextField54.setText(getTextTF(28));
+    	jTextField54.setText(getTextTF(29));
+    	jTextField54.setText(getTextTF(30));
+    	jTextField54.setText(getTextTF(31));
+    	jTextField54.setText(getTextTF(32));
+    	jTextField54.setText(getTextTF(33));
+    	jTextField54.setText(getTextTF(34));
+    	jTextField54.setText(getTextTF(35));
+    	jTextField54.setText(getTextTF(36));
     	
-    	return false;
+    	jTextField54.setText(getTextTF(38));
+    	jTextField54.setText(getTextTF(39));
+    	jTextField54.setText(getTextTF(40));
+    	jTextField54.setText(getTextTF(41));
+    	jTextField54.setText(getTextTF(42));
+    	jTextField54.setText(getTextTF(43));
+    	jTextField54.setText(getTextTF(44));
+    }
+    
+    private String getTextTF(int row_index) {
+    	return mainClass.dtsm.getCellValue(row_index, mainClass.dtsm.getSelectedColumn_Actual());
     }
 
     private javax.swing.JButton jButton1;

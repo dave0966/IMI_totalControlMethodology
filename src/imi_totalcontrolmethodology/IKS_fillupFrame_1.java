@@ -18,9 +18,9 @@ import javax.swing.JScrollPane;
  * @author USer1
  */
 public class IKS_fillupFrame_1 extends javax.swing.JFrame {
-	
 	int mode = 0;
-    public IKS_fillupFrame_1(int state ) {
+	
+    public IKS_fillupFrame_1(int state) {
     	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
         
     	initComponents();
@@ -285,6 +285,8 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jComboBox1.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				mainClass.dtsm.setSelectedColumn_Actual(jComboBox1.getSelectedIndex());
+				if(mode == 1)
+					refreshComboBox();
 			}
         });
         
@@ -293,26 +295,26 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent evt) {
             	if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
         		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-        	    		mainClass.dtsm.insertToBuffer(7, jComboBox3.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(8, jComboBox4.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(9, jComboBox5.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(10, jComboBox6.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(11, jComboBox7.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(12, jComboBox8.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(13, jComboBox9.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(14, jComboBox10.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(15, jComboBox11.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(16, jComboBox12.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(17, jComboBox13.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(18, jComboBox14.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(19, jComboBox15.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(20, jComboBox16.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(21, jComboBox17.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(22, jComboBox18.getSelectedItem().toString());
-        	    		mainClass.dtsm.insertToBuffer(23, jComboBox19.getSelectedItem().toString());
-//        	    		mainClass.dtsm.insertToBuffer(24, jComboBox20.getSelectedItem().toString());
+            			mainClass.dtsm.insertToBuffer(7, jComboBox1.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(8, jComboBox3.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(9, jComboBox4.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(10, jComboBox5.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(11, jComboBox6.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(12, jComboBox7.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(13, jComboBox8.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(14, jComboBox9.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(15, jComboBox10.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(16, jComboBox11.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(17, jComboBox12.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(18, jComboBox13.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(19, jComboBox14.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(20, jComboBox15.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(21, jComboBox16.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(22, jComboBox17.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(23, jComboBox18.getSelectedItem().toString());
+        	    		mainClass.dtsm.insertToBuffer(24, jComboBox19.getSelectedItem().toString());
         	    		dispose();
-        		        new IKS_fillupFrame_2nd();
+        		        new IKS_fillupFrame_2nd(mode);
         	    }
             }
         });
@@ -411,15 +413,15 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
                             .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox10, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox10, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox11, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox12, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox13, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox14, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox15, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox13, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox12, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox11, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox16, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox18, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox17, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -558,9 +560,48 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         pack();
     }
     
+    private void refreshComboBox() {
+    	jComboBox1.setSelectedIndex(getIndexCombo(7));
+    	jComboBox3.setSelectedIndex(getIndexCombo(8));
+    	jComboBox4.setSelectedIndex(getIndexCombo(9));
+    	jComboBox5.setSelectedIndex(getIndexCombo(10));
+    	jComboBox6.setSelectedIndex(getIndexCombo(11));
+    	jComboBox7.setSelectedIndex(getIndexCombo(12));
+    	jComboBox8.setSelectedIndex(getIndexCombo(13));
+    	jComboBox9.setSelectedIndex(getIndexCombo(14));
+    	jComboBox10.setSelectedIndex(getIndexCombo(15));
+    	jComboBox11.setSelectedIndex(getIndexCombo(16));
+    	jComboBox12.setSelectedIndex(getIndexCombo(17));
+    	jComboBox13.setSelectedIndex(getIndexCombo(18));
+    	jComboBox14.setSelectedIndex(getIndexCombo(19));
+    	jComboBox15.setSelectedIndex(getIndexCombo(20));
+    	jComboBox16.setSelectedIndex(getIndexCombo(21));
+    	jComboBox17.setSelectedIndex(getIndexCombo(22));
+    	jComboBox18.setSelectedIndex(getIndexCombo(23));
+    	jComboBox19.setSelectedIndex(getIndexCombo(24));
+    }
+    
+    private int getIndexCombo(int row_index) {
+    	String str = mainClass.dtsm.getCellValue(row_index, mainClass.dtsm.getSelectedColumn_Actual());
+    	if(str.equalsIgnoreCase("✓"))
+    		return 1;
+    	if(str.equalsIgnoreCase("X"))
+    		return 2;
+    	
+    	return 0;
+    }
+    
+    
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox6;
+    private javax.swing.JComboBox<String> jComboBox7;
+    private javax.swing.JComboBox<String> jComboBox8;
+    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox12;
@@ -571,13 +612,6 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox17;
     private javax.swing.JComboBox<String> jComboBox18;
     private javax.swing.JComboBox<String> jComboBox19;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;

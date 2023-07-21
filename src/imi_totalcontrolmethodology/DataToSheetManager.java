@@ -75,7 +75,7 @@ public class DataToSheetManager {
 		return this.workingFileDir;
 	}
 	
-	void insertToCell(int input_row, int input_column, String input_data){
+	void insertToCell(int input_row, int input_column, String input_data, boolean isFillUpForm1){
 		try {
 			fis = new FileInputStream(new File(getWorkingFileDir()));
 			wb = WorkbookFactory.create(fis);
@@ -83,7 +83,11 @@ public class DataToSheetManager {
 			row = sheet.getRow(input_row);
 			cell = row.getCell(input_column);
 			cell.setCellValue(
-								(input_data.length() == 0 || input_data.equalsIgnoreCase("N/A")) ? "-" : input_data 
+								(input_data.length() == 0 || input_data.equalsIgnoreCase("N/A")) ? 
+									"-" 
+									: (isFillUpForm1) ? 
+											(input_data.equalsIgnoreCase("PASS")) ? "✓":"☓"
+											:input_data
 							 );
 			
 			OutputStream fileOut = new FileOutputStream(getWorkingFileDir());
@@ -115,9 +119,10 @@ public class DataToSheetManager {
 	void commit(int fileType){
 		mainClass.fm.createCopyXLSX(fileType);
 		Set<Integer> key = buffer.keySet();
+		boolean typeFillUpForm = (key.iterator().next() < 26) ? true: false;
 		for(Integer k : key) {
 //			System.out.println(k + " " + getSelectedColumn_Actual() + " " + buffer.get(k));
-			insertToCell(k, getSelectedColumn_Actual(), buffer.get(k));
+			insertToCell(k, getSelectedColumn_Actual(), buffer.get(k), typeFillUpForm);
 		}
 	}
 	
