@@ -11,7 +11,7 @@ import javax.swing.*;
  * @author USer1
  */
 public class promptFrame extends JFrame {
-	private JButton bt_continue, bt_return;
+	private JButton bt_continue, bt_return, bt_OpenOutputFolder;
 	private JComboBox<String> cb_productType, cb_employeeNum;
 	private JLabel IMI_logo, lb_selectProduct, lb_employeeNum ,lb_shift;
 	private JTextField tf_shift;
@@ -42,7 +42,7 @@ public class promptFrame extends JFrame {
     }
     
     private void initFrame() {
-    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
     	initComponents();
         this.setTitle("SELECT PRODUCT TYPE");
         this.setIconImage(icon);
@@ -56,11 +56,13 @@ public class promptFrame extends JFrame {
 
     private void initComponents() {
         IMI_logo = new JLabel();
-        IMI_logo.setIcon(new ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
+        IMI_logo.setIcon(new ImageIcon("$Resource\\image-300x150.jpg")); // NOI18N
 
 		tf_shift = new JTextField();
-        bt_continue = new JButton();
-        bt_return = new JButton();
+
+		cb_employeeNum = new JComboBox<>();
+		cb_employeeNum.setEditable(true);
+		cb_employeeNum.setModel(new DefaultComboBoxModel<>(new String[] { "  - -  Select Employee Number or Insert here - -"}));
 
         cb_productType = new JComboBox<>();
         cb_productType.setModel(new DefaultComboBoxModel<>(new String[] { "Valeo IKS AVIEW", "Valeo STLA AVIEW", "Valeo STLA SASY" }));
@@ -77,14 +79,14 @@ public class promptFrame extends JFrame {
         lb_shift.setHorizontalAlignment(SwingConstants.CENTER);
         lb_shift.setText("SHIFT");
 
-        bt_continue.setText("Continue");
+        bt_continue = new JButton("Continue");
         bt_continue.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 bt_continueActionPerformed(evt);
             }
         });
-
-        bt_return.setText("Previous");
+        
+        bt_return = new JButton("Previous");
         bt_return.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	int condition = JOptionPane.showConfirmDialog(null, "The prompted input will not be save. Are you sure?", "Confirm Dialog", JOptionPane.YES_NO_OPTION);
@@ -95,9 +97,7 @@ public class promptFrame extends JFrame {
             }
         });
 
-        cb_employeeNum = new JComboBox<>();
-        cb_employeeNum.setEditable(true);
-        cb_employeeNum.setModel(new DefaultComboBoxModel<>(new String[] { "  - -  Select Employee Number or Insert here - -"}));
+        bt_OpenOutputFolder = new JButton("Open Output File Directory");
         
         for(String str: mainClass.fm.getEmployeeNumList()) 
 //        {
@@ -107,7 +107,11 @@ public class promptFrame extends JFrame {
         
         cb_employeeNum.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                cb_employeeNumActionPerformed(evt);
+                if(cb_employeeNum.getSelectedIndex() > 0)
+                    cb_employeeNum.setEditable(false);
+         		
+                if(cb_employeeNum.getSelectedIndex() == 0)
+                    cb_employeeNum.setEditable(true);
             }
         });
 
@@ -127,7 +131,9 @@ public class promptFrame extends JFrame {
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addComponent(cb_productType, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(tf_shift)
-                                    .addComponent(cb_employeeNum, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(cb_employeeNum, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+//                                    .addComponent(bt_OpenOutputFolder, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    ))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(286, 286, 286)
                         .addComponent(lb_shift, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)))
@@ -166,14 +172,6 @@ public class promptFrame extends JFrame {
                     .addComponent(bt_return, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49))
         );
-    }
-
-    private void cb_employeeNumActionPerformed(ActionEvent evt) {
-        if(cb_employeeNum.getSelectedIndex() > 0)
-            cb_employeeNum.setEditable(false);
- 		
-        if(cb_employeeNum.getSelectedIndex() == 0)
-            cb_employeeNum.setEditable(true);
     }
 
     private void bt_continueActionPerformed(ActionEvent evt) {

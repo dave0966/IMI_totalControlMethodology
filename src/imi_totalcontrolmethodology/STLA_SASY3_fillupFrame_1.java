@@ -2,6 +2,8 @@ package imi_totalcontrolmethodology;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -15,11 +17,11 @@ import javax.swing.JScrollPane;
  */
 public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
 
-	int mode = 0;
+	private int mode = 0;
 	// state = 0 -> create new
 	// state = 1 -> existing 
     public STLA_SASY3_fillupFrame_1(int state) {
-    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
         initComponents();
         this.setTitle("Valeo STLA SASY");
         this.getContentPane().setBackground(Color.white);
@@ -245,7 +247,7 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         jTextField36.setFocusable(false);
         jTextField36.setRequestFocusEnabled(false);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("$Resource/image-300x150.jpg"));
         jLabel1.setText("jLabel1");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
@@ -281,20 +283,6 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         jTextField71.setFocusable(false);
         jTextField71.setRequestFocusEnabled(false);
 
-        jTextField72.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField73.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField74.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField75.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField76.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField77.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField78.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField79.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField80.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField81.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField82.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField83.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField84.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField85.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField39.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField40.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField41.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -316,6 +304,20 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         jTextField65.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField66.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField67.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField72.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField73.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField74.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField75.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField76.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField78.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField79.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField77.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField80.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField81.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField82.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField83.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField84.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField85.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField86.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField87.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField88.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -690,8 +692,56 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 	    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
 	        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-		        STLA_SASY3_fillupFrame2nd frame2 = new STLA_SASY3_fillupFrame2nd();
-		        dispose();
+//		        STLA_SASY3_fillupFrame2nd frame2 = new STLA_SASY3_fillupFrame2nd();
+	    		mainClass.dtsm.insertToBuffer(null, "");
+		    	System.out.println("tf42: " + jTextField42.getText());
+		    	System.out.println("tf43: " + jTextField43.getText());
+		    	System.out.println("tf50: " + jTextField50.getText());
+		    	System.out.println("tf51: " + jTextField51.getText());
+		    	System.out.println("tf66: " + jTextField66.getText());
+		    	System.out.println("tf67: " + jTextField67.getText());
+		    	System.out.println("tf89: " + jTextField89.getText());
+		    	//
+	    		System.out.println("tf41: " + jTextField41.getText());
+	    		System.out.println("tf44: " + jTextField44.getText());
+	    		System.out.println("tf49: " + jTextField49.getText());
+	    		System.out.println("tf52: " + jTextField52.getText());
+	    		System.out.println("tf65: " + jTextField65.getText());
+	    		System.out.println("tf86: " + jTextField86.getText());
+	    		System.out.println("tf90: " + jTextField90.getText());
+	    		//
+	    		System.out.println("tf40: " + jTextField40.getText());
+	    		System.out.println("tf45: " + jTextField45.getText());
+	    		System.out.println("tf48: " + jTextField48.getText());
+	    		System.out.println("tf53: " + jTextField53.getText());
+	    		System.out.println("tf64: " + jTextField64.getText());
+	    		System.out.println("tf87: " + jTextField87.getText());
+	    		System.out.println("tf91: " + jTextField91.getText());
+	    		//
+	    		System.out.println("tf39: " + jTextField39.getText());
+	    		System.out.println("tf46: " + jTextField46.getText());
+	    		System.out.println("tf62: " + jTextField62.getText());
+	    		System.out.println("tf47: " + jTextField47.getText());
+	    		System.out.println("tf63: " + jTextField63.getText());
+	    		System.out.println("tf88: " + jTextField88.getText());
+	    		System.out.println("tf92: " + jTextField92.getText());
+	    		//
+	    		System.out.println("tf72: " + jTextField72.getText());
+	    		System.out.println("tf74: " + jTextField74.getText());
+	    		System.out.println("tf77: " + jTextField77.getText());
+	    		System.out.println("tf79: " + jTextField79.getText());
+	    		System.out.println("tf81: " + jTextField81.getText());
+	    		System.out.println("tf83: " + jTextField83.getText());
+	    		System.out.println("tf85: " + jTextField85.getText());
+	    		//
+	    		System.out.println("tf73: " + jTextField73.getText());
+	    		System.out.println("tf75: " + jTextField75.getText());
+	    		System.out.println("tf76: " + jTextField76.getText());
+	    		System.out.println("tf78: " + jTextField78.getText());
+	    		System.out.println("tf80: " + jTextField80.getText());
+	    		System.out.println("tf82: " + jTextField82.getText());
+	    		System.out.println("tf84: " + jTextField84.getText());
+//		        dispose();
         } 
     }
 
@@ -714,9 +764,6 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField16;

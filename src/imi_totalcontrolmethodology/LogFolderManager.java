@@ -77,7 +77,7 @@ public class LogFolderManager {
 //		for(String str: temp)
 //			System.out.println("From dataManager:"+str);
 //		System.out.println("Employee Status: " + !temp.isEmpty());
-		System.out.println("getListOfEmployeeNum invoked! ("+temp.size()+")");
+//		System.out.println("getListOfEmployeeNum invoked! ("+temp.size()+")");
 		return temp;
 	}
 	

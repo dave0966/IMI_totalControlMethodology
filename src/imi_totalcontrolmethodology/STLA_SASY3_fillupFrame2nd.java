@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 public class STLA_SASY3_fillupFrame2nd extends javax.swing.JFrame {
 
 	public STLA_SASY3_fillupFrame2nd() {
-		Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+		Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setTitle("VALEO STLA SASY");
@@ -65,7 +65,7 @@ public class STLA_SASY3_fillupFrame2nd extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("$Resource/image-300x150.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -164,7 +164,6 @@ public class STLA_SASY3_fillupFrame2nd extends javax.swing.JFrame {
         JPanel panel = new JPanel();
         GroupLayout layout = new GroupLayout(panel);
         
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()

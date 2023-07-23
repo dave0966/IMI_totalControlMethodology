@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package imi_totalcontrolmethodology;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.io.FileNotFoundException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -25,7 +20,7 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
      */
 	int mode = 0;
     public IKS_fillupFrame_2nd(int state) {
-    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
     	
         initComponents();
         this.getContentPane().setBackground(Color.white);
@@ -74,7 +69,7 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg")));
+        jLabel1.setIcon(new javax.swing.ImageIcon("$Resource/image-300x150.jpg"));
         jLabel1.setText("jLabel1");
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);

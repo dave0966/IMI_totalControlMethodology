@@ -24,32 +24,6 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/*
- * 
- *IKS and STLA - Aview					STLA - SASSY3
- *Column    14   ... 25					 14   15   ... 25
- *Row 	->	(3), ... (3)				 (3), (3), ...
- * 		->	(4), ... (4)				 (4), (4), ...	 	
- * 		->	(5), ... (5)				 (5), (5), ...
- * 	
- *		->	(7), ... (7) 				 (7),  (NONE), ...
- *	 	->	(8), ... (8)				 (8),  (NONE), ...
- *	 	->	(9), ... (9)				 (9),  (NONE), ...
- * 		->	(10), ...(10)				 (10), (NONE), ...
- * 		->	(11), ...(11) 				 (11), (NONE), ...
- * 		->	(12), ...(12)				 (12), (NONE), ...
- * 		->	(13), ...(13)				 (13), (NONE), ...
- *		->	(14), ...(14)				 (14), (NONE), ...
- *		->	(15), ...(15)				 (15), (NONE), ...
- *	 	->	(16), ...(16)				 (16), (NONE), ...
- *	 	->	(17), ...(17)				 (17), (16),   ...
- *		->	(18), ...(18)  				 ...,  ...,    ...
- *		-> 	(19), ...(19) 
- * 		->	(20), ...(20)
- * 		->	(21), ...(21)
- *		->	(22), ...(22) 
- *		->	(23), ...(23) 
- */
 
 public class DataToSheetManager {
 	private Workbook wb;
@@ -88,16 +62,16 @@ public class DataToSheetManager {
 								(input_data.length() == 0 || input_data.equalsIgnoreCase("N/A")) ? 
 									"-" 
 									: (isFillUpForm1) ? 
-											(input_data.equalsIgnoreCase("PASS")) ? "✓":"☓"
+											(input_data.equalsIgnoreCase("PASS")) ? "✓": input_data.replace("FAIL", "☓")
 											:input_data
 							 );
 			OutputStream fileOut = new FileOutputStream(getWorkingFileDir());
 			sheet.autoSizeColumn(getSelectedColumn_Actual());
 			wb.write(fileOut);
-		} catch (IOException | EncryptedDocumentException e) {
+		} catch (EncryptedDocumentException | FileNotFoundException e) {
 			setErrorFree(false);
 			e.printStackTrace();
-		}
+		}catch (IOException ee) {}
 	}
 	
 	String getCellValue(int input_row, int input_column) {
