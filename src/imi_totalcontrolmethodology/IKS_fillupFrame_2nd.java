@@ -178,7 +178,7 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         	    		mainClass.dtsm.insertToBuffer(44, jTextField66.getText());
         	    		
 		            	mainClass.fm.createCopyXLSX(0);
-		        		mainClass.dtsm.commit(0);
+		        		mainClass.dtsm.commit(0, false);
 		        		if(mainClass.dtsm.isErrorFree()) {
 		        			mainClass.dtsm.flash();
 			            	System.out.println("(IKS_2) Copy and Save File");

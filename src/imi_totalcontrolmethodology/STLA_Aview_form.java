@@ -730,21 +730,6 @@ public class STLA_Aview_form extends javax.swing.JFrame {
         pack();
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-	    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) 
-	    {
-	        STLA_Aview_form_2nd frame2 = new STLA_Aview_form_2nd(0);
-	        frame2.setVisible(true);
-	        dispose();
-	    } 
-    }
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-	    promptFrame JF2 =new promptFrame();
-	    dispose();
-    }
-
-
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;

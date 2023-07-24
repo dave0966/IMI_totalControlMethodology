@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -82,10 +84,10 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         jTextField85 = new javax.swing.JTextField();
         jTextField39 = new javax.swing.JTextField();
         jTextField40 = new javax.swing.JTextField();
-        jTextField41 = new javax.swing.JTextField();
-        jTextField42 = new javax.swing.JTextField();
-        jTextField43 = new javax.swing.JTextField();
-        jTextField44 = new javax.swing.JTextField();
+        jTextField41 = new javax.swing.JTextField("TBD");
+        jTextField42 = new javax.swing.JTextField("1");
+        jTextField43 = new javax.swing.JTextField("2");
+        jTextField44 = new javax.swing.JTextField("TBD");
         jTextField45 = new javax.swing.JTextField();
         jTextField46 = new javax.swing.JTextField();
         jTextField47 = new javax.swing.JTextField();
@@ -160,7 +162,7 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         jTextField8.setText("Good Reference Sample Verification");
         jTextField8.setFocusable(false);
         jTextField8.setRequestFocusEnabled(false);
-
+        
         jTextField13.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField13.setText("Valeo Drive Present in \"My Computer\"");
         jTextField13.setFocusable(false);
@@ -251,7 +253,13 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
-
+	    jComboBox1.setSelectedIndex(mainClass.dtsm.selectedColumnToIndex());
+	    jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	mainClass.dtsm.setSelectedColumn_Actual(jComboBox1.getSelectedIndex());
+            }
+        });
+	    
         jTextField69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField69.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField69.setText("X");
@@ -329,20 +337,109 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAIL", "N/A", "PASS" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
+        jComboBox3.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox3.getSelectedIndex() == 2)
+					jComboBox3.setEditable(true);
+				else
+					jComboBox3.setEditable(false);
+			}
+        });
+        
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
+        jComboBox4.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox4.getSelectedIndex() == 2)
+					jComboBox4.setEditable(true);
+				else
+					jComboBox4.setEditable(false);
+			}
+        });
+        
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
+        jComboBox5.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox5.getSelectedIndex() == 2)
+					jComboBox5.setEditable(true);
+				else
+					jComboBox5.setEditable(false);
+			}
+        });
+        
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
+        jComboBox6.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox6.getSelectedIndex() == 2)
+					jComboBox6.setEditable(true);
+				else
+					jComboBox6.setEditable(false);
+			}
+        });
+        
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
+        jComboBox2.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox2.getSelectedIndex() == 2)
+					jComboBox2.setEditable(true);
+				else
+					jComboBox2.setEditable(false);
+			}
+        });
+        
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
+        jComboBox8.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox8.getSelectedIndex() == 2)
+					jComboBox8.setEditable(true);
+				else
+					jComboBox8.setEditable(false);
+			}
+        });
+        
+        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
+        jComboBox9.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox9.getSelectedIndex() == 2)
+					jComboBox9.setEditable(true);
+				else
+					jComboBox9.setEditable(false);
+			}
+        });
+        
+        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
+        jComboBox10.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox10.getSelectedIndex() == 2)
+					jComboBox10.setEditable(true);
+				else
+					jComboBox10.setEditable(false);
+			}
+        });
+        
+        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
+        jComboBox11.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox11.getSelectedIndex() == 2)
+					jComboBox11.setEditable(true);
+				else
+					jComboBox11.setEditable(false);
+			}
+        });
+        
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
+        jComboBox7.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox7.getSelectedIndex() == 2)
+					jComboBox7.setEditable(true);
+				else
+					jComboBox7.setEditable(false);
+			}
+        });
 
         JPanel panel = new JPanel();
         GroupLayout layout = new GroupLayout(panel);
@@ -692,62 +789,64 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 	    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
 	        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-//		        STLA_SASY3_fillupFrame2nd frame2 = new STLA_SASY3_fillupFrame2nd();
-	    		mainClass.dtsm.insertToBuffer(null, "");
-		    	System.out.println("tf42: " + jTextField42.getText());
-		    	System.out.println("tf43: " + jTextField43.getText());
-		    	System.out.println("tf50: " + jTextField50.getText());
-		    	System.out.println("tf51: " + jTextField51.getText());
-		    	System.out.println("tf66: " + jTextField66.getText());
-		    	System.out.println("tf67: " + jTextField67.getText());
-		    	System.out.println("tf89: " + jTextField89.getText());
+	    		mainClass.dtsm.insertToSasyArr(18, 4, jTextField42.getText());
+	    		mainClass.dtsm.insertToSasyArr(19, 4, jTextField43.getText());
+	    		mainClass.dtsm.insertToSasyArr(20, 4, jTextField50.getText());
+	    		mainClass.dtsm.insertToSasyArr(21, 4, jTextField51.getText());
+	    		mainClass.dtsm.insertToSasyArr(22, 4, jTextField66.getText());
+	    		mainClass.dtsm.insertToSasyArr(23, 4, jTextField67.getText());
+	    		mainClass.dtsm.insertToSasyArr(24, 4, jTextField89.getText());
 		    	//
-	    		System.out.println("tf41: " + jTextField41.getText());
-	    		System.out.println("tf44: " + jTextField44.getText());
-	    		System.out.println("tf49: " + jTextField49.getText());
-	    		System.out.println("tf52: " + jTextField52.getText());
-	    		System.out.println("tf65: " + jTextField65.getText());
-	    		System.out.println("tf86: " + jTextField86.getText());
-	    		System.out.println("tf90: " + jTextField90.getText());
+	    		mainClass.dtsm.insertToSasyArr(18, 9, jTextField41.getText());
+	    		mainClass.dtsm.insertToSasyArr(19, 9, jTextField44.getText());
+	    		mainClass.dtsm.insertToSasyArr(20, 9, jTextField49.getText());
+	    		mainClass.dtsm.insertToSasyArr(21, 9, jTextField52.getText());
+	    		mainClass.dtsm.insertToSasyArr(22, 9, jTextField65.getText());
+	    		mainClass.dtsm.insertToSasyArr(23, 9, jTextField86.getText());
+	    		mainClass.dtsm.insertToSasyArr(24, 9, jTextField90.getText());
 	    		//
-	    		System.out.println("tf40: " + jTextField40.getText());
-	    		System.out.println("tf45: " + jTextField45.getText());
-	    		System.out.println("tf48: " + jTextField48.getText());
-	    		System.out.println("tf53: " + jTextField53.getText());
-	    		System.out.println("tf64: " + jTextField64.getText());
-	    		System.out.println("tf87: " + jTextField87.getText());
-	    		System.out.println("tf91: " + jTextField91.getText());
+	    		mainClass.dtsm.insertToSasyArr(18, 11, jTextField40.getText());
+	    		mainClass.dtsm.insertToSasyArr(19, 11, jTextField45.getText());
+	    		mainClass.dtsm.insertToSasyArr(20, 11, jTextField48.getText());
+	    		mainClass.dtsm.insertToSasyArr(21, 11, jTextField53.getText());
+	    		mainClass.dtsm.insertToSasyArr(22, 11, jTextField64.getText());
+	    		mainClass.dtsm.insertToSasyArr(23, 11, jTextField87.getText());
+	    		mainClass.dtsm.insertToSasyArr(24, 11, jTextField91.getText());
 	    		//
-	    		System.out.println("tf39: " + jTextField39.getText());
-	    		System.out.println("tf46: " + jTextField46.getText());
-	    		System.out.println("tf62: " + jTextField62.getText());
-	    		System.out.println("tf47: " + jTextField47.getText());
-	    		System.out.println("tf63: " + jTextField63.getText());
-	    		System.out.println("tf88: " + jTextField88.getText());
-	    		System.out.println("tf92: " + jTextField92.getText());
+	    		mainClass.dtsm.insertToSasyArr(18, 13, jTextField39.getText());
+	    		mainClass.dtsm.insertToSasyArr(19, 13, jTextField46.getText());
+	    		mainClass.dtsm.insertToSasyArr(20, 13, jTextField62.getText());
+	    		mainClass.dtsm.insertToSasyArr(21, 13, jTextField47.getText());
+	    		mainClass.dtsm.insertToSasyArr(22, 13, jTextField63.getText());
+	    		mainClass.dtsm.insertToSasyArr(23, 13, jTextField88.getText());
+	    		mainClass.dtsm.insertToSasyArr(24, 13, jTextField92.getText());
 	    		//
-	    		System.out.println("tf72: " + jTextField72.getText());
-	    		System.out.println("tf74: " + jTextField74.getText());
-	    		System.out.println("tf77: " + jTextField77.getText());
-	    		System.out.println("tf79: " + jTextField79.getText());
-	    		System.out.println("tf81: " + jTextField81.getText());
-	    		System.out.println("tf83: " + jTextField83.getText());
-	    		System.out.println("tf85: " + jTextField85.getText());
+//	    		mainClass.dtsm.insertToSasyArr(18, 13, jTextField72.getText());
+//	    		mainClass.dtsm.insertToSasyArr(19, 13, jTextField74.getText());
+//	    		mainClass.dtsm.insertToSasyArr(20, 13, jTextField77.getText());
+//	    		mainClass.dtsm.insertToSasyArr(21, 13, jTextField79.getText());
+//	    		mainClass.dtsm.insertToSasyArr(22, 13, jTextField81.getText());
+//	    		mainClass.dtsm.insertToSasyArr(23, 13, jTextField83.getText());
+//	    		mainClass.dtsm.insertToSasyArr(24, 13, jTextField85.getText());
 	    		//
-	    		System.out.println("tf73: " + jTextField73.getText());
-	    		System.out.println("tf75: " + jTextField75.getText());
-	    		System.out.println("tf76: " + jTextField76.getText());
-	    		System.out.println("tf78: " + jTextField78.getText());
-	    		System.out.println("tf80: " + jTextField80.getText());
-	    		System.out.println("tf82: " + jTextField82.getText());
-	    		System.out.println("tf84: " + jTextField84.getText());
-//		        dispose();
+	    		mainClass.dtsm.insertToSasyArr(18, mainClass.dtsm.getSelectedColumn_Actual(), jTextField73.getText());
+	    		mainClass.dtsm.insertToSasyArr(19, mainClass.dtsm.getSelectedColumn_Actual(), jTextField75.getText());
+	    		mainClass.dtsm.insertToSasyArr(20, mainClass.dtsm.getSelectedColumn_Actual()+1, jTextField76.getText());
+	    		mainClass.dtsm.insertToSasyArr(21, mainClass.dtsm.getSelectedColumn_Actual()+1, jTextField78.getText());
+	    		mainClass.dtsm.insertToSasyArr(22, mainClass.dtsm.getSelectedColumn_Actual()+1, jTextField80.getText());
+	    		mainClass.dtsm.insertToSasyArr(23, mainClass.dtsm.getSelectedColumn_Actual()+1, jTextField82.getText());
+	    		mainClass.dtsm.insertToSasyArr(24, mainClass.dtsm.getSelectedColumn_Actual()+1, jTextField84.getText());
+	    		//
+	    		mainClass.dtsm.insertToSasyArr(18, mainClass.dtsm.getSelectedColumn_Actual()+1, jTextField72.getText());
+	    		mainClass.dtsm.insertToSasyArr(19, mainClass.dtsm.getSelectedColumn_Actual()+1, jTextField74.getText());
+	    		mainClass.dtsm.insertToSasyArr(20, mainClass.dtsm.getSelectedColumn_Actual(), jTextField77.getText());
+	    		mainClass.dtsm.insertToSasyArr(21, mainClass.dtsm.getSelectedColumn_Actual(), jTextField79.getText());
+	    		mainClass.dtsm.insertToSasyArr(22, mainClass.dtsm.getSelectedColumn_Actual(), jTextField81.getText());
+	    		mainClass.dtsm.insertToSasyArr(23, mainClass.dtsm.getSelectedColumn_Actual(), jTextField83.getText());
+	    		mainClass.dtsm.insertToSasyArr(24, mainClass.dtsm.getSelectedColumn_Actual(), jTextField85.getText());
+	    		new STLA_SASY3_fillupFrame2nd(0);
+		        dispose();
         } 
-    }
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-    	promptFrame JF2 = new promptFrame();
-    	dispose();
     }
 
     private javax.swing.JButton jButton1;

@@ -8,7 +8,7 @@ import java.util.Calendar;
 
 public class OutputFolderManager {
 	private File f_output;
-	private String currOutputFolder = null;
+//	private String currOutputFolder = null;
 
 	OutputFolderManager(){
 		System.out.println("OutputFolderManager invoked!");

@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,14 +15,35 @@ import javax.swing.JOptionPane;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+
+class SasyArr{
+	private int Row, Column;
+	private String Inputdata;
+	
+	SasyArr(int row, int column, String input){
+		this.Row = row;
+		this.Column = column;
+		this.Inputdata = input;
+	}
+	
+	int getRow() {
+		return this.Row;
+	}
+	
+	int getColumn() {
+		return this.Column;
+	}
+	
+	String getInputdata() {
+		return this.Inputdata;
+	}
+	
+}
 
 public class DataToSheetManager {
 	private Workbook wb;
@@ -39,6 +59,7 @@ public class DataToSheetManager {
 	private int[] arrColumn = {14,15,17,18,19,20,21,22,23,24,25};		// Arrays of integers that represents the column O to Z in excel
 	private int selectedColumn = 14;									// By default, 14th Column (or Column O) was set.
 	private HashMap<Integer, String> buffer = new HashMap<Integer, String>();
+	private List<SasyArr> arrSas = new ArrayList<SasyArr>();
 	
 	
 	void setWorkingFileDir(String str) {
@@ -92,25 +113,38 @@ public class DataToSheetManager {
 	void insertToBuffer(Integer i, String s) {
 		buffer.put(i, s);
 	}
+	 
+	void insertToSasyArr(int row, int column, String str) {
+		this.arrSas.add(new SasyArr(row, column, str));
+	}
 	
 	String getFromBuffer(Integer i) {
 		return buffer.get(i);
 	}
 	
-	void commit(int fileType){
+	
+	
+	void commit(int fileType, boolean isSasy){
 		mainClass.fm.createCopyXLSX(fileType);
-		key = buffer.keySet();
 		
-		for(Integer k : key) {
-				System.out.println("commit: "+ buffer.get(k));
-				insertToCell(k, getSelectedColumn_Actual(), buffer.get(k), ((k < 26 && k > 6) ? true: false));
-//			System.out.println(k + " " + getSelectedColumn_Actual() + " " + buffer.get(k));
+		if(!isSasy) {
+			key = buffer.keySet();
+			for(Integer k : key) 
+//			{
+//					System.out.println("commit: "+ buffer.get(k));
+				insertToCell(k, getSelectedColumn_Actual(), buffer.get(k), (( k > 6 && k < 26) ? true: false));
+	//			System.out.println(k + " " + getSelectedColumn_Actual() + " " + buffer.get(k));
+//			}
 		}
+		else
+			for(SasyArr sa : arrSas)
+				insertToCell(sa.getRow(), sa.getColumn(), sa.getInputdata(), ((sa.getRow() > 6 && sa.getRow() < 17)? true: false));
 	}
 	
 	void flash() {
 		System.out.println("Flashed!");
 		buffer.clear();
+		arrSas.clear();
 	}
 	
 	void setSelectedColumn_Actual(int i) {

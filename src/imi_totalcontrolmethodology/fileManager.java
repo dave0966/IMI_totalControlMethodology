@@ -143,13 +143,12 @@ public class fileManager{
 			case 0:
 				temp =  "$Output\\Valeo_IKS_AFAA_";
 				break;
-			case 1:	
-				temp =  "$Output\\Valeo_STLA_SASY_";
-				break;
 			case 2:
+				temp =  "$Output\\Valeo_STLA_SASSY3_EOL_";
+				break;
+			case 1:	
 				temp =  "$Output\\Valeo_STLA_AFAA_";
 				break;
-		
 		}
 		
 		return temp + java.time.LocalDate.now().toString() + new SimpleDateFormat("_MM-dd").format(cal.getTime()) + ".xlsx";

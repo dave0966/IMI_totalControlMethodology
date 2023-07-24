@@ -2,8 +2,10 @@ package imi_totalcontrolmethodology;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,11 +13,13 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class LogFolderManager {
-	private File f_logRepo, f_enfl;
+	private File f_logRepo, f_enfl, f_rfl;
+	private Scanner reader;
 	
 	LogFolderManager(){
 		createDir_LogRepo();
 		createTxt_EmployeeNumberLog();
+		createRecentFile();
 	}
 	
 	private void createDir_LogRepo() {
@@ -38,6 +42,39 @@ public class LogFolderManager {
 			catch (IOException e) 	{ e.printStackTrace(); }
 		}
 		
+	}
+	
+	private void createRecentFile() {
+		f_rfl = new File("$Log\\RecentFileLog.txt");
+		if(!f_rfl.exists())
+			try {
+				f_rfl.createNewFile();
+				System.out.println("RecentFileLog been created!");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		else
+			System.out.println("RecentFileLog already Exist!");
+	}
+	
+	void setRecentfileLog(String input) {
+		try {
+			OutputStream fos = new FileOutputStream(input);
+			fos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			createRecentFile();
+			setRecentfileLog("");
+		}
+	}
+	
+	String getRecentFileLog() {
+		try {
+			reader = new Scanner (f_rfl);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return reader.nextLine();
 	}
 	
 	void addEmployeeNum(String str) {
@@ -63,7 +100,7 @@ public class LogFolderManager {
 		List<String> temp = new ArrayList<String>();
 		try 
 		{
-			Scanner reader = new Scanner(f_enfl);
+			reader = new Scanner(f_enfl);
 			while (reader.hasNextLine()) {
 				String temp_str = reader.nextLine();
 				if(temp_str.length() == 8)
@@ -90,4 +127,6 @@ public class LogFolderManager {
 
 		return false;
 	}
+	
+	
 }
