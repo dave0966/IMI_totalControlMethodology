@@ -337,7 +337,16 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
+            	if (JOptionPane.showConfirmDialog(null, "The prompt input will not be save. Proceed?", "WARNING",
+        		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            			mainClass.dtsm.flash();
+            			dispose();
+            			
+            			if(mode == 0)
+            				new promptFrame();
+            			else
+            				new fileSelector();
+        	    }
             }
         });
 
@@ -789,6 +798,17 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 	    if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
 	        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+	    		mainClass.dtsm.insertToSasyArr(7, mainClass.dtsm.getSelectedColumn_Actual(), jComboBox3.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToSasyArr(8, mainClass.dtsm.getSelectedColumn_Actual(), jComboBox4.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToSasyArr(9, mainClass.dtsm.getSelectedColumn_Actual(), jComboBox5.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToSasyArr(10, mainClass.dtsm.getSelectedColumn_Actual(), jComboBox6.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToSasyArr(11, mainClass.dtsm.getSelectedColumn_Actual(), jComboBox2.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToSasyArr(12, mainClass.dtsm.getSelectedColumn_Actual(), jComboBox8.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToSasyArr(13, mainClass.dtsm.getSelectedColumn_Actual(), jComboBox9.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToSasyArr(14, mainClass.dtsm.getSelectedColumn_Actual(), jComboBox10.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToSasyArr(15, mainClass.dtsm.getSelectedColumn_Actual(), jComboBox11.getSelectedItem().toString());
+	    		mainClass.dtsm.insertToSasyArr(16, mainClass.dtsm.getSelectedColumn_Actual(), jComboBox7.getSelectedItem().toString());
+	    		//
 	    		mainClass.dtsm.insertToSasyArr(18, 4, jTextField42.getText());
 	    		mainClass.dtsm.insertToSasyArr(19, 4, jTextField43.getText());
 	    		mainClass.dtsm.insertToSasyArr(20, 4, jTextField50.getText());
@@ -821,13 +841,13 @@ public class STLA_SASY3_fillupFrame_1 extends javax.swing.JFrame {
 	    		mainClass.dtsm.insertToSasyArr(23, 13, jTextField88.getText());
 	    		mainClass.dtsm.insertToSasyArr(24, 13, jTextField92.getText());
 	    		//
-//	    		mainClass.dtsm.insertToSasyArr(18, 13, jTextField72.getText());
-//	    		mainClass.dtsm.insertToSasyArr(19, 13, jTextField74.getText());
-//	    		mainClass.dtsm.insertToSasyArr(20, 13, jTextField77.getText());
-//	    		mainClass.dtsm.insertToSasyArr(21, 13, jTextField79.getText());
-//	    		mainClass.dtsm.insertToSasyArr(22, 13, jTextField81.getText());
-//	    		mainClass.dtsm.insertToSasyArr(23, 13, jTextField83.getText());
-//	    		mainClass.dtsm.insertToSasyArr(24, 13, jTextField85.getText());
+	    		mainClass.dtsm.insertToSasyArr(18, 13, jTextField72.getText());
+	    		mainClass.dtsm.insertToSasyArr(19, 13, jTextField74.getText());
+	    		mainClass.dtsm.insertToSasyArr(20, 13, jTextField77.getText());
+	    		mainClass.dtsm.insertToSasyArr(21, 13, jTextField79.getText());
+	    		mainClass.dtsm.insertToSasyArr(22, 13, jTextField81.getText());
+	    		mainClass.dtsm.insertToSasyArr(23, 13, jTextField83.getText());
+	    		mainClass.dtsm.insertToSasyArr(24, 13, jTextField85.getText());
 	    		//
 	    		mainClass.dtsm.insertToSasyArr(18, mainClass.dtsm.getSelectedColumn_Actual(), jTextField73.getText());
 	    		mainClass.dtsm.insertToSasyArr(19, mainClass.dtsm.getSelectedColumn_Actual(), jTextField75.getText());

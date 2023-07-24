@@ -192,6 +192,10 @@ public class promptFrame extends JFrame {
     		mainClass.dtsm.insertToBuffer(3, java.time.LocalDate.now().toString());
     		mainClass.dtsm.insertToBuffer(4, cb_employeeNum.getSelectedItem().toString());
     		mainClass.dtsm.insertToBuffer(5, tf_shift.getText());
+
+    		mainClass.dtsm.insertToSasyArr(3, 14 + (mainClass.dtsm.getSelectedColumn_Actual()-14), java.time.LocalDate.now().toString());
+    		mainClass.dtsm.insertToSasyArr(4, 14 + (mainClass.dtsm.getSelectedColumn_Actual()-14), cb_employeeNum.getSelectedItem().toString());
+    		mainClass.dtsm.insertToSasyArr(5, 14 + (mainClass.dtsm.getSelectedColumn_Actual()-14), tf_shift.getText());
     		
 		    	switch(cb_productType.getSelectedIndex()) {
 		    		case 0:

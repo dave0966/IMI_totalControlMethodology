@@ -149,23 +149,23 @@ public class STLA_SASY3_fillupFrame2nd extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	mainClass.dtsm.setSelectedColumn_Actual(jComboBox1.getSelectedIndex());
             }
         });
 
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField1.getText());
-            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField4.getText());
-            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField3.getText());
-            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField8.getText());
-            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField7.getText());
-            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField6.getText());
-            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField5.getText());
-            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField13.getText());
-            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField12.getText());
-            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField11.getText());
-            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField10.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField1.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField4.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField3.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField8.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField7.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField6.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField5.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField13.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField12.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField10.getText());
             	
             	mainClass.dtsm.commit(2, true);
         		if(mainClass.dtsm.isErrorFree()) {
@@ -182,13 +182,7 @@ public class STLA_SASY3_fillupFrame2nd extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	if (JOptionPane.showConfirmDialog(null, "The prompt input will not be save. Proceed?", "WARNING",
         		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            			mainClass.dtsm.flash();
             			dispose();
-            			
-            			if(mode == 0)
-            				new promptFrame();
-            			else
-            				new fileSelector();
         	    }
             }
         });
