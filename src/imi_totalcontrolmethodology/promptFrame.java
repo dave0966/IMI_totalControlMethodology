@@ -200,7 +200,6 @@ public class promptFrame extends JFrame {
 		    	switch(cb_productType.getSelectedIndex()) {
 		    		case 0:
 //		    			System.out.println("Opening Valeo IKS - Total Methodology Template");
-		    			
 		    			IKS_fillupFrame_1 IKSF= new IKS_fillupFrame_1(mode);
 		    			break;
 		    		case 1:

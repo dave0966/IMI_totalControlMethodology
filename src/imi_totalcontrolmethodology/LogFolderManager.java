@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +19,13 @@ import javax.swing.JOptionPane;
 public class LogFolderManager {
 	private File f_logRepo, f_enfl, f_rfl;
 	private FileWriter fw;
+	private List<String> lines;
 	private Scanner reader;
 	
 	LogFolderManager(){
 		createDir_LogRepo();
 		createTxt_EmployeeNumberLog();
-		createRecentFile();
+		createRecentFile(false);
 	}
 	
 	private void createDir_LogRepo() {
@@ -48,16 +50,16 @@ public class LogFolderManager {
 		
 	}
 	
-	private void createRecentFile() {
+	private void createRecentFile(boolean isByPass) {
 		f_rfl = new File("$Log\\RecentFileLog.txt");
-		if(!f_rfl.exists())
+		if(!f_rfl.exists() || isByPass)
 			try {
 				f_rfl.createNewFile();
 				System.out.println("RecentFileLog been created!");
-				fw = new FileWriter(f_rfl, true);
-				fw.write("Valeo_IKS=\n");
-				fw.write("Valeo_STLA=\n");
-				fw.write("Valeo_SASY=\n");
+				fw = new FileWriter(f_rfl.getAbsolutePath(), true);
+				fw.write("Valeo_IKS=" + System.lineSeparator());
+				fw.write("Valeo_STLA=" + System.lineSeparator());
+				fw.write("Valeo_SASY=\n" + System.lineSeparator());
 				fw.close();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -66,34 +68,28 @@ public class LogFolderManager {
 			System.out.println("RecentFileLog already Exist!");
 	}
 	
-	void setRecentfileLog(String input, int filetype) {
+	void setRecentfileLog(String input, int fileType) {
 		try {
-			List<String> lines = Files.readAllLines(Paths.get(f_rfl.getAbsolutePath()));
-			for(String temp : lines)
-				if(temp.startsWith("Valeo_IKS") && input.contains("IKS")) {
-					temp = temp.substring(0, temp.indexOf('=')) + input;
-					break;
-				}
-				
-				else if(temp.startsWith("Valeo_STLA") && input.contains("STLA")) {
-					temp = temp.substring(0, temp.indexOf('=')) + input;
-					break;
-				}
-				
-				else if(temp.startsWith("Valeo_SASSY") & input.contains("SASSY")) {
-						temp = temp.substring(0, temp.indexOf('=')) + input;
-						break;
-				}
-				else
-					
-			}
-				
-			fw.close();
+			lines = Files.readAllLines(f_rfl.toPath());
+			String temp = lines.get(fileType);
+			lines.set(fileType, temp.substring(0, temp.lastIndexOf('=')+1).concat(input));
+			Files.write(f_rfl.toPath(), lines);
+			
+		} catch (IOException | IndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	String getRecetFileLog(int fileType) {
+		String temp = null;
+		try {
+			lines = Files.readAllLines(f_rfl.toPath());
+			temp = lines.get(fileType);
 		} catch (IOException e) {
 			e.printStackTrace();
-			createRecentFile();
-			setRecentfileLog("", filetype);
 		}
+		
+		return lines.get(fileType).substring(temp.indexOf('='));
 	}
 	
 	String getRecentFileLog() {

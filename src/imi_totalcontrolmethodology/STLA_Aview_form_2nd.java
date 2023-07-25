@@ -190,8 +190,11 @@ public class STLA_Aview_form_2nd extends javax.swing.JFrame {
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	dispose();
-            	STLA_Aview_form IKSFF = new STLA_Aview_form(0);
+            	if (JOptionPane.showConfirmDialog(null, "The prompt input will not be save. Proceed?", "WARNING",
+        		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+	            	dispose();
+	            	STLA_Aview_form IKSFF = new STLA_Aview_form(0);
+        	    }
             }
         });
         JPanel panel = new JPanel();

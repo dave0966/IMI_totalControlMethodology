@@ -294,7 +294,9 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
             	if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
         		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
         	    		mainClass.dtsm.insertToBuffer(7, jComboBox3.getSelectedItem().toString());
+
         	    		mainClass.dtsm.insertToBuffer(8, jComboBox4.getSelectedItem().toString());
+        	    		mainClass.dtsm.getFromBuffer(8);
         	    		mainClass.dtsm.insertToBuffer(9, jComboBox6.getSelectedItem().toString());
         	    		mainClass.dtsm.insertToBuffer(10, jComboBox5.getSelectedItem().toString());
         	    		mainClass.dtsm.insertToBuffer(11, jComboBox9.getSelectedItem().toString());
@@ -331,7 +333,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         	    }
             }
         });
-
+        
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
         jComboBox3.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {

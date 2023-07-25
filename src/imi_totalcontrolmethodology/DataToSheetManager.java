@@ -122,8 +122,6 @@ public class DataToSheetManager {
 		return buffer.get(i);
 	}
 	
-	
-	
 	void commit(int fileType, boolean isSasy){
 		mainClass.fm.createCopyXLSX(fileType);
 		

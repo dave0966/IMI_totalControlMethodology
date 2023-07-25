@@ -177,8 +177,18 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         	    		mainClass.dtsm.insertToBuffer(43, jTextField65.getText());
         	    		mainClass.dtsm.insertToBuffer(44, jTextField66.getText());
         	    		
+        	    		String temp = mainClass.lfm.getRecetFileLog(0);
+        	    		if(mainClass.fm.isFileDateValid(temp.substring(temp.lastIndexOf('\\'))))
+        	    			System.out.println("Valid pa");
+        	    		else
+        	    			System.out.println("Eguls");
 		            	mainClass.fm.createCopyXLSX(0);
 		        		mainClass.dtsm.commit(0, false);
+
+		        		if(mode == 0)
+		                    mainClass.lfm.setRecentfileLog(mainClass.dtsm.getWorkingFileDir(), 0);
+
+		        			
 		        		if(mainClass.dtsm.isErrorFree()) {
 		        			mainClass.dtsm.flash();
 			            	System.out.println("(IKS_2) Copy and Save File");
@@ -192,8 +202,11 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	dispose();
-            	IKS_fillupFrame_1 IKSFF = new IKS_fillupFrame_1(0);
+            	if (JOptionPane.showConfirmDialog(null, "The prompt input will not be save. Proceed?", "WARNING",
+        		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+	            	dispose();
+	            	IKS_fillupFrame_1 IKSFF = new IKS_fillupFrame_1(0);
+        	    }
             }
         });
 
@@ -367,9 +380,9 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
 //    	jTextField54.setText(getTextTF(44));
 //    }
     
-    private String getTextTF(int row_index) {
-    	return mainClass.dtsm.getCellValue(row_index, mainClass.dtsm.getSelectedColumn_Actual());
-    }
+//    private String getTextTF(int row_index) {
+//    	return mainClass.dtsm.getCellValue(row_index, mainClass.dtsm.getSelectedColumn_Actual());
+//    }
 
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

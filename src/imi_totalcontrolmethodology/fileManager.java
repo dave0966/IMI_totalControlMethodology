@@ -103,6 +103,19 @@ public class fileManager{
 		return false;
 	}
 	
+	boolean isFileDateValid(String dir) {
+		String MMDD = dir.substring(dir.lastIndexOf('_')+1, dir.lastIndexOf('.'));
+		System.out.println(MMDD);
+		Calendar cal = Calendar.getInstance();
+		
+		for(int days = 0; days < 11; days--) {
+			
+			cal.add(Calendar.DATE, -1);
+			
+		}
+		return false;
+	}
+	
 	/*
 	 * 
 	 * GET's Methods
