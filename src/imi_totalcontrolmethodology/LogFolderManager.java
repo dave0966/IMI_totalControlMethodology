@@ -1,6 +1,7 @@
 package imi_totalcontrolmethodology;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -10,10 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import java.nio.file.*;
+
 import javax.swing.JOptionPane;
 
 public class LogFolderManager {
 	private File f_logRepo, f_enfl, f_rfl;
+	private FileWriter fw;
 	private Scanner reader;
 	
 	LogFolderManager(){
@@ -50,6 +54,11 @@ public class LogFolderManager {
 			try {
 				f_rfl.createNewFile();
 				System.out.println("RecentFileLog been created!");
+				fw = new FileWriter(f_rfl, true);
+				fw.write("Valeo_IKS=\n");
+				fw.write("Valeo_STLA=\n");
+				fw.write("Valeo_SASY=\n");
+				fw.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -57,14 +66,33 @@ public class LogFolderManager {
 			System.out.println("RecentFileLog already Exist!");
 	}
 	
-	void setRecentfileLog(String input) {
+	void setRecentfileLog(String input, int filetype) {
 		try {
-			OutputStream fos = new FileOutputStream(input);
-			fos.close();
+			List<String> lines = Files.readAllLines(Paths.get(f_rfl.getAbsolutePath()));
+			for(String temp : lines)
+				if(temp.startsWith("Valeo_IKS") && input.contains("IKS")) {
+					temp = temp.substring(0, temp.indexOf('=')) + input;
+					break;
+				}
+				
+				else if(temp.startsWith("Valeo_STLA") && input.contains("STLA")) {
+					temp = temp.substring(0, temp.indexOf('=')) + input;
+					break;
+				}
+				
+				else if(temp.startsWith("Valeo_SASSY") & input.contains("SASSY")) {
+						temp = temp.substring(0, temp.indexOf('=')) + input;
+						break;
+				}
+				else
+					
+			}
+				
+			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 			createRecentFile();
-			setRecentfileLog("");
+			setRecentfileLog("", filetype);
 		}
 	}
 	
@@ -74,7 +102,10 @@ public class LogFolderManager {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		return reader.nextLine();
+		String result = reader.nextLine();
+		reader.close();
+		
+		return result;
 	}
 	
 	void addEmployeeNum(String str) {
@@ -83,7 +114,7 @@ public class LogFolderManager {
 			if(!isEmployeeNumExist(str)) 
 			{
 				System.out.println("(LogFileManager) Inserted new Employee Number: " + str);
-				FileWriter fw = new FileWriter(f_enfl, true);
+				fw = new FileWriter(f_enfl, true);
 				if(f_enfl.length() != 0)
 					fw.write("\n"+str);
 				else
