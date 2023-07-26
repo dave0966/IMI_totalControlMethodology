@@ -12,27 +12,26 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JFrame;
 
 /**
  *
  * @author USer1
  */
-public class IKS_fillupFrame_1 extends javax.swing.JFrame {
+public class IKS_fillupFrame_1 extends JFrame implements GlobalResource{
 	private int mode = 0;
 	
     public IKS_fillupFrame_1(int state) {
-    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
-        
     	initComponents();
         this.setTitle("I.M.E.S. - Valeo IKS AVIEW Focus Active Alignment");
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        this.setIconImage(icon);
+        this.setIconImage(img_icon);
         this.setFocusable(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
-        mode = state;
+        this.mode = state;
     }	
 
     private void initComponents() {
@@ -294,9 +293,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
             	if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
         		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
         	    		mainClass.dtsm.insertToBuffer(7, jComboBox3.getSelectedItem().toString());
-
         	    		mainClass.dtsm.insertToBuffer(8, jComboBox4.getSelectedItem().toString());
-        	    		mainClass.dtsm.getFromBuffer(8);
         	    		mainClass.dtsm.insertToBuffer(9, jComboBox6.getSelectedItem().toString());
         	    		mainClass.dtsm.insertToBuffer(10, jComboBox5.getSelectedItem().toString());
         	    		mainClass.dtsm.insertToBuffer(11, jComboBox9.getSelectedItem().toString());
@@ -506,7 +503,6 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
 
         JPanel panel = new JPanel();
         GroupLayout layout = new GroupLayout(panel);
-
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()

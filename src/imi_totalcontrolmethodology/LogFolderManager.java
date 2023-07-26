@@ -1,13 +1,9 @@
 package imi_totalcontrolmethodology;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -90,7 +86,7 @@ public class LogFolderManager {
 			e.printStackTrace();
 		}
 		
-		return lines.get(fileType).substring(temp.indexOf('='));
+		return lines.get(fileType).substring(temp.indexOf('=')+1);
 	}
 	
 	void addEmployeeNum(String str) {

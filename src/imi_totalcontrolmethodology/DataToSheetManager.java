@@ -64,16 +64,19 @@ public class DataToSheetManager {
 	
 	void setWorkingFileDir(String str) {
 		System.out.println("(DataToSheetManager) workingFileDir changes value!");
+		System.err.println("From: " + getWorkingFileDir() + "\t\tTo: " + str);
 		this.workingFileDir = str;
 	}
 	
 	String getWorkingFileDir() {
+//		System.out.println("getWorkingFileDir: " + this.workingFileDir);
 		return this.workingFileDir;
 	}
 	
 	void insertToCell(int input_row, int input_column, String input_data, boolean isFillUpForm1){
 		try {
-			fis = new FileInputStream(new File(getWorkingFileDir()));
+			String temp = getWorkingFileDir();
+			fis = new FileInputStream(new File(temp));
 			wb = WorkbookFactory.create(fis);
 			sheet =  wb.getSheetAt(0);
 			row = sheet.getRow(input_row);
@@ -86,18 +89,18 @@ public class DataToSheetManager {
 											(input_data.equalsIgnoreCase("PASS")) ? "✓": input_data.replace("FAIL", "☓")
 											:input_data
 							 );
-			OutputStream fileOut = new FileOutputStream(getWorkingFileDir());
+			OutputStream fileOut = new FileOutputStream(temp);
 			sheet.autoSizeColumn(getSelectedColumn_Actual());
 			wb.write(fileOut);
 		} catch (EncryptedDocumentException | FileNotFoundException e) {
 			setErrorFree(false);
-			e.printStackTrace();
+//			e.printStackTrace();
 		}catch (IOException ee) {}
 	}
 	
 	String getCellValue(int input_row, int input_column) {
 		try {
-			System.out.println(getWorkingFileDir());
+			System.out.println("getCellValue: " + getWorkingFileDir());
 			fis = new FileInputStream(new File(getWorkingFileDir()));
 			wb = WorkbookFactory.create(fis);
 		} catch (IOException | EncryptedDocumentException e) {

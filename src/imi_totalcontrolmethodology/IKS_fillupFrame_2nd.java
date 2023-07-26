@@ -8,32 +8,29 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
-
+import javax.swing.JFrame;
 /**
  *
  * @author USer1
  */
-public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
+public class IKS_fillupFrame_2nd extends JFrame implements GlobalResource{
 
     /**
      * Creates new form fillupFrame2nd
      */
-	int mode = 0;
+	private int mode = 0;
     public IKS_fillupFrame_2nd(int state) {
-    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
-    	
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setTitle("I.M.E.S. - VALEO IKS AVIEW");
-        this.setIconImage(icon);
+        this.setIconImage(img_icon);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.mode = state;
     }
 
     private void initComponents() {
-
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
@@ -178,16 +175,12 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         	    		mainClass.dtsm.insertToBuffer(44, jTextField66.getText());
         	    		
         	    		try {
-        	    			mainClass.lfm.setRecentfileLog(mainClass.dtsm.getWorkingFileDir(), 0);
 //    		            	mainClass.fm.createCopyXLSX(0);
     		        		mainClass.dtsm.commit(0, false);
         	    		}catch(IndexOutOfBoundsException e) {
         	    			
         	    		}
-        	    		
-
-
-		        		if(mode == 0)
+        	    		if(mode == 0)
 		                    mainClass.lfm.setRecentfileLog(mainClass.dtsm.getWorkingFileDir(), 0);
 
 		        			

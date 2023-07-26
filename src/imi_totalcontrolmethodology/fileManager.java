@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 
@@ -26,11 +28,11 @@ public class fileManager{
 
 	void createCopyXLSX(int filetype) {
 		System.out.println("(createCopyXLSX): " + filetype);
+		System.out.println("(FM) isFileDateValid: " + !isFileDateValid(mainClass.dtsm.getWorkingFileDir(), true));
 		try 
 		{
 			String temp = "";
-			if(!isFileExist(filetype)) {
-				
+			if(!isFileExist(filetype) && !isFileDateValid(mainClass.dtsm.getWorkingFileDir(),true)) {
 				switch(filetype) {
 					case 0:
 						temp = "$Resource\\Valeo_IKS_Aview_Focus_Active_Alignment_Template.xlsx";
@@ -42,10 +44,10 @@ public class fileManager{
 						temp = "$Resource\\Valeo_STLA _SASSY3_EOL_Template.xlsx";
 						break;
 				}
-			}
 				Files.copy(new File(temp).toPath(), new File(getCopiedFileName(filetype)).toPath());
 				mainClass.dtsm.setWorkingFileDir(getCopiedFileName(filetype));
 				System.out.println("Working File DIR: " + mainClass.dtsm.getWorkingFileDir());
+			}
 //				mainClass.dtsm.init_WB();
 		} 
 		catch (FileAlreadyExistsException e) { 
@@ -98,7 +100,8 @@ public class fileManager{
 	}
 
 	boolean isFileExist(int i) {
-		mainClass.dtsm.setWorkingFileDir(getCopiedFileName(i));
+//		mainClass.dtsm.setWorkingFileDir(getCopiedFileName(i));
+		mainClass.dtsm.setWorkingFileDir(mainClass.lfm.getRecentFileLog(i));
 		
 		for(String f_str: new File("$Output").list()) {
 //			System.out.println(mainClass.dtsm.getWorkingFileDir() + " " + f_str);
@@ -111,13 +114,27 @@ public class fileManager{
 		return false;
 	}
 	
-	boolean isFileDateValid(String dir) {
-		String MMDD = dir.substring(dir.lastIndexOf('_')+1, dir.lastIndexOf('.'));
-		System.out.println(MMDD);
+	boolean isFileDateValid(String dir, boolean bypass) {
+		if(bypass)
+			return true;
+		
+		String file_MMDD = dir.substring(dir.lastIndexOf('_')+1, dir.lastIndexOf('.'));
+		String curr_MMDD = DateTimeFormatter.ofPattern("MM-dd").format(java.time.LocalDate.now()).toString();
+		System.out.println("MMDD: "   +file_MMDD);
 		Calendar cal = Calendar.getInstance();
 		
-		for(int days = 0; days < 11; days--) {
-			
+		for(int days = 0; days > -11; days--) {
+			try {
+				cal.setTime(new SimpleDateFormat("MM-dd").parse(file_MMDD));
+				cal.add(Calendar.DATE, days);
+				System.out.print("isOSFV_3 ("+days+"): " + new SimpleDateFormat("MM-dd").format(cal.getTime()));
+				System.out.print(" - " + curr_MMDD);
+				System.out.println(" = " + (new SimpleDateFormat("MM-dd").format(cal.getTime()).equals(curr_MMDD)));
+				if(new SimpleDateFormat("MM-dd").format(cal.getTime()).equals(curr_MMDD))
+					return true;
+			} catch (ParseException e) {
+				e.printStackTrace();	
+			}
 			cal.add(Calendar.DATE, -1);
 			
 		}
@@ -134,16 +151,15 @@ public class fileManager{
 	int getTemplateType(String dir) {
 		mainClass.dtsm.setWorkingFileDir(dir);
 		System.out.println("(getTemplateType): " + mainClass.dtsm.getWorkingFileDir());
-		String str1 = mainClass.dtsm.getCellValue(1, 5) + mainClass.dtsm.getCellValue(1, 10);
-//		System.out.println(str1);
+		String str1 = (mainClass.dtsm.getCellValue(1, 5) + mainClass.dtsm.getCellValue(1, 10)).replaceAll("\\s", "");
 		
-		if("  Valeo IKS  Aview Focus and active alignment  ".equals(str1))
+		if("Valeo IKS  Aview Focus and active alignment".replaceAll("\\s","").equalsIgnoreCase(str1))
 			return 0;
 		
-		if("  Valeo STLA    Aview Focus and active alignment  ".equals(str1))
+		if("Valeo STLA  Aview Focus and active alignment".replaceAll("\\s","").equalsIgnoreCase(str1))
 			return 1;
 		
-		if("      Valeo STLA               SASY3 EOL (Focus Verification)   ".equals(str1))
+		if("Valeo SASY3  EOL (Focus Verification)".replaceAll("\\s","").equalsIgnoreCase(str1))
 			return 2;
 		
 		

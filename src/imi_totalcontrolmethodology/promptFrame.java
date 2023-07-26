@@ -1,7 +1,6 @@
 package imi_totalcontrolmethodology;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -10,7 +9,7 @@ import javax.swing.*;
  *
  * @author USer1
  */
-public class promptFrame extends JFrame {
+public class promptFrame extends JFrame implements GlobalResource{
 	private JButton bt_continue, bt_return;
 	private JComboBox<String> cb_productType, cb_employeeNum;
 	private JLabel IMI_logo, lb_selectProduct, lb_employeeNum ,lb_shift;
@@ -29,7 +28,7 @@ public class promptFrame extends JFrame {
     promptFrame(int productType) {
     	if(!(productType == -1)) {
 	    	initFrame();
-	    	System.out.println("Product Type: " + productType);
+//	    	System.out.println("Product Type: " + productType);
 	    	cb_productType.setSelectedIndex(productType);
 	    	cb_productType.setEnabled(false);
 	    	mode = 1;
@@ -42,10 +41,9 @@ public class promptFrame extends JFrame {
     }
     
     private void initFrame() {
-    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
     	initComponents();
         this.setTitle("SELECT PRODUCT TYPE");
-        this.setIconImage(icon);
+        this.setIconImage(img_icon);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
@@ -56,7 +54,7 @@ public class promptFrame extends JFrame {
 
     private void initComponents() {
         IMI_logo = new JLabel();
-        IMI_logo.setIcon(new ImageIcon("$Resource\\image-300x150.jpg")); // NOI18N
+        IMI_logo.setIcon(new ImageIcon(img_logo)); // NOI18N
 
 		tf_shift = new JTextField();
 
@@ -191,22 +189,26 @@ public class promptFrame extends JFrame {
     		mainClass.dtsm.insertToBuffer(4, cb_employeeNum.getSelectedItem().toString());
     		mainClass.dtsm.insertToBuffer(5, tf_shift.getText());
 
-    		mainClass.dtsm.insertToSasyArr(3, 14 + (mainClass.dtsm.getSelectedColumn_Actual()-14), java.time.LocalDate.now().toString());
-    		mainClass.dtsm.insertToSasyArr(4, 14 + (mainClass.dtsm.getSelectedColumn_Actual()-14), cb_employeeNum.getSelectedItem().toString());
-    		mainClass.dtsm.insertToSasyArr(5, 14 + (mainClass.dtsm.getSelectedColumn_Actual()-14), tf_shift.getText());
-    		
 		    	switch(cb_productType.getSelectedIndex()) {
 		    		case 0:
-//		    			System.out.println("Opening Valeo IKS - Total Methodology Template");
-		    			IKS_fillupFrame_1 IKSF= new IKS_fillupFrame_1(mode);
+		    			System.out.println("Opening Valeo IKS - Total Methodology Template");
+		    			System.out.println("195: " + mainClass.dtsm.getWorkingFileDir());
+		    			mainClass.dtsm.setWorkingFileDir(mainClass.lfm.getRecentFileLog(0));
+		    			System.out.println("197: " + mainClass.dtsm.getWorkingFileDir());
+		    			new IKS_fillupFrame_1(mode);
 		    			break;
 		    		case 1:
 //		    			System.out.println("Opening Valeo STLA Aview - Total Methodology Template");
-		    			STLA_Aview_form fillup= new STLA_Aview_form(mode);
+		    			mainClass.dtsm.setWorkingFileDir(mainClass.lfm.getRecentFileLog(1));
+		    			new STLA_Aview_form(mode);
 		    			break;
 		    		case 2:
 //		    			System.out.println("Opening Valeo STLA SASY - Total Methodology Template");
-		    			STLA_SASY3_fillupFrame_1 SASY3= new STLA_SASY3_fillupFrame_1(mode);
+		    			mainClass.dtsm.insertToSasyArr(3, 14 + (mainClass.dtsm.getSelectedColumn_Actual()-14), java.time.LocalDate.now().toString());
+		    			mainClass.dtsm.insertToSasyArr(4, 14 + (mainClass.dtsm.getSelectedColumn_Actual()-14), cb_employeeNum.getSelectedItem().toString());
+		    			mainClass.dtsm.insertToSasyArr(5, 14 + (mainClass.dtsm.getSelectedColumn_Actual()-14), tf_shift.getText());
+		    			mainClass.dtsm.setWorkingFileDir(mainClass.lfm.getRecentFileLog(2));
+		    			new STLA_SASY3_fillupFrame_1(mode);
 		    			break;
 		    	}
 		    dispose();

@@ -2,11 +2,14 @@ package imi_totalcontrolmethodology;
 
 import static java.awt.Color.WHITE;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -16,7 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author USer1
  */
-public class fileSelector extends javax.swing.JFrame {
+public class fileSelector extends JFrame implements GlobalResource {
 
 	private fileManager fm = new fileManager();
 	private JButton jButton1;
@@ -26,12 +29,10 @@ public class fileSelector extends javax.swing.JFrame {
 	private JTextField jTextField1;
 
     public fileSelector() {
-    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
-    	
         initComponents();
         this.getContentPane().setBackground(WHITE);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        this.setIconImage(icon);
+        this.setIconImage(img_icon);
         this.setResizable(false);
         this.setVisible(true);
         this.pack();
@@ -42,14 +43,13 @@ public class fileSelector extends javax.swing.JFrame {
     	jTextField1 = new JTextField();
     	
         jLabel1 = new JLabel();
-        jLabel1.setIcon(new ImageIcon("$Resource/image-300x150.jpg")); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new ImageIcon(img_logo)); // NOI18N
 
         jButton1 = new JButton();
         jButton1.setText("...");
         jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
             	JFileChooser chooser = new JFileChooser();
             	chooser.setCurrentDirectory(new File("$Output"));
                 chooser.setFileFilter(new FileNameExtensionFilter("Excel file", "xls", "xlsx"));
@@ -70,8 +70,8 @@ public class fileSelector extends javax.swing.JFrame {
         jButton2 = new JButton();
         jButton2.setText("Continue");
         jButton2.setEnabled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                	String dir = jTextField1.getText();
             	if(new File(dir).exists() && fm.isFileCredentialValid(dir)) {
 //            		System.out.println(mainClass.fm.getTemplateType(dir));
@@ -85,8 +85,8 @@ public class fileSelector extends javax.swing.JFrame {
         
         jButton3 = new JButton();
         jButton3.setText("Previous");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
             	dispose();
                 new mainFrame();
             }
@@ -130,5 +130,5 @@ public class fileSelector extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 }
