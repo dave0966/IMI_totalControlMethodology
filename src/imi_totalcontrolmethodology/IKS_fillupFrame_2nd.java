@@ -177,13 +177,15 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         	    		mainClass.dtsm.insertToBuffer(43, jTextField65.getText());
         	    		mainClass.dtsm.insertToBuffer(44, jTextField66.getText());
         	    		
-        	    		String temp = mainClass.lfm.getRecetFileLog(0);
-        	    		if(mainClass.fm.isFileDateValid(temp.substring(temp.lastIndexOf('\\'))))
-        	    			System.out.println("Valid pa");
-        	    		else
-        	    			System.out.println("Eguls");
-		            	mainClass.fm.createCopyXLSX(0);
-		        		mainClass.dtsm.commit(0, false);
+        	    		try {
+        	    			mainClass.lfm.setRecentfileLog(mainClass.dtsm.getWorkingFileDir(), 0);
+//    		            	mainClass.fm.createCopyXLSX(0);
+    		        		mainClass.dtsm.commit(0, false);
+        	    		}catch(IndexOutOfBoundsException e) {
+        	    			
+        	    		}
+        	    		
+
 
 		        		if(mode == 0)
 		                    mainClass.lfm.setRecentfileLog(mainClass.dtsm.getWorkingFileDir(), 0);

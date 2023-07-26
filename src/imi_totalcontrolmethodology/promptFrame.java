@@ -11,7 +11,7 @@ import javax.swing.*;
  * @author USer1
  */
 public class promptFrame extends JFrame {
-	private JButton bt_continue, bt_return, bt_OpenOutputFolder;
+	private JButton bt_continue, bt_return;
 	private JComboBox<String> cb_productType, cb_employeeNum;
 	private JLabel IMI_logo, lb_selectProduct, lb_employeeNum ,lb_shift;
 	private JTextField tf_shift;
@@ -97,8 +97,6 @@ public class promptFrame extends JFrame {
             }
         });
 
-        bt_OpenOutputFolder = new JButton("Open Output File Directory");
-        
         for(String str: mainClass.fm.getEmployeeNumList()) 
 //        {
         	cb_employeeNum.addItem(str);

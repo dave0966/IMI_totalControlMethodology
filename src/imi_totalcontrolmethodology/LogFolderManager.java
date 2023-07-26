@@ -52,6 +52,7 @@ public class LogFolderManager {
 	
 	private void createRecentFile(boolean isByPass) {
 		f_rfl = new File("$Log\\RecentFileLog.txt");
+		
 		if(!f_rfl.exists() || isByPass)
 			try {
 				f_rfl.createNewFile();
@@ -59,7 +60,7 @@ public class LogFolderManager {
 				fw = new FileWriter(f_rfl.getAbsolutePath(), true);
 				fw.write("Valeo_IKS=" + System.lineSeparator());
 				fw.write("Valeo_STLA=" + System.lineSeparator());
-				fw.write("Valeo_SASY=\n" + System.lineSeparator());
+				fw.write("Valeo_SASY=" + System.lineSeparator());
 				fw.close();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -80,7 +81,7 @@ public class LogFolderManager {
 		}
 	}
 	
-	String getRecetFileLog(int fileType) {
+	String getRecentFileLog(int fileType) {
 		String temp = null;
 		try {
 			lines = Files.readAllLines(f_rfl.toPath());
@@ -90,18 +91,6 @@ public class LogFolderManager {
 		}
 		
 		return lines.get(fileType).substring(temp.indexOf('='));
-	}
-	
-	String getRecentFileLog() {
-		try {
-			reader = new Scanner (f_rfl);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		String result = reader.nextLine();
-		reader.close();
-		
-		return result;
 	}
 	
 	void addEmployeeNum(String str) {

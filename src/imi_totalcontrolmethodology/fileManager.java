@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,9 +45,16 @@ public class fileManager{
 			}
 				Files.copy(new File(temp).toPath(), new File(getCopiedFileName(filetype)).toPath());
 				mainClass.dtsm.setWorkingFileDir(getCopiedFileName(filetype));
+				System.out.println("Working File DIR: " + mainClass.dtsm.getWorkingFileDir());
 //				mainClass.dtsm.init_WB();
 		} 
-		catch (IOException e) { e.printStackTrace(); }
+		catch (FileAlreadyExistsException e) { 
+//			mainClass.dtsm.setWorkingFileDir(getCopiedFileName(filetype));
+			System.out.println("Working File DIR: " + mainClass.dtsm.getWorkingFileDir());
+//			e.printStackTrace(); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/*
@@ -96,7 +104,7 @@ public class fileManager{
 //			System.out.println(mainClass.dtsm.getWorkingFileDir() + " " + f_str);
 			String temp = mainClass.dtsm.getWorkingFileDir();
 //			System.out.println("(isFileExist()): " + f_str.equalsIgnoreCase(temp.substring(temp.lastIndexOf('\\')+1)));
-			System.out.println(temp.substring(temp.lastIndexOf('\\')+1,temp.lastIndexOf('.')));
+//			System.out.println(temp.substring(temp.lastIndexOf('\\')+1,temp.lastIndexOf('.')));
 			if(f_str.equalsIgnoreCase(temp.substring(temp.lastIndexOf('\\')+1,temp.lastIndexOf('.'))))
 				return true;
 		}
