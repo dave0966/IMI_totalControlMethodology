@@ -21,7 +21,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
 	private int mode = 0;
 	
     public IKS_fillupFrame_1(int state) {
-    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
         
     	initComponents();
         this.setTitle("I.M.E.S. - Valeo IKS AVIEW Focus Active Alignment");
@@ -99,7 +99,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jTextField1.setFocusable(false);
         jTextField1.setRequestFocusEnabled(false);
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 14));
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.setText("Start-up Check List");
         jTextField2.setFocusable(false);
@@ -185,7 +185,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jTextField18.setFocusable(false);
         jTextField18.setRequestFocusEnabled(false);
 
-        jTextField19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField19.setFont(new java.awt.Font("Segoe UI", 1, 14));
         jTextField19.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField19.setText("Reference");
         jTextField19.setFocusable(false);
@@ -277,7 +277,7 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jTextField36.setFocusable(false);
         jTextField36.setRequestFocusEnabled(false);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("$Resource\\image-300x150.jpg"));
         jLabel1.setText("jLabel1");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
@@ -285,8 +285,6 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         jComboBox1.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				mainClass.dtsm.setSelectedColumn_Actual(jComboBox1.getSelectedIndex());
-//				if(mode == 1)
-//					refreshComboBox();
 			}
         });
         
@@ -296,7 +294,9 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
             	if (JOptionPane.showConfirmDialog(null, "Do you like to commit and proceed to next page?", "WARNING",
         		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
         	    		mainClass.dtsm.insertToBuffer(7, jComboBox3.getSelectedItem().toString());
+
         	    		mainClass.dtsm.insertToBuffer(8, jComboBox4.getSelectedItem().toString());
+        	    		mainClass.dtsm.getFromBuffer(8);
         	    		mainClass.dtsm.insertToBuffer(9, jComboBox6.getSelectedItem().toString());
         	    		mainClass.dtsm.insertToBuffer(10, jComboBox5.getSelectedItem().toString());
         	    		mainClass.dtsm.insertToBuffer(11, jComboBox9.getSelectedItem().toString());
@@ -333,24 +333,176 @@ public class IKS_fillupFrame_1 extends javax.swing.JFrame {
         	    }
             }
         });
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
-        jComboBox19.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL" }));
+        
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL ( , )" }));
+        jComboBox3.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox3.getSelectedIndex() == 2)
+					jComboBox3.setEditable(true);
+				else
+					jComboBox3.setEditable(false);
+			}
+        });
+        
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox4.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox4.getSelectedIndex() == 2)
+					jComboBox4.setEditable(true);
+				else
+					jComboBox4.setEditable(false);
+			}
+        });
+        
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox5.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox5.getSelectedIndex() == 2)
+					jComboBox5.setEditable(true);
+				else
+					jComboBox5.setEditable(false);
+			}
+        });
+        
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox6.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox6.getSelectedIndex() == 2)
+					jComboBox6.setEditable(true);
+				else
+					jComboBox6.setEditable(false);
+			}
+        });
+        
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox7.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox7.getSelectedIndex() == 2)
+					jComboBox7.setEditable(true);
+				else
+					jComboBox7.setEditable(false);
+			}
+        });
+        
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox8.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox8.getSelectedIndex() == 2)
+					jComboBox8.setEditable(true);
+				else
+					jComboBox8.setEditable(false);
+			}
+        });
+        
+        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox9.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox9.getSelectedIndex() == 2)
+					jComboBox9.setEditable(true);
+				else
+					jComboBox9.setEditable(false);
+			}
+        });
+        
+        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox10.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox10.getSelectedIndex() == 2)
+					jComboBox10.setEditable(true);
+				else
+					jComboBox10.setEditable(false);
+			}
+        });
+        
+        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox11.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox11.getSelectedIndex() == 2)
+					jComboBox11.setEditable(true);
+				else
+					jComboBox11.setEditable(false);
+			}
+        });
+        
+        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox12.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox12.getSelectedIndex() == 2)
+					jComboBox12.setEditable(true);
+				else
+					jComboBox12.setEditable(false);
+			}
+        });
+        
+        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox13.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox13.getSelectedIndex() == 2)
+					jComboBox13.setEditable(true);
+				else
+					jComboBox13.setEditable(false);
+			}
+        });
+        
+        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox14.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox14.getSelectedIndex() == 2)
+					jComboBox14.setEditable(true);
+				else
+					jComboBox14.setEditable(false);
+			}
+        });
+        
+        jComboBox15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox15.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox15.getSelectedIndex() == 2)
+					jComboBox15.setEditable(true);
+				else
+					jComboBox15.setEditable(false);
+			}
+        });
+        
+        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox16.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox16.getSelectedIndex() == 2)
+					jComboBox16.setEditable(true);
+				else
+					jComboBox16.setEditable(false);
+			}
+        });
+        
+        jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox17.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox17.getSelectedIndex() == 2)
+					jComboBox17.setEditable(true);
+				else
+					jComboBox17.setEditable(false);
+			}
+        });
+        
+        jComboBox18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox18.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox18.getSelectedIndex() == 2)
+					jComboBox18.setEditable(true);
+				else
+					jComboBox18.setEditable(false);
+			}
+        });
+        
+        jComboBox19.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "PASS", "FAIL  ( , )" }));
+        jComboBox19.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(jComboBox19.getSelectedIndex() == 2)
+					jComboBox19.setEditable(true);
+				else
+					jComboBox19.setEditable(false);
+			}
+        });
 
         JPanel panel = new JPanel();
         GroupLayout layout = new GroupLayout(panel);

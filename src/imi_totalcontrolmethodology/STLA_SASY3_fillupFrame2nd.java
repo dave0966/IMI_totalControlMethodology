@@ -9,6 +9,7 @@ import java.awt.Image;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -18,8 +19,10 @@ import javax.swing.JScrollPane;
  */
 public class STLA_SASY3_fillupFrame2nd extends javax.swing.JFrame {
 
-	public STLA_SASY3_fillupFrame2nd() {
-		Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+	private int mode = 0;
+	
+	public STLA_SASY3_fillupFrame2nd(int state) {
+		Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setTitle("VALEO STLA SASY");
@@ -27,6 +30,7 @@ public class STLA_SASY3_fillupFrame2nd extends javax.swing.JFrame {
         this.setIconImage(icon);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.mode = state;
     }
 
     private void initComponents() {
@@ -65,7 +69,7 @@ public class STLA_SASY3_fillupFrame2nd extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("$Resource/image-300x150.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -145,26 +149,47 @@ public class STLA_SASY3_fillupFrame2nd extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actual 1", "Actual 2", "Actual 3", "Actual 4", "Actual 5", "Actual 6", "Actual 7", "Actual 8", "Actual 9", "Actual 10", "Actual 11" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	mainClass.dtsm.setSelectedColumn_Actual(jComboBox1.getSelectedIndex());
             }
         });
 
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField1.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField4.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField3.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField8.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField7.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField6.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField5.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField13.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField12.getText());
+//            	mainClass.dtsm.insertToSasyArr(24, 13, jTextField10.getText());
+            	
+            	mainClass.dtsm.commit(2, true);
+        		if(mainClass.dtsm.isErrorFree()) {
+        			mainClass.dtsm.flash();
+	            	System.out.println("(IKS_2) Copy and Save File");
+	            	dispose();
+	            	new promptFrame();
+        		}
             }
         });
 
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+            	if (JOptionPane.showConfirmDialog(null, "The prompt input will not be save. Proceed?", "WARNING",
+        		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            			dispose();
+        	    }
             }
         });
 
         JPanel panel = new JPanel();
         GroupLayout layout = new GroupLayout(panel);
         
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()

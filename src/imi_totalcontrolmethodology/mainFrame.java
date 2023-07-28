@@ -3,7 +3,6 @@ package imi_totalcontrolmethodology;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.*;
 
@@ -14,7 +13,7 @@ import javax.swing.*;
 public class mainFrame extends JFrame{
     private JButton bt_createNewFile;
     private JButton bt_existingFile;
-	private Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+	private Image icon = new ImageIcon("$Resource\\Logo.jpg").getImage();
     
 	/**
      * Creates new form NewJFrame1
@@ -37,9 +36,6 @@ public class mainFrame extends JFrame{
         bt_createNewFile.setFocusable(false);
         bt_createNewFile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-//            	mainClass.dtsm.setWorkingFileDir("$Output\\2023-07-19_07-30\\Valeo_IKS_Aview_Focus_Active_Alignment_Test.xlsx");
-//            	mainClass.dtsm.insertToCell(3, 14, getName());
-//            	System.out.println(mainClass.dtsm.getCellValue(4, 14));
             	dispose();
             	promptFrame frame2 = new promptFrame();
             }

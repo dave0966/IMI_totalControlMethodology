@@ -35,12 +35,6 @@
 	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/auxiliary/xml-apis-ext-1.3.04.jar"/>
 	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/auxiliary/xmlgraphics-commons-2.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/auxiliary/xmlsec-3.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-excelant-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-javadoc-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-ooxml-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-ooxml-full-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-scratchpad-5.2.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/lib/commons-codec-1.15.jar"/>
 	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/lib/commons-collections4-4.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/lib/commons-io-2.11.0.jar"/>
@@ -54,5 +48,12 @@
 	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/ooxml-lib/jakarta.xml.bind-api-3.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/ooxml-lib/slf4j-api-1.7.36.jar"/>
 	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/ooxml-lib/xmlbeans-5.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-examples-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-excelant-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-javadoc-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-ooxml-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-ooxml-full-5.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USer1/Desktop/IMI_TCM/IMI_totalControlMethodology1/IMI_totalControlMethodology/$Resource/apache-bin/poi-scratchpad-5.2.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

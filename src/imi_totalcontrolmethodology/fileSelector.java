@@ -7,11 +7,9 @@ import java.io.File;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -28,7 +26,7 @@ public class fileSelector extends javax.swing.JFrame {
 	private JTextField jTextField1;
 
     public fileSelector() {
-    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
     	
         initComponents();
         this.getContentPane().setBackground(WHITE);
@@ -44,7 +42,7 @@ public class fileSelector extends javax.swing.JFrame {
     	jTextField1 = new JTextField();
     	
         jLabel1 = new JLabel();
-        jLabel1.setIcon(new ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
+        jLabel1.setIcon(new ImageIcon("$Resource/image-300x150.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
 
         jButton1 = new JButton();
@@ -53,6 +51,7 @@ public class fileSelector extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	JFileChooser chooser = new JFileChooser();
+            	chooser.setCurrentDirectory(new File("$Output"));
                 chooser.setFileFilter(new FileNameExtensionFilter("Excel file", "xls", "xlsx"));
                 
                 if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {

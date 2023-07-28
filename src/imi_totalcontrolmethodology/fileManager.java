@@ -2,34 +2,20 @@ package imi_totalcontrolmethodology;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
-import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import com.sun.tools.javac.Main;
 
 public class fileManager{
 	/*
@@ -42,8 +28,9 @@ public class fileManager{
 		System.out.println("(createCopyXLSX): " + filetype);
 		try 
 		{
+			String temp = "";
 			if(!isFileExist(filetype)) {
-				String temp = "";
+				
 				switch(filetype) {
 					case 0:
 						temp = "$Resource\\Valeo_IKS_Aview_Focus_Active_Alignment_Template.xlsx";
@@ -55,11 +42,19 @@ public class fileManager{
 						temp = "$Resource\\Valeo_STLA _SASSY3_EOL_Template.xlsx";
 						break;
 				}
+			}
 				Files.copy(new File(temp).toPath(), new File(getCopiedFileName(filetype)).toPath());
 				mainClass.dtsm.setWorkingFileDir(getCopiedFileName(filetype));
-			}
+				System.out.println("Working File DIR: " + mainClass.dtsm.getWorkingFileDir());
+//				mainClass.dtsm.init_WB();
 		} 
-		catch (IOException e) { e.printStackTrace(); }
+		catch (FileAlreadyExistsException e) { 
+//			mainClass.dtsm.setWorkingFileDir(getCopiedFileName(filetype));
+			System.out.println("Working File DIR: " + mainClass.dtsm.getWorkingFileDir());
+//			e.printStackTrace(); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/*
@@ -86,7 +81,7 @@ public class fileManager{
 					return false;
 		} catch (IOException | NullPointerException e) {
 			JOptionPane.showMessageDialog(null, "File is not compatible with the software. Try another file.", "Invalid File", JOptionPane.WARNING_MESSAGE, null);
-//			e.printStackTrace();
+			e.printStackTrace();
 			return false;
 		}
 
@@ -103,16 +98,28 @@ public class fileManager{
 	}
 
 	boolean isFileExist(int i) {
-		File f = new File(mainClass.ofm.getCurrOutputFolder());
 		mainClass.dtsm.setWorkingFileDir(getCopiedFileName(i));
-//		System.out.println("(isFileExist - Output Folder) " + mainClass.ofm.getCurrOutputFolder());
-//		System.out.println("(isFileExist - WorkingFileDir) " + mainClass.dtsm.getWorkingFileDir());
-		for(String f_str: f.list()) {
+		
+		for(String f_str: new File("$Output").list()) {
 //			System.out.println(mainClass.dtsm.getWorkingFileDir() + " " + f_str);
 			String temp = mainClass.dtsm.getWorkingFileDir();
 //			System.out.println("(isFileExist()): " + f_str.equalsIgnoreCase(temp.substring(temp.lastIndexOf('\\')+1)));
-			if(f_str.equalsIgnoreCase(temp.substring(temp.lastIndexOf('\\')+1)))
+//			System.out.println(temp.substring(temp.lastIndexOf('\\')+1,temp.lastIndexOf('.')));
+			if(f_str.equalsIgnoreCase(temp.substring(temp.lastIndexOf('\\')+1,temp.lastIndexOf('.'))))
 				return true;
+		}
+		return false;
+	}
+	
+	boolean isFileDateValid(String dir) {
+		String MMDD = dir.substring(dir.lastIndexOf('_')+1, dir.lastIndexOf('.'));
+		System.out.println(MMDD);
+		Calendar cal = Calendar.getInstance();
+		
+		for(int days = 0; days < 11; days--) {
+			
+			cal.add(Calendar.DATE, -1);
+			
 		}
 		return false;
 	}
@@ -149,21 +156,23 @@ public class fileManager{
 	
 	private String getCopiedFileName(int i) {
 		String temp = "";
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 10);
+		
 		
 		switch(i) {
 			case 0:
-				temp =  mainClass.ofm.getCurrOutputFolder()+"Valeo_IKS_AFAA_";
-				break;
-			case 1:
-				temp =  mainClass.ofm.getCurrOutputFolder()+"Valeo_STLA_SASY_";
+				temp =  "$Output\\Valeo_IKS_AFAA_";
 				break;
 			case 2:
-				temp =  mainClass.ofm.getCurrOutputFolder()+"Valeo_STLA_AFAA_";
+				temp =  "$Output\\Valeo_STLA_SASSY3_EOL_";
 				break;
-		
+			case 1:	
+				temp =  "$Output\\Valeo_STLA_AFAA_";
+				break;
 		}
 		
-		return temp + java.time.LocalDate.now().toString() + ".xlsx";
+		return temp + java.time.LocalDate.now().toString() + new SimpleDateFormat("_MM-dd").format(cal.getTime()) + ".xlsx";
 	}
 
 	/*

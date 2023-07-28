@@ -18,7 +18,7 @@ public class STLA_Aview_form_2nd extends javax.swing.JFrame {
 	private int mode = 0;
 	
     public STLA_Aview_form_2nd(int state) {
-    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
     	
         initComponents();
         this.getContentPane().setBackground(Color.white);
@@ -68,7 +68,7 @@ public class STLA_Aview_form_2nd extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("$Resource/image-300x150.jpg"));
         jLabel1.setText("jLabel1");
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -176,8 +176,7 @@ public class STLA_Aview_form_2nd extends javax.swing.JFrame {
         	    		mainClass.dtsm.insertToBuffer(43, jTextField65.getText());
         	    		mainClass.dtsm.insertToBuffer(44, jTextField66.getText());
         	    		
-		            	mainClass.fm.createCopyXLSX(1);
-		        		mainClass.dtsm.commit(1);
+		        		mainClass.dtsm.commit(1, false);
 		        		if(mainClass.dtsm.isErrorFree()) {
 		        			mainClass.dtsm.flash();
 			            	System.out.println("(IKS_2) Copy and Save File");
@@ -191,14 +190,17 @@ public class STLA_Aview_form_2nd extends javax.swing.JFrame {
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	dispose();
-            	STLA_Aview_form IKSFF = new STLA_Aview_form(0);
+            	if (JOptionPane.showConfirmDialog(null, "The prompt input will not be save. Proceed?", "WARNING",
+        		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+	            	dispose();
+	            	STLA_Aview_form IKSFF = new STLA_Aview_form(0);
+        	    }
             }
         });
         JPanel panel = new JPanel();
         GroupLayout layout = new GroupLayout(panel);
         
-        getContentPane().setLayout(layout);
+//        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -342,8 +344,7 @@ public class STLA_Aview_form_2nd extends javax.swing.JFrame {
         panel.setLayout(layout);
         this.add(new JScrollPane(panel));
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-
+    }
 
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

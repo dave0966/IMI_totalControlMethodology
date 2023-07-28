@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package imi_totalcontrolmethodology;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.io.FileNotFoundException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -25,7 +20,7 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
      */
 	int mode = 0;
     public IKS_fillupFrame_2nd(int state) {
-    	Image icon = new ImageIcon(this.getClass().getResource("LOGO.jpg")).getImage();
+    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
     	
         initComponents();
         this.getContentPane().setBackground(Color.white);
@@ -74,7 +69,7 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imi_totalcontrolmethodology/image-300x150.jpg")));
+        jLabel1.setIcon(new javax.swing.ImageIcon("$Resource/image-300x150.jpg"));
         jLabel1.setText("jLabel1");
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -182,8 +177,20 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         	    		mainClass.dtsm.insertToBuffer(43, jTextField65.getText());
         	    		mainClass.dtsm.insertToBuffer(44, jTextField66.getText());
         	    		
-		            	mainClass.fm.createCopyXLSX(0);
-		        		mainClass.dtsm.commit(0);
+        	    		try {
+        	    			mainClass.lfm.setRecentfileLog(mainClass.dtsm.getWorkingFileDir(), 0);
+//    		            	mainClass.fm.createCopyXLSX(0);
+    		        		mainClass.dtsm.commit(0, false);
+        	    		}catch(IndexOutOfBoundsException e) {
+        	    			
+        	    		}
+        	    		
+
+
+		        		if(mode == 0)
+		                    mainClass.lfm.setRecentfileLog(mainClass.dtsm.getWorkingFileDir(), 0);
+
+		        			
 		        		if(mainClass.dtsm.isErrorFree()) {
 		        			mainClass.dtsm.flash();
 			            	System.out.println("(IKS_2) Copy and Save File");
@@ -197,8 +204,11 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
         jButton2.setText("Previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	dispose();
-            	IKS_fillupFrame_1 IKSFF = new IKS_fillupFrame_1(0);
+            	if (JOptionPane.showConfirmDialog(null, "The prompt input will not be save. Proceed?", "WARNING",
+        		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+	            	dispose();
+	            	IKS_fillupFrame_1 IKSFF = new IKS_fillupFrame_1(0);
+        	    }
             }
         });
 
@@ -372,9 +382,9 @@ public class IKS_fillupFrame_2nd extends javax.swing.JFrame {
 //    	jTextField54.setText(getTextTF(44));
 //    }
     
-    private String getTextTF(int row_index) {
-    	return mainClass.dtsm.getCellValue(row_index, mainClass.dtsm.getSelectedColumn_Actual());
-    }
+//    private String getTextTF(int row_index) {
+//    	return mainClass.dtsm.getCellValue(row_index, mainClass.dtsm.getSelectedColumn_Actual());
+//    }
 
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
