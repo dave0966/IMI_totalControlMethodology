@@ -1,31 +1,27 @@
 package imi_totalcontrolmethodology;
 
-import java.io.File;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
-
+import java.nio.file.Paths;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.nio.file.Path;
 import javax.swing.JOptionPane;
 
-import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
-class SasyArr{
+class SheetCell{
 	private int Row, Column;
 	private String Inputdata;
 	
-	SasyArr(int row, int column, String input){
+	SheetCell(int row, int column, String input){
 		this.Row = row;
 		this.Column = column;
 		this.Inputdata = input;
@@ -47,135 +43,145 @@ class SasyArr{
 
 public class DataToSheetManager {
 	private Workbook wb;
-	private FileInputStream fis;
-	private FileOutputStream fos;
+	private BufferedInputStream bis;
+	private BufferedOutputStream bos;
 	private Sheet sheet;
 	private Row row;
 	private Cell cell;
 	
-	private String workingFileDir = "";
-	private Set<Integer> key;
-	private boolean isErrorFree = true;
-	private int[] arrColumn = {14,15,17,18,19,20,21,22,23,24,25};		// Arrays of integers that represents the column O to Z in excel
-	private int selectedColumn = 14;									// By default, 14th Column (or Column O) was set.
-	private HashMap<Integer, String> buffer = new HashMap<Integer, String>();
-	private List<SasyArr> arrSas = new ArrayList<SasyArr>();
+	private ArrayBlockingQueue<SheetCell> buffer = new ArrayBlockingQueue<SheetCell>(100);
+	private Path workingFileDir = Paths.get("D:\\Coding\\git\\OJT\\IMI_\\IMI_totalControlMethodology\\$Output\\temp.xlsx");
 	
+	private int limit_iter = 3;
 	
-	void setWorkingFileDir(String str) {
-		System.out.println("(DataToSheetManager) workingFileDir changes value!");
-		this.workingFileDir = str;
-	}
-	
-	String getWorkingFileDir() {
-		return this.workingFileDir;
-	}
-	
-	void insertToCell(int input_row, int input_column, String input_data, boolean isFillUpForm1){
+	DataToSheetManager(){
 		try {
-			fis = new FileInputStream(new File(getWorkingFileDir()));
-			wb = WorkbookFactory.create(fis);
+			initWb();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	void initWb() throws IOException {
+		try
+		{
+			bis = new BufferedInputStream( new FileInputStream(workingFileDir.toString()) );
+			wb = new XSSFWorkbook(bis);
 			sheet =  wb.getSheetAt(0);
-			row = sheet.getRow(input_row);
-			cell = row.getCell(input_column);
-//			System.out.println("FillUpForm: " + isFillUpForm1);
-			cell.setCellValue(
-								(input_data.length() == 0 || input_data.equalsIgnoreCase("N/A")) ? 
-									"-" 
-									: (isFillUpForm1) ? 
-											(input_data.equalsIgnoreCase("PASS")) ? "✓": input_data.replace("FAIL", "☓")
-											:input_data
-							 );
-			OutputStream fileOut = new FileOutputStream(getWorkingFileDir());
-			sheet.autoSizeColumn(getSelectedColumn_Actual());
-			wb.write(fileOut);
-		} catch (EncryptedDocumentException | FileNotFoundException e) {
-			setErrorFree(false);
+		}
+		
+		catch(IOException e) 
+		{
 			e.printStackTrace();
-		}catch (IOException ee) {}
+		}
 	}
 	
-	String getCellValue(int input_row, int input_column) {
+	/*	
+	 * 	Type of Data to be expect and then convert it to:
+	 * 	• PASS 	 -> ✓
+	 * 	• FAIL   -> X(#,#)
+	 * 	• String -> Lorem Ipsum
+	 *  • Null	 -> -
+	 */ 
+	
+	void addToBuffer(int row, int column, String input) {
+		if(input.length() == 0)
+			input = "-";
+			
+		else if(input.equalsIgnoreCase("PASS"))
+			input = "✓";
+			
+		else if(input.contains("FAIL"))
+			input.replace("FAIL", "X");
+		
+		buffer.add(new SheetCell(row, column, input));
+	}
+	
+	void commit() {
+		try 
+		{
+			bos = new BufferedOutputStream(new FileOutputStream(workingFileDir.toString()));
+
+			while(buffer.size() != 0) {
+				SheetCell temp_sc = buffer.take();
+				System.out.printf("Insert: %s \t%s \t%s\n" , temp_sc.getRow(), temp_sc.getColumn(), temp_sc.getInputdata());
+				insertToCell(temp_sc.getRow(), temp_sc.getColumn(), temp_sc.getInputdata());
+			}
+			
+			bos.flush();
+			wb.close();
+		} 
+		
+		catch (InterruptedException | IOException e)
+		{
+			JOptionPane.showMessageDialog(null, "The Application cannot access the file "
+											  + "\nbecause it is being used. Close the application "
+											  + "\nusing it then CLICK OK.");
+			if(limit_iter > 0) {
+				limit_iter--;
+				commit();
+			}
+			else if(limit_iter == 0)
+				JOptionPane.showMessageDialog(null, "The process has been abort due to an "
+												  + "\napplication/s using the file. Try Again!");
+			else
+				limit_iter = 3;
+			
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/*
+	 * 	Be wary when using insertToCell
+	 * 	REMEMBER to know the parameter (MAX ROW, MAX COLUMN) of the cell created in template
+	 * 	
+	 * 	NULLPOINTEREXCEPTION:
+	 * 		For Example:
+	 * 		When insertToCell() method invoke with parameter of more than the 
+	 *  	ROW/COLUMN according to the border of the template it calls NullPointerException
+	 *  
+	 * 		NullPointerException most likely results to getting a cell outside the template border
+	 * 		By default, it is null but within the border it is not null. For the reason of, it
+	 *  	was manually configured by the developer and hence, contains non-null.
+	 *  
+	 *  IOEXCEPTION - TRUNCATED ZIP FILE:
+	 *  	The File your calling is corrupted. 
+	 *  
+	 *  	Solution:
+	 *  		Manually remove the file.
+	 *  
+	 */
+	
+	void insertToCell(int input_row, int input_column, String input_data) {
 		try {
-			System.out.println(getWorkingFileDir());
-			fis = new FileInputStream(new File(getWorkingFileDir()));
-			wb = WorkbookFactory.create(fis);
-		} catch (IOException | EncryptedDocumentException e) {
+			row = sheet.getRow(input_row);
+			if(row == null)
+				throw new IOException();
+			
+			cell = row.getCell(input_column);
+			
+			if(!(cell == null))
+				cell.setCellValue(input_data);
+			else {
+				System.out.println("insertToCell Abort!");
+				return;
+			}
+			bos = new BufferedOutputStream( new FileOutputStream(workingFileDir.toString()));
+			sheet.autoSizeColumn(input_column);
+			wb.write(bos);
+		} 
+		catch (NullPointerException | IOException e) 
+		{	
+			JOptionPane.showMessageDialog(null, "Failed To Insert Prompt to Specified Cell.");
 			e.printStackTrace();
 		}
-		sheet =  wb.getSheetAt(0);
-		row = sheet.getRow(input_row);
-		cell = row.getCell(input_column);
-		
-		return cell.toString();
 	}
 	
-	void insertToBuffer(Integer i, String s) {
-		buffer.put(i, s);
+	void flush() throws IOException {
+		System.out.println("\tRow \tColumn \tData");
+		for(SheetCell sc : buffer)
+			System.out.printf("Delete: %s \t%s \t%s\n" , sc.getRow(), sc.getColumn(), sc.getInputdata());
+		this.buffer.clear();
 	}
-	 
-	void insertToSasyArr(int row, int column, String str) {
-		this.arrSas.add(new SasyArr(row, column, str));
-	}
-	
-	String getFromBuffer(Integer i) {
-		return buffer.get(i);
-	}
-	
-	void commit(int fileType, boolean isSasy){
-		mainClass.fm.createCopyXLSX(fileType);
-		
-		if(!isSasy) {
-			key = buffer.keySet();
-			for(Integer k : key) 
-//			{
-//					System.out.println("commit: "+ buffer.get(k));
-				insertToCell(k, getSelectedColumn_Actual(), buffer.get(k), (( k > 6 && k < 26) ? true: false));
-	//			System.out.println(k + " " + getSelectedColumn_Actual() + " " + buffer.get(k));
-//			}
-		}
-		else
-			for(SasyArr sa : arrSas)
-				insertToCell(sa.getRow(), sa.getColumn(), sa.getInputdata(), ((sa.getRow() > 6 && sa.getRow() < 17)? true: false));
-	}
-	
-	void flash() {
-		System.out.println("Flashed!");
-		buffer.clear();
-		arrSas.clear();
-	}
-	
-	void setSelectedColumn_Actual(int i) {
-		System.out.println("Selected Column/Actual: " + arrColumn[i]);
-		this.selectedColumn = arrColumn[i];
-	}
-	
-	int getSelectedColumn_Actual() {
-		return this.selectedColumn;
-	}
-	
-	int selectedColumnToIndex() {
-		for(int index = 0; index < arrColumn.length; index++)
-			if(arrColumn[index] == getSelectedColumn_Actual())
-				return index;
-		
-		return -1;
-	}
-	
-	boolean isErrorFree() {
-		if(!this.isErrorFree) {
-			JOptionPane.showMessageDialog(null, "The File is not existing or being used by another process (or application). "
-					  + "\nTry close or terminate the application.");
-			setErrorFree(true);
-			return false;
-		}
-		
-		return true;
-	}
-	
-	void setErrorFree(boolean bool) {
-		this.isErrorFree = bool;
-	}
-	
-	
 }

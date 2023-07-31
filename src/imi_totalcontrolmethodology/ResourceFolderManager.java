@@ -10,6 +10,7 @@ public class ResourceFolderManager {
 	
 	public ResourceFolderManager() {
 		createDir_Resource();
+		checkResource();
 	}
 	
 	private void createDir_Resource() {
@@ -23,9 +24,9 @@ public class ResourceFolderManager {
 	
 	boolean checkResource() {
 		System.out.println(new File("").getAbsolutePath());
-		if(!(new File("src\\imi_totalcontrolmethodology\\LOGO.jpg").exists()))
+		if(!(new File("$Resource\\LOGO.jpg").exists()))
 			JOptionPane.showMessageDialog(null, "LOGO.jpg could not be found or search!", "Missing File", JOptionPane.ERROR_MESSAGE, null);
-		else if(!(new File("src\\imi_totalcontrolmethodology\\image-300x150.jpg").exists()))
+		else if(!(new File("$Resource\\image-300x150.jpg").exists()))
 			JOptionPane.showMessageDialog(null, "image-300x150.jpg could not be find or search!", "Missing File", JOptionPane.ERROR_MESSAGE, null);
 		else
 			return false;

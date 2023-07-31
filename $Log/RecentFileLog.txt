@@ -1,3 +1,0 @@
-Valeo_IKS=$Output\Valeo_IKS_AFAA_2023-07-26_08-05.xlsx
-Valeo_STLA=
-Valeo_SASY=

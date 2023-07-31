@@ -16,7 +16,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author USer1
  */
-public class fileSelector extends javax.swing.JFrame {
+public class fileSelector extends javax.swing.JFrame implements GlobalResource{
 
 	private fileManager fm = new fileManager();
 	private JButton jButton1;
@@ -25,13 +25,12 @@ public class fileSelector extends javax.swing.JFrame {
 	private JLabel jLabel1;
 	private JTextField jTextField1;
 
-    public fileSelector() {
-    	Image icon = new ImageIcon("$Resource\\LOGO.jpg").getImage();
+    public fileSelector(){
     	
         initComponents();
         this.getContentPane().setBackground(WHITE);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        this.setIconImage(icon);
+        this.setIconImage(img_icon);
         this.setResizable(false);
         this.setVisible(true);
         this.pack();
@@ -42,7 +41,7 @@ public class fileSelector extends javax.swing.JFrame {
     	jTextField1 = new JTextField();
     	
         jLabel1 = new JLabel();
-        jLabel1.setIcon(new ImageIcon("$Resource/image-300x150.jpg")); // NOI18N
+        jLabel1.setIcon(new ImageIcon(img_logo)); // NOI18N
         jLabel1.setText("jLabel1");
 
         jButton1 = new JButton();

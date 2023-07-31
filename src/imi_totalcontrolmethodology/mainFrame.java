@@ -10,19 +10,17 @@ import javax.swing.*;
  *
  * @author USer1
  */
-public class mainFrame extends JFrame{
+public class mainFrame extends JFrame implements GlobalResource{
     private JButton bt_createNewFile;
     private JButton bt_existingFile;
-	private Image icon = new ImageIcon("$Resource\\Logo.jpg").getImage();
     
 	/**
      * Creates new form NewJFrame1
      */
     public mainFrame() {
-//    	System.out.println("mainFrame invoked!");
         initComponents();
         this.setTitle("START");
-        this.setIconImage(icon);
+        this.setIconImage(img_icon);
         this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -37,7 +35,7 @@ public class mainFrame extends JFrame{
         bt_createNewFile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	dispose();
-            	promptFrame frame2 = new promptFrame();
+//            	promptFrame frame2 = new promptFrame();
             }
         });
 
@@ -47,7 +45,7 @@ public class mainFrame extends JFrame{
         bt_existingFile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	dispose();
-                fileSelector frame3 = new fileSelector();
+//                fileSelector frame3 = new fileSelector();
             }
         });
 

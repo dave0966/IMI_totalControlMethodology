@@ -1,20 +1,39 @@
 package imi_totalcontrolmethodology;
 
-import java.io.File;
-import java.text.ParseException;
+import java.io.IOException;
+//import java.io.File;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-
 public class OutputFolderManager {
-	private File f_output;
-//	private String currOutputFolder = null;
 
+//	private File[] folderName;
+	private Path output = Paths.get("$Output");
+	private final Path TodayDate = Paths.get(getDateName());
+	
 	OutputFolderManager(){
-		System.out.println("OutputFolderManager invoked!");
-		createDir_Output();
-//		setDefaultCurrOutputDir();
-//		createOutput_subFolder();
+//		System.out.println("OutputFolderManager invoked!");
+		try 
+		{
+//			folderName = new File(output.toString()).listFiles();
+			createDir_Output();
+			createOutput_subFolder();
+		} 
+		
+		catch(FileAlreadyExistsException faee)
+		{
+			System.out.println(Paths.get(output.toString(),TodayDate.toString()) + " already Exists! ");
+		}
+		
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/*
@@ -23,23 +42,65 @@ public class OutputFolderManager {
 	 * 
 	 */
 	
-	private void createDir_Output() {
-		f_output = new File("$Output");
-		if(!f_output.exists()) 
+	private void createDir_Output() throws IOException {
+		if(!Files.exists(output)) 
 		{
-			f_output.mkdirs();
+			Files.createDirectory(output);
 			System.out.println("Successfully Created Directory!");
 		}
 		else 
 			System.out.println("Output Folder Directory are Already Exist!");
 	}
 	
-	/*	
-	 * 	isFileExists > YES > SysOut(Exist)
-	 * 				 > NO  > isValid > YES > SysOut(Exist)
-	 * 								 > NO  > Make File > SysOut(Create)
-	 */
 		
+	private void createOutput_subFolder() throws IOException, FileAlreadyExistsException {
+		if(mainClass.lfm.getRecentFileLog(0) == null ) 
+		{
+			Files.createDirectory(Paths.get(output.toString(),TodayDate.toString()));
+			mainClass.lfm.UpdateRecentfileLog(output + "\\" + TodayDate.toString(), 0);
+		}
+		
+		else if(!isDateValid(mainClass.lfm.getRecentFileLog(0)) || !Files.exists(Paths.get(mainClass.lfm.getRecentFileLog(0)))) 
+		{
+			Files.createDirectory(Paths.get(output.toString(),TodayDate.toString()));
+			mainClass.lfm.UpdateRecentfileLog(output + "\\" + TodayDate.toString(), 0);
+		}
+		
+		else if(!Files.exists(Paths.get(getDateName()))) 
+		{
+			Files.createDirectory(Paths.get(output.toString(),TodayDate.toString()));
+			mainClass.lfm.UpdateRecentfileLog(output + "\\" + TodayDate.toString(), 0);
+		}
+		else
+			System.out.println("Subfolder is already existing!");
+		
+	}
+	
+	String getDateName() {
+		Calendar cal = Calendar.getInstance();
+		String result = new SimpleDateFormat("YYYY-MM-dd").format(cal.getTime()) + "_";
+		cal.add(Calendar.DATE, 10);
+		result += new SimpleDateFormat("MM-dd").format(cal.getTime());
+		
+		return result;
+	}
+	
+	boolean isDateValid(String input) {
+		Calendar cal = Calendar.getInstance();
+		String temp = input.substring(input.indexOf('_')+1);
+		for(int days = 0; days < 11; days++) {
+			System.out.println("T:" + temp + " == " + new SimpleDateFormat("MM-dd").format(cal.getTime()) + " : " + temp.equalsIgnoreCase(new SimpleDateFormat("MM-dd").format(cal.getTime())));
+			if(temp.equalsIgnoreCase(new SimpleDateFormat("MM-dd").format(cal.getTime()))) 
+			{
+				System.out.println(mainClass.lfm.getRecentFileLog(0) + " is valid!");
+				return true;
+			}
+			cal.add(Calendar.DATE, 1);
+		}
+		return false;
+	}
+	
+	
 //	private void createOutput_subFolder() {
 //		if(new File(getCurrOutputFolder()).exists()) 
 //			System.out.println("Output Subfolder (Recent) already exists!");

@@ -1,148 +1,203 @@
 package imi_totalcontrolmethodology;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.io.OutputStream;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-import java.nio.file.*;
-
-import javax.swing.JOptionPane;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 
 public class LogFolderManager {
-	private File f_logRepo, f_enfl, f_rfl;
-	private FileWriter fw;
 	private List<String> lines;
-	private Scanner reader;
+	private List<String> lst_EmployeeNum;
+	private List<String> lst_template;
+	private final String[] arrTulAttr = {"IKS_Template=", "AFAA_Template=", "SASSY_Template="};
+	private final String[] arrRcflAttr = {"SubFolder=", "Valeo_IKS=", "Valeo_AFAA=", "Valeo_SASSY="};
+	private boolean isInit = false;
+	
+	private Path eml = Paths.get("$Log\\EmployeeNumberLog.csv");
+	private Path ltl = Paths.get("$Log\\ListOfTemplateLog.config");
+	private Path rcfl = Paths.get("$Log\\RecentCreatedFileLog.config");
+	private Path al = Paths.get("$Log\\ApplicationLog.config");
 	
 	LogFolderManager(){
 		createDir_LogRepo();
-		createTxt_EmployeeNumberLog();
-		createRecentFile(false);
+		try {
+			createCSV_EmployeeNumberLog();
+			createConfig_ListOfTemplateLog();
+			createConfig_RecentCreatedFileLog();
+			createConfig_ApplicationLog();
+			
+			getListOfEmployeeNum();
+			lines = Files.readAllLines(rcfl);
+			this.isInit = true;
+		}catch(FileAlreadyExistsException feaa) {
+			System.out.println("\n\nlfm: FileALreadyExistsExcpetion\n\n");
+			feaa.printStackTrace();
+			
+		}catch(IOException e) {
+			System.out.println("\n\nlfm: IOException\n\n");
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private void createDir_LogRepo() {
-		f_logRepo = new File("$Log");
-		if(!f_logRepo.exists()) {
-			f_logRepo.mkdirs();
-			System.out.println("Successfully Created Directory!");
-		}else 
-			System.out.println("Folder Directory for Employee Log Already Exist!");
-	}
-	
-	private void createTxt_EmployeeNumberLog() {
-		f_enfl = new File("$Log\\Employee_Number_(DO NOT DELETE).txt");
-		if(f_enfl.exists())
-			System.out.println("Employee Number Log exists!");
-		else 
+		File temp = new File("$Log");
+		if(!temp.exists()) 
 		{
-			JOptionPane.showMessageDialog(null, "Successfully Created Employee Number Log!", "File Creation Alert Warning", JOptionPane.WARNING_MESSAGE);
-			try 					{ f_enfl.createNewFile(); } 
-			catch (IOException e) 	{ e.printStackTrace(); }
+			temp.mkdirs();
+			System.out.println("lfm: $Log created!");
 		}
-		
-	}
-	
-	private void createRecentFile(boolean isByPass) {
-		f_rfl = new File("$Log\\RecentFileLog.txt");
-		
-		if(!f_rfl.exists() || isByPass)
-			try {
-				f_rfl.createNewFile();
-				System.out.println("RecentFileLog been created!");
-				fw = new FileWriter(f_rfl.getAbsolutePath(), true);
-				fw.write("Valeo_IKS=" + System.lineSeparator());
-				fw.write("Valeo_STLA=" + System.lineSeparator());
-				fw.write("Valeo_SASY=" + System.lineSeparator());
-				fw.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		else
-			System.out.println("RecentFileLog already Exist!");
+			System.out.println("lfm: $Log exists!");
 	}
 	
-	void setRecentfileLog(String input, int fileType) {
-		try {
-			lines = Files.readAllLines(f_rfl.toPath());
-			String temp = lines.get(fileType);
-			lines.set(fileType, temp.substring(0, temp.lastIndexOf('=')+1).concat(input));
-			Files.write(f_rfl.toPath(), lines);
-			
-		} catch (IOException | IndexOutOfBoundsException e) {
-			e.printStackTrace();
+	private void createCSV_EmployeeNumberLog() throws IOException, FileAlreadyExistsException {
+		if(!Files.exists(eml)) 
+		{
+			Files.createFile(eml);
+			System.out.println("lfm: EmployeeNumberLog.csv created!");
 		}
+		else
+			System.out.println("lfm: 'EmployeeNumberLog.csv' exists!");
+	}
+	
+	private void createConfig_ListOfTemplateLog() throws IOException, FileAlreadyExistsException{
+		if(!Files.exists(ltl)) 
+		{
+			Files.createFile(ltl);
+			System.out.println("lfm: ListOfTemplate.config created!");
+		}
+		else
+			System.out.println("lfm: 'ListOfTemplate.config' exists!");
+	}
+
+	private void createConfig_RecentCreatedFileLog() throws IOException, FileAlreadyExistsException{
+		if(!Files.exists(rcfl)) 
+		{
+			Files.createFile(rcfl);
+			Files.write(rcfl, (arrRcflAttr[0] + System.lineSeparator()
+							 + arrRcflAttr[1] + System.lineSeparator()
+							 + arrRcflAttr[2] + System.lineSeparator()
+							 + arrRcflAttr[3]
+							  ).getBytes(),
+					    StandardOpenOption.CREATE
+			);
+			System.out.println("lfm: RecentCreateFileLog.config created!");
+		}
+		else
+			System.out.println("lfm: 'RecentCreatedFileLog.config' exists!");
+	}
+	
+	private void createConfig_ApplicationLog() throws IOException {
+		if(!Files.exists(al))
+		{
+			Files.createFile(al);
+			System.out.println("");
+		}
+		
+	}
+	
+	//	Append EmployeeNum to CSV
+	void UpdateEmployeeNumLog(String input) {
+		if(!isEmployeeNumExist(input))
+			try (CSVWriter writer = new CSVWriter(new FileWriter(eml.toString(), true))) 
+			{
+	            writer.writeNext(new String[] {input});
+	            System.out.println("Updated Employee Number Log!");
+	        } 
+			catch (IOException e) { e.printStackTrace(); }
+	}
+
+	
+	void UpdateRecentfileLog(String input, int lineNumber){
+        try 
+        {
+            lines = Files.readAllLines(rcfl);
+            String temp = lines.get(lineNumber);
+            lines.set(lineNumber, temp.substring(0,temp.indexOf('=')+1).concat(input));
+            Files.write(rcfl, lines);
+            System.out.println("lfm: Updated RecentFileLog!");
+        }
+        
+        catch (StringIndexOutOfBoundsException siobe) { siobe_repair(); }
+        catch (IOException e) { e.printStackTrace(); }
+	}
+	
+	// Abbreviation to UTL
+	void UpdateTemplateLog(String Dir, int lineNumber) {
+		try (CSVWriter writer = new CSVWriter(new FileWriter(ltl.toString(), true))) 
+		{
+            writer.writeNext(new String[] {Dir});
+            System.out.println("Updated Template Log!");
+        } 
+		catch (IOException e) { e.printStackTrace(); }
+	}
+	
+
+	void UTL_addVar
+	
+	
+	//siobe -> StringIndexOutOfBoundsException Repair
+	private void siobe_repair() {
+		try
+		{
+			lines = Files.readAllLines(rcfl);
+			for(int index = 0; index < 3; index++) {
+				String temp = lines.get(index);
+				if(temp.indexOf('=') < 0)
+					lines.set(index, arrRcflAttr[index].concat(temp));
+			}
+			Files.write(rcfl, lines);
+			System.out.println("\nlfm: RecentFileLog fixed!\n");
+		} 
+		catch(IOException e) { e.printStackTrace(); }
+		
 	}
 	
 	String getRecentFileLog(int fileType) {
-		String temp = null;
-		try {
-			lines = Files.readAllLines(f_rfl.toPath());
-			temp = lines.get(fileType);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return lines.get(fileType).substring(temp.indexOf('='));
-	}
-	
-	void addEmployeeNum(String str) {
-		try 
-		{
-			if(!isEmployeeNumExist(str)) 
-			{
-				System.out.println("(LogFileManager) Inserted new Employee Number: " + str);
-				fw = new FileWriter(f_enfl, true);
-				if(f_enfl.length() != 0)
-					fw.write("\n"+str);
-				else
-					fw.write(str);
-				
-				fw.close();
-			}
-		}
-		
-		catch(IOException e) { e.printStackTrace(); }
+		String temp = lines.get(fileType);
+		return temp.substring(temp.indexOf('=')+1);
 	}
 	
 	List<String> getListOfEmployeeNum() {
-		List<String> temp = new ArrayList<String>();
 		try 
 		{
-			reader = new Scanner(f_enfl);
-			while (reader.hasNextLine()) {
-				String temp_str = reader.nextLine();
-				if(temp_str.length() == 8)
-					temp.add(temp_str);
-			}
-			reader.close();
-		} 
+		      CSVReader reader = new CSVReader(new FileReader(eml.toString()));
+		      lst_EmployeeNum = new ArrayList<String>();
+		      
+		      for(String[] arrString: reader.readAll())
+		    	  for(String str : arrString)
+		    		  if(str.length() == 8)
+		    			  lst_EmployeeNum.add(str);
+		      
+		      return lst_EmployeeNum;
+		}
 		
-		catch (FileNotFoundException e) { e.printStackTrace(); }
-		
-//		for(String str: temp)
-//			System.out.println("From dataManager:"+str);
-//		System.out.println("Employee Status: " + !temp.isEmpty());
-//		System.out.println("getListOfEmployeeNum invoked! ("+temp.size()+")");
-		return temp;
+		catch(IOException | CsvException e) {
+			System.out.println("\n\nlfm: CsvValidationException\n\n");
+			e.printStackTrace();
+			
+		}
+		return null;
 	}
 	
-	boolean isEmployeeNumExist(String str) {
-		System.out.println("isEmployeeNumExist invoked!");
-		
-		for(String get : getListOfEmployeeNum())
-			if(get.equalsIgnoreCase(str))
-				return true;
-
-		return false;
+	boolean getIsInit() {
+		return this.isInit;
 	}
 	
+	private boolean isEmployeeNumExist(String str) {
+		return lst_EmployeeNum.contains(str);
+	}
 	
 }
