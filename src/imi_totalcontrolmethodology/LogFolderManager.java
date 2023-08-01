@@ -12,6 +12,10 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+import java.util.HashMap;
+
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
@@ -19,9 +23,10 @@ import com.opencsv.exceptions.CsvException;
 public class LogFolderManager {
 	private List<String> lines;
 	private List<String> lst_EmployeeNum;
-	private List<String> lst_template;
-	private final String[] arrTulAttr = {"IKS_Template=", "AFAA_Template=", "SASSY_Template="};
-	private final String[] arrRcflAttr = {"SubFolder=", "Valeo_IKS=", "Valeo_AFAA=", "Valeo_SASSY="};
+	private HashMap<String,String> hsh_template = new HashMap<String, String>();
+	
+	private final String[] arrTulAttr = {"IKS=", "AFAA=", "SASSY="};
+	private final String[] arrRcflAttr = {"SubFolder=", "Valeo_IKS=", "Valeo_AFAA=", "Valeo_SASSY=", "Temp="};
 	private boolean isInit = false;
 	
 	private Path eml = Paths.get("$Log\\EmployeeNumberLog.csv");
@@ -30,15 +35,13 @@ public class LogFolderManager {
 	private Path al = Paths.get("$Log\\ApplicationLog.config");
 	
 	LogFolderManager(){
-		createDir_LogRepo();
 		try {
+			createDir_LogRepo();
 			createCSV_EmployeeNumberLog();
 			createConfig_ListOfTemplateLog();
 			createConfig_RecentCreatedFileLog();
 			createConfig_ApplicationLog();
 			
-			getListOfEmployeeNum();
-			lines = Files.readAllLines(rcfl);
 			this.isInit = true;
 		}catch(FileAlreadyExistsException feaa) {
 			System.out.println("\n\nlfm: FileALreadyExistsExcpetion\n\n");
@@ -51,6 +54,13 @@ public class LogFolderManager {
 		
 	}
 	
+	
+	/*
+	 * 
+	 * 		CREATE METHOD
+	 * 
+	 */
+	
 	private void createDir_LogRepo() {
 		File temp = new File("$Log");
 		if(!temp.exists()) 
@@ -62,6 +72,7 @@ public class LogFolderManager {
 			System.out.println("lfm: $Log exists!");
 	}
 	
+	
 	private void createCSV_EmployeeNumberLog() throws IOException, FileAlreadyExistsException {
 		if(!Files.exists(eml)) 
 		{
@@ -71,6 +82,7 @@ public class LogFolderManager {
 		else
 			System.out.println("lfm: 'EmployeeNumberLog.csv' exists!");
 	}
+	
 	
 	private void createConfig_ListOfTemplateLog() throws IOException, FileAlreadyExistsException{
 		if(!Files.exists(ltl)) 
@@ -82,6 +94,7 @@ public class LogFolderManager {
 			System.out.println("lfm: 'ListOfTemplate.config' exists!");
 	}
 
+	
 	private void createConfig_RecentCreatedFileLog() throws IOException, FileAlreadyExistsException{
 		if(!Files.exists(rcfl)) 
 		{
@@ -108,8 +121,17 @@ public class LogFolderManager {
 		
 	}
 	
+	
+
+
+	/*
+	 * 
+	 * 		ADD METHODS
+	 * 
+	 */
+	
 	//	Append EmployeeNum to CSV
-	void UpdateEmployeeNumLog(String input) {
+	void addEmployeeNumLog(String input) {
 		if(!isEmployeeNumExist(input))
 			try (CSVWriter writer = new CSVWriter(new FileWriter(eml.toString(), true))) 
 			{
@@ -118,14 +140,80 @@ public class LogFolderManager {
 	        } 
 			catch (IOException e) { e.printStackTrace(); }
 	}
-
 	
-	void UpdateRecentfileLog(String input, int lineNumber){
+
+	void addCategoryTemplateLog(String Dir) {
+		try 
+		{
+			if(!Dir.contains("=")) {
+				lines = Files.readAllLines(ltl);
+				lines.add(Dir + "=");
+				Files.write(ltl, lines);
+				System.out.println("Added NEW Category Template Log!");
+			}
+			else
+				JOptionPane.showMessageDialog(null, "Invalid File Template Directory! or Do not Include \"=\" character.", "addCategoryTemplateLog", JOptionPane.WARNING_MESSAGE);
+        } 
+		catch (IOException e) { e.printStackTrace(); }
+	}
+	
+	
+	void addRecentFileLog(String Dir) {
+		try 
+		{
+			if(!Dir.contains("=")) {
+				lines = Files.readAllLines(rcfl);
+				lines.add(Dir + "=");
+				Files.write(rcfl, lines);
+				System.out.println("Added NEW Category Recent File Log!");
+			}
+			else
+				JOptionPane.showMessageDialog(null, "Invalid File Template Directory! or Do not Include \"=\" character.", "addCategoryTemplateLog", JOptionPane.WARNING_MESSAGE);
+        } 
+		catch (IOException e) { e.printStackTrace(); }
+	}
+	
+	
+	/*
+	 * 
+	 * 		UPDATE METHODS
+	 * 
+	 */
+	
+	void updateCategoryTemplateLog(int category, String Dir) {
+		try {
+			if((Dir.endsWith(".xlsx") || Dir.endsWith(".csv")) && Dir.substring(0, Dir.indexOf(".")).length() > 0) 
+			{
+				lines = Files.readAllLines(ltl);
+				String temp = lines.get(category);
+				lines.set(category, temp.substring(0,temp.indexOf('=')+1).concat(Dir));
+				System.out.println("Updated Template Log!");
+			}
+			else
+				JOptionPane.showMessageDialog(null, "Invalid File Template Directory!", "updateCategoryTemplateLog", JOptionPane.WARNING_MESSAGE);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/*
+	 * 	Guide in accessing RecentFileLog => LineNumber 0-4...:
+	 * 	0 - Accessing Subfolder 		(Permanent)
+	 * 	1 - Accessing Temporary Holder	(Permanent) NOTE: CLEAR when the user not using the specified DIR
+	 * 	2 - Accessing Valeo_IKS
+	 * 	3 - Accessing Valeo_STLA
+	 * 	4 - Accessing Valeo_SASSY3
+	 *  ...
+	 *  n - ########
+	 */
+	void updateRecentfileLog(String Dir, int lineNumber){
         try 
         {
             lines = Files.readAllLines(rcfl);
             String temp = lines.get(lineNumber);
-            lines.set(lineNumber, temp.substring(0,temp.indexOf('=')+1).concat(input));
+            lines.set(lineNumber, temp.substring(0,temp.indexOf('=')+1).concat(Dir));
             Files.write(rcfl, lines);
             System.out.println("lfm: Updated RecentFileLog!");
         }
@@ -134,19 +222,12 @@ public class LogFolderManager {
         catch (IOException e) { e.printStackTrace(); }
 	}
 	
-	// Abbreviation to UTL
-	void UpdateTemplateLog(String Dir, int lineNumber) {
-		try (CSVWriter writer = new CSVWriter(new FileWriter(ltl.toString(), true))) 
-		{
-            writer.writeNext(new String[] {Dir});
-            System.out.println("Updated Template Log!");
-        } 
-		catch (IOException e) { e.printStackTrace(); }
-	}
-	
 
-	void UTL_addVar
-	
+	/*
+	 * 
+	 * 		OTHER METHODS
+	 * 
+	 */
 	
 	//siobe -> StringIndexOutOfBoundsException Repair
 	private void siobe_repair() {
@@ -165,10 +246,56 @@ public class LogFolderManager {
 		
 	}
 	
-	String getRecentFileLog(int fileType) {
-		String temp = lines.get(fileType);
-		return temp.substring(temp.indexOf('=')+1);
+	/*
+	 * 
+	 * 		GET METHODS
+	 * 
+	 */
+	
+	// Temperorary put ltl
+	String getFileTemplatePathCategory(int lineNumberTemplate) {
+		String tmp_str = "";
+		try {
+			List<String> tmp_list = Files.readAllLines(ltl);
+			tmp_str = tmp_list.get(lineNumberTemplate);
+			return tmp_str.substring(tmp_str.indexOf("\"")+1, tmp_str.lastIndexOf("\""));
+		}
+		
+		catch(IndexOutOfBoundsException inobe) {
+			System.out.println("Exceeds Line Number for Accessing array of DIR ("+lineNumberTemplate+")");
+			return (lineNumberTemplate < 0) ? "" : getFileTemplatePathCategory(lineNumberTemplate-1);
+		}
+		
+		catch (IOException e) {
+			e.printStackTrace();
+			return tmp_str.substring(tmp_str.indexOf("=")+1);
+		}
 	}
+	
+	
+	long getNumberOfTemplateCategory() {
+		try {
+			return Files.readAllLines(ltl).size();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return -1;
+	}
+	
+	
+	String getRecentFileLog(int fileType) {
+		try {
+			lines = Files.readAllLines(rcfl);
+			String temp = lines.get(fileType);
+			return temp.substring(temp.indexOf('=')+1);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "";
+	}
+	
 	
 	List<String> getListOfEmployeeNum() {
 		try 
@@ -192,9 +319,16 @@ public class LogFolderManager {
 		return null;
 	}
 	
+	
 	boolean getIsInit() {
 		return this.isInit;
 	}
+	
+	/*
+	 * 
+	 * 		IS METHODS
+	 * 
+	 */
 	
 	private boolean isEmployeeNumExist(String str) {
 		return lst_EmployeeNum.contains(str);

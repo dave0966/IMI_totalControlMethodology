@@ -10,7 +10,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 
 public class mainClass{
-//	static fileManager fm = new fileManager();
+	static fileManager fm = new fileManager();
 	static LogFolderManager lfm = new LogFolderManager();
 	static ResourceFolderManager rfm = new ResourceFolderManager();
 	static DataToSheetManager dtsm = new DataToSheetManager();
@@ -24,41 +24,50 @@ public class mainClass{
                     break;
                 }
 //            new mainFrame();
-            dtsm.addToBuffer(3, 5, "Am");
-            dtsm.addToBuffer(30, 14, "ba");
-            dtsm.addToBuffer(20, 15, "tu");
-            dtsm.addToBuffer(10, 16, "kam");
-            dtsm.addToBuffer(7, 14, "Top");
-            dtsm.addToBuffer(0, 5, "a");
-            dtsm.addToBuffer(0, 6, "cio");
-            dtsm.addToBuffer(0, 7, "Jholo");
-            dtsm.addToBuffer(0, 8, "Lawrence");
-            dtsm.addToBuffer(0, 9, "Steven");
-            dtsm.addToBuffer(0, 10, "Jerome");
-            dtsm.addToBuffer(3, 5, "Am");
-            dtsm.addToBuffer(30, 14, "ba");
-            dtsm.addToBuffer(20, 15, "tu");
-            dtsm.addToBuffer(10, 16, "kam");
-            dtsm.addToBuffer(7, 14, "Top");
-            dtsm.addToBuffer(0, 5, "a");
-            dtsm.addToBuffer(0, 6, "cio");
-            dtsm.addToBuffer(0, 7, "Jholo");
-            dtsm.addToBuffer(0, 8, "Lawrence");
-            dtsm.addToBuffer(0, 9, "Steven");
-            dtsm.addToBuffer(0, 10, "Jerome");
-            dtsm.addToBuffer(7, 5, "Am");
-            dtsm.addToBuffer(30, 14, "ba");
-            dtsm.addToBuffer(20, 15, "tu");
-            dtsm.addToBuffer(10, 16, "kam");
-            dtsm.addToBuffer(7, 14, "Top");
-            dtsm.addToBuffer(0, 5, "a");
-            dtsm.addToBuffer(0, 6, "cio");
-            dtsm.addToBuffer(0, 7, "Jholo");
-            dtsm.addToBuffer(0, 8, "Lawrence");
-            dtsm.addToBuffer(0, 9, "Steven");
-            dtsm.addToBuffer(0, 10, "Jerome");
-            dtsm.commit();
+//            dtsm.addToBuffer(3, 5, "Am");
+//            dtsm.addToBuffer(30, 14, "ba");
+//            dtsm.addToBuffer(20, 15, "tu");
+//            dtsm.addToBuffer(10, 16, "kam");
+//            dtsm.addToBuffer(7, 14, "Top");
+//            dtsm.addToBuffer(0, 5, "a");
+//            dtsm.addToBuffer(0, 6, "cio");
+//            dtsm.addToBuffer(0, 7, "Jholo");
+//            dtsm.addToBuffer(0, 8, "Lawrence");
+//            dtsm.addToBuffer(0, 9, "Steven");
+//            dtsm.addToBuffer(0, 10, "Jerome");
+//            dtsm.addToBuffer(3, 5, "Am");
+//            dtsm.addToBuffer(30, 14, "ba");
+//            dtsm.addToBuffer(20, 15, "tu");
+//            dtsm.addToBuffer(10, 16, "kam");
+//            dtsm.addToBuffer(7, 14, "Top");
+//            dtsm.addToBuffer(0, 5, "a");
+//            dtsm.addToBuffer(0, 6, "cio");
+//            dtsm.addToBuffer(0, 7, "Jholo");
+//            dtsm.addToBuffer(0, 8, "Lawrence");
+//            dtsm.addToBuffer(0, 9, "Steven");
+//            dtsm.addToBuffer(0, 10, "Jerome");
+//            dtsm.addToBuffer(7, 5, "Am");
+//            dtsm.addToBuffer(30, 14, "ba");
+//            dtsm.addToBuffer(20, 15, "tu");
+//            dtsm.addToBuffer(10, 16, "kam");
+//            dtsm.addToBuffer(7, 14, "Top");
+//            dtsm.addToBuffer(0, 5, "a");
+//            dtsm.addToBuffer(0, 6, "cio");
+//            dtsm.addToBuffer(0, 7, "Jholo");
+//            dtsm.addToBuffer(0, 8, "Lawrence");
+//            dtsm.addToBuffer(0, 9, "Steven");
+//            dtsm.addToBuffer(0, 10, "Jerome");
+//            dtsm.commit();
 //            dtsm.flash();
+            
+//            System.out.println(mainClass.lfm.getNumberOfTemplateCategory());
+//            System.out.println(mainClass.lfm.getFileTemplatePathCategory(0));
+//            System.out.println(mainClass.lfm.getFileTemplatePathCategory(1));
+//            System.out.println(mainClass.lfm.getFileTemplatePathCategory(2));
+            
+//            System.out.println("TemplateDir: " + mainClass.fm.getTemplateDirectory(3));
+            mainClass.lfm.addCategoryTemplateLog("Sugo");
+            mainClass.lfm.addRecentFileLog("Valeo_Sugo");
         } 
         
         catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) 

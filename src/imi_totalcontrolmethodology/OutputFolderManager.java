@@ -12,7 +12,7 @@ import java.util.Calendar;
 public class OutputFolderManager {
 
 //	private File[] folderName;
-	private Path output = Paths.get("$Output");
+	private Path output = Paths.get("D:\\Coding\\git\\OJT\\IMI_\\IMI_totalControlMethodology\\$Output");
 	private final Path TodayDate = Paths.get(getDateName());
 	
 	OutputFolderManager(){
@@ -54,23 +54,17 @@ public class OutputFolderManager {
 	
 		
 	private void createOutput_subFolder() throws IOException, FileAlreadyExistsException {
-		if(mainClass.lfm.getRecentFileLog(0) == null ) 
+		if(
+		   (mainClass.lfm.getRecentFileLog(0) == null)     				 ||
+		   !isDateValid(mainClass.lfm.getRecentFileLog(0)) 			 	 || 
+		   !Files.exists(Paths.get(mainClass.lfm.getRecentFileLog(0)))	 ||
+		   !Files.exists(Paths.get(getDateName()))
+		  )
 		{
 			Files.createDirectory(Paths.get(output.toString(),TodayDate.toString()));
-			mainClass.lfm.UpdateRecentfileLog(output + "\\" + TodayDate.toString(), 0);
+			mainClass.lfm.updateRecentfileLog(output + "\\" + TodayDate.toString(), 0);
 		}
 		
-		else if(!isDateValid(mainClass.lfm.getRecentFileLog(0)) || !Files.exists(Paths.get(mainClass.lfm.getRecentFileLog(0)))) 
-		{
-			Files.createDirectory(Paths.get(output.toString(),TodayDate.toString()));
-			mainClass.lfm.UpdateRecentfileLog(output + "\\" + TodayDate.toString(), 0);
-		}
-		
-		else if(!Files.exists(Paths.get(getDateName()))) 
-		{
-			Files.createDirectory(Paths.get(output.toString(),TodayDate.toString()));
-			mainClass.lfm.UpdateRecentfileLog(output + "\\" + TodayDate.toString(), 0);
-		}
 		else
 			System.out.println("Subfolder is already existing!");
 		

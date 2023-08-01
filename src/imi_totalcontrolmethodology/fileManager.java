@@ -63,6 +63,10 @@ public class fileManager{
 				arrDirTemplate.add("$Resource\\" + temp);
 	}
 	
+	String getTemplateDirectory(int fileTemplate) {
+		return mainClass.lfm.getFileTemplatePathCategory(fileTemplate);
+	}
+	
 	/*
 	 * 
 	 * GET's Methods

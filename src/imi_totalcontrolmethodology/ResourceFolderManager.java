@@ -1,12 +1,16 @@
 package imi_totalcontrolmethodology;
 
-
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.swing.JOptionPane;
 
-public class ResourceFolderManager {
+public class ResourceFolderManager implements GlobalResource {
 	private File f_resource;
+	private Path dir_RFM = Paths.get("D:\\Coding\\git\\OJT\\IMI_\\IMI_totalControlMethodology\\$Resource");
+	
 	
 	public ResourceFolderManager() {
 		createDir_Resource();
@@ -23,8 +27,7 @@ public class ResourceFolderManager {
 	}
 	
 	boolean checkResource() {
-		System.out.println(new File("").getAbsolutePath());
-		if(!(new File("$Resource\\LOGO.jpg").exists()))
+		if(Files.notExists(Path.get(img_logo.get)))
 			JOptionPane.showMessageDialog(null, "LOGO.jpg could not be found or search!", "Missing File", JOptionPane.ERROR_MESSAGE, null);
 		else if(!(new File("$Resource\\image-300x150.jpg").exists()))
 			JOptionPane.showMessageDialog(null, "image-300x150.jpg could not be find or search!", "Missing File", JOptionPane.ERROR_MESSAGE, null);
